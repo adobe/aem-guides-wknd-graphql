@@ -1,0 +1,108 @@
+/*
+Copyright 2020 Adobe
+All Rights Reserved.
+
+NOTICE: Adobe permits you to use, modify, and distribute this file in
+accordance with the terms of the Adobe license agreement accompanying
+it.
+*/
+@import '../styles/variables';
+
+.adventure-detail {
+  float: left;
+}
+
+.adventure-detail-close-button {
+    width: 24px;
+    float: right;
+    margin: 1em;
+  }
+  
+  .adventure-detail-title {
+    margin-bottom: 1em;
+  }
+  
+  .adventure-detail-info {
+    width: 25%;
+    float: left;
+  }
+  
+  .adventure-detail-info-label, .adventure-detail-info-description {
+    border-left: 5px solid $gray-light;
+  }
+  
+  .adventure-detail-info-label {
+  padding: 10px 0px 5px 20px;
+  text-transform: uppercase;
+  }
+  
+  .adventure-detail-info-description {
+    margin-bottom: 20px;
+    padding: 5px 0px 10px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .adventure-detail-content {
+    width: 75%;
+    float:left;
+  }
+  
+  .adventure-detail-content h2 {
+    margin: 15px 0px 0px 0px;
+    padding: 0px;
+  }
+  
+  .adventure-detail-primaryimage {
+    width: 100%;
+  }
+
+  .adventure-detail-itinerary h2{
+    font-family: $font-family-base;
+    font-weight: bold;
+    font-size: $font-size-large;
+  }
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .adventure-detail-info {
+    display: none;
+  }
+
+  .adventure-detail-content {
+    width: 100%;
+  }
+}
+
+/* Contributer Styles */
+$contributor-image-size: 60px;
+
+.contributor {
+  width: 100%;
+  float: left;
+
+  &-image {
+    width: $contributor-image-size;
+    height: $contributor-image-size;
+    border-radius: $contributor-image-size / 2;
+    object-fit: cover;
+    float: left;
+  }
+
+  &-name {
+    margin-left: $contributor-image-size + 20px;
+    font-family: $font-family-serif;
+  }
+
+  &-occupation {
+    margin-left: $contributor-image-size + 20px;
+    margin-top: 0em;
+  }
+
+  &-separator {
+    border-width: 1px solid $gray-light;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+}
+  

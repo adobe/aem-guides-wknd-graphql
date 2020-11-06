@@ -1,0 +1,79 @@
+/*
+Copyright 2020 Adobe
+All Rights Reserved.
+
+NOTICE: Adobe permits you to use, modify, and distribute this file in
+accordance with the terms of the Adobe license agreement accompanying
+it.
+*/
+@import '../styles/variables';
+
+$adventureItemWidth: 240px;
+$adventureItemHeight: 200px;
+
+$adventureItemWidthMobile: 300px;
+$adventureItemHeightMobile: 250px;
+
+.adventure-items {
+  display: flex;
+  list-style: none;
+  margin-top: 1em;
+  padding: 0;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: normal;
+}
+
+.adventure-item {
+  flex-basis: $adventureItemWidth;
+  margin: 0 0 2rem;
+  padding-right: 14px;
+}
+  
+.adventure-item-image {
+  width: 100%;
+  height: $adventureItemHeight;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+  margin-bottom: 7px;
+}
+  
+  .adventure-item-title {
+    font-weight: bold;
+    font-size: $font-size-medium;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+  
+  .adventure-item-length-price {
+    width: 100%;
+    height: 20px;
+  }
+  
+  .adventure-item-length {
+    float: left;
+  }
+  
+  .adventure-item-price {
+    float: right;
+  }
+
+  @media only screen and (max-width: $tablet-breakpoint) {
+    .adventure-items {
+      justify-content: normal;
+    }
+    .adventure-item {
+      flex-basis: $adventureItemWidthMobile;
+    }
+    .adventure-item-image {
+      height: $adventureItemHeightMobile;
+    }
+  }
+
+  @media only screen and (max-width: $mobile-breakpoint) {
+    .adventure-items {
+      justify-content: center;
+    }
+  }
