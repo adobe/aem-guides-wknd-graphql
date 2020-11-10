@@ -2,13 +2,13 @@
 
 This project includes example application(s) that highlights Adobe Experience Manager's GraphQL APIs.
 
+> Interested in accessing the GraphQL feature? Contact your Adobe representative.
+
 ## React app
 
-A sample React application bootstrapped with [Create React App](https://github.com/facebook/create-react-app) that displays a list of Adventures from AEM.
+A sample React application that displays a list of Adventures from AEM.
 
 ![React App screenshot](react-app/docs/react-screenshot.png)
-
-This project was .
 
 ### React quickstart
 
@@ -20,7 +20,7 @@ $ npm install
 $ npm start
 ```
 
-More details about the React app can be found [here](react-app/README.MD).
+More details about the React app can be found [here](./react-app).
 
 
 ## Contributing
