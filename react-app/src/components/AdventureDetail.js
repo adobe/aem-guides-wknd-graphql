@@ -30,7 +30,7 @@ function AdventureDetail(props) {
     if(!data) return <Loading />;
 
     //Set adventureData variable based on graphQL response
-    let adventureData = data.adventure.data;
+    let adventureData = data.adventureByPath.item;
     return (
         <div className="adventure-detail">
           <Link className="adventure-detail-close-button" to={"/Home"}>
@@ -68,8 +68,8 @@ function AdventureDetail(props) {
 
 function adventureDetailQuery(_path) {
   return `{
-    adventure (_path: "${_path}") {
-      data {
+    adventureByPath (_path: "${_path}") {
+      item {
         _path
           adventureTitle
           adventureActivity
