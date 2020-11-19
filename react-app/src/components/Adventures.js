@@ -32,7 +32,7 @@ function Adventures() {
           <ul className="adventure-items">
             {
                 //Iterate over the returned data items from the query
-                data.adventures.items.map((adventure, index) => {
+                data.adventureList.items.map((adventure, index) => {
                     return (
                         <AdventureItem key={index} {...adventure} />
                     );
@@ -65,7 +65,7 @@ function AdventureItem(props) {
  */
 const allAdventuresQuery = `
   {
-    adventures {
+    adventureList {
       items {
         _path
         adventureTitle
@@ -90,7 +90,7 @@ const allAdventuresQuery = `
 function filterQuery(activity) {
   return `
     {
-      adventures (filter: {
+      adventureList (filter: {
         adventureActivity: {
           _expressions: [
             {

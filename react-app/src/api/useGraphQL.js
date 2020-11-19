@@ -31,9 +31,15 @@ function useGraphQL(query) {
             body: JSON.stringify({query}),
         }
         ).then(response => response.json())
-        .then((json) => {
-            console.log(json);
-            setData(json.data)
+        .then(({data, errors}) => {
+            //If there are errors in the response set the error message
+            if(errors) {
+                setErrors(mapErrors(errors));
+            }
+            //Otherwise if data in the response set the data as the results
+            if(data) {
+                setData(data);
+            }
         })
         .catch((error) => {
             setErrors(error);
@@ -43,4 +49,11 @@ function useGraphQL(query) {
     return {data, errorMessage}
 }
 
+/**
+ * concatenate error messages into a single string.
+ * @param {*} errors 
+ */
+function mapErrors(errors) {
+    return errors.map((error) => error.message).join(",");
+}
 export default useGraphQL
