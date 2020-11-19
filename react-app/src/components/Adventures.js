@@ -29,6 +29,9 @@ function Adventures() {
     
     return (
         <div className="adventures">
+          <button onClick={() => setQuery(allAdventuresQuery)}>All</button>
+          <button onClick={() => setQuery(filterQuery('Camping'))}>Camping</button>
+          <button onClick={() => setQuery(filterQuery('Surfing'))}>Surfing</button>
           <ul className="adventure-items">
             {
                 //Iterate over the returned data items from the query

@@ -59,7 +59,7 @@ function AdventureDetail(props) {
             <hr />
             <div className="adventure-detail-itinerary" 
                  dangerouslySetInnerHTML={{__html: adventureData.adventureItinerary.html}}></div>
-            <Contributer {...adventureData.contributer} />
+            <Contributer {...adventureData.adventureContributor} />
           </div>
         
         </div>
