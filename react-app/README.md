@@ -32,6 +32,7 @@ Several [environment variables](https://create-react-app.dev/docs/adding-custom-
 
 * `REACT_APP_HOST_URI=http://localhost:4502` - Set to AEM target host
 * `REACT_APP_GRAPHQL_ENDPOINT=/content/graphql/endpoint.gql` - Set the GraphQL endpoint path
+* `REACT_APP_AUTHORIZATION=admin:admin` - set basic auth credentials to use if connecting to an AEM Author environment (for development only). If connecting to a Publish environment, this setting is not necessary.
 
 ### Proxy API Requests
 
