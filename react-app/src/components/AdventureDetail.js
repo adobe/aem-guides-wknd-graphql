@@ -52,16 +52,16 @@ function AdventureDetail(props) {
             <div className="adventure-detail-info-description">{adventureData.adventurePrice}</div>
           </div>
           <div className="adventure-detail-content">
-            <img className="adventure-detail-primaryimage" 
+            <img className="adventure-detail-primaryimage"
                  src={adventureData.adventurePrimaryImage._path} alt={adventureData.adventureTitle}/>
             <div dangerouslySetInnerHTML={{__html: adventureData.adventureDescription.html}}></div>
             <h2>Itinerary</h2>
             <hr />
-            <div className="adventure-detail-itinerary" 
+            <div className="adventure-detail-itinerary"
                  dangerouslySetInnerHTML={{__html: adventureData.adventureItinerary.html}}></div>
             <Contributer {...adventureData.adventureContributor} />
           </div>
-        
+
         </div>
     );
 }
@@ -106,14 +106,14 @@ function Contributer(props) {
   }
   let pictureReference = null;
   if(props.pictureReference) {
-     pictureReference =  <img className="contributor-image" src={props.pictureReference._path} alt={props.fullname} />
+     pictureReference =  <img className="contributor-image" src={props.pictureReference._path} alt={props.fullName} />
   }
 
   return (
     <div className="contributor">
       <hr className="contributor-separator" />
       {pictureReference}
-      <h3 className="contributor-name">{props.fullname}</h3>
+      <h3 className="contributor-name">{props.fullName}</h3>
       <h4 className="contributor-occupation">{props.occupation}</h4>
     </div>);
 }

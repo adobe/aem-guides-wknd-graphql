@@ -7,7 +7,7 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 const { createProxyMiddleware } = require('http-proxy-middleware');
-const {REACT_APP_HOST_URI, REACT_APP_AUTHORIZATION } = process.env;
+const {REACT_APP_HOST_URI } = process.env;
 
 /*
     Set up a proxy with AEM for local development
@@ -20,8 +20,6 @@ module.exports = function(app) {
     createProxyMiddleware({
       target: REACT_APP_HOST_URI,
       changeOrigin: true,
-      //pass in credentials when developing against an Author environment
-      auth: REACT_APP_AUTHORIZATION,
     })
   );
 };
