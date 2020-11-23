@@ -11,7 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Run the commands:
 
 ```
-$ cd aem-guides-wknd-graphql-tutorial-react/react-app
+$ cd aem-guides-wknd-graphql/react-app
 $ npm install
 $ npm start
 ```
