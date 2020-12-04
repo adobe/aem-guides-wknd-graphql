@@ -26,6 +26,10 @@ This project assumes that the AEM environment has the GraphQL API feature **enab
 
 This project relies on sample content from the WKND Reference site. Install the [WKND Reference Site on your local AEM environment](https://github.com/adobe/aem-guides-wknd/releases/latest).
 
+### Install Sample Endpoints
+
+This project relies on GraphQL endpoints and configurations installed. Build and install the sample [AEM Project](../aem-project/README.md) on the target AEM environment.
+
 ### Update Environment Variables
 
 Several [environment variables](https://create-react-app.dev/docs/adding-custom-environment-variables) are used by this project to connect to an AEM environment. Default connects to an AEM author environment running at http://localhost:4502. If you wish to change this behavior update the `.env.development` file accordingly:
@@ -42,7 +46,7 @@ If connecting to a local AEM author environment, no updates are needed.
 
 ### CORS - Cross Origin Resource Sharing
 
-This project relies on a CORS configuration running on the target AEM environment and assumes that the app is running on http://localhost:3000 in development mode.
+This project relies on a CORS configuration running on the target AEM environment and assumes that the app is running on http://localhost:3000 in development mode. The [CORs configuration](../aem-project/ui.config/src/main/content/jcr_root/apps/wknd-graphql/osgiconfig) is part of the sample [AEM Project](../aem-project/README.md).
 
 ![CORS Configuration](docs/cors-config-TMP.png)
 
