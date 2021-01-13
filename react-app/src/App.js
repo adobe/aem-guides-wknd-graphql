@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import logo from './images/wknd-logo-dk.svg';
 import Adventures from './components/Adventures';
 import AdventureDetail from './components/AdventureDetail';
+import { AEMText } from './components/AEMText';
 import './App.scss';
 
 function App() {
@@ -42,7 +43,13 @@ function Home() {
   return (
     <div className="Home">
       <h2>Current Adventures</h2>
+      <AEMText
+        pagePath='/content/wknd-spa-react/us/en/home'
+        itemPath='/root/responsivegrid/text' />
       <Adventures />
+      <AEMText
+        pagePath='/content/wknd-spa-react/us/en/home'
+        itemPath='/root/responsivegrid/text20' />
   </div>
   );
 }
