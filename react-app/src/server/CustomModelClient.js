@@ -15,12 +15,6 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 import { ModelClient } from '@adobe/aem-spa-page-model-manager';
 
-const FETCH_CONFIG = {
-    headers: {
-        Authorization: 'Basic YWRtaW46YWRtaW4='
-    }
-};
-
 /**
  * Custom ModelClient meant to demonstrate how to customize the request sent to the remote server
  */
@@ -40,9 +34,9 @@ export class CustomModelClient extends ModelClient {
         }
 
         // Either the API host has been provided or we make an absolute request relative to the current host
-        let url = `${this._apiHost}${modelPath}`;
+        let url = `${modelPath}`;
 
-        return fetch(url, FETCH_CONFIG).then(function(response) {
+        return fetch(url).then(function(response) {
             if (response.status >= 200 && response.status < 300) {
                 return response.json();
             } else {
