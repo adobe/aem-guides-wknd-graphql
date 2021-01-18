@@ -7,44 +7,40 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 import {useState, useEffect} from 'react';
-
-const {REACT_APP_GRAPHQL_ENDPOINT} = process.env;
+const {
+  postQuery,
+  saveQuery,
+  getQuery,
+  listQueries
+} = require('../sdk/api');
 
 /*
     Custom React Hook to perform a GraphQL query
-    query paramter is a GraphQL query
+    query parameter is a GraphQL query
     environment variable REACT_APP_GRAPHQL_ENDPOINT is used to point to endpoint in AEM
 */
-function useGraphQL(query) {
+function useGraphQL(query, path) {
 
     let [data, setData] = useState(null);
     let [errorMessage, setErrors] = useState(null);
+    const request = query ? postQuery : getQuery;
 
     useEffect(() => {
-        window.fetch(
-        REACT_APP_GRAPHQL_ENDPOINT,
-        {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({query}),
-        }
-        ).then(response => response.json())
-        .then(({data, errors}) => {
-            //If there are errors in the response set the error message
-            if(errors) {
-                setErrors(mapErrors(errors));
-            }
-            //Otherwise if data in the response set the data as the results
-            if(data) {
-                setData(data);
-            }
+      request(query || path)
+        .then(({ data, errors }) => {
+          // If there are errors in the response set the error message
+          if(errors) {
+            setErrors(mapErrors(errors));
+          }
+          // Otherwise if data in the response set the data as the results
+          if(data) {
+            setData(data);
+          }
         })
         .catch((error) => {
-            setErrors(error);
+          setErrors(error);
         });
-    }, [query]);
+    }, [query, path]);
 
     return {data, errorMessage}
 }
