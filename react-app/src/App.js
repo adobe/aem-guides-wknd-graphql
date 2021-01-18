@@ -8,9 +8,9 @@ it.
 */
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import logo from './images/wknd-logo-dk.svg';
-import Adventures from './components/Adventures';
-import AdventureDetail from './components/AdventureDetail';
+import Adventures from './components/Adventures/Adventures';
+import AdventureDetail from './components/AdventureDetail/AdventureDetail';
+import Header from './components/Header/Header';
 import './App.scss';
 
 function App() {
@@ -18,10 +18,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header>
-          <img src={logo} className="logo" alt="WKND Logo"/>
-          <hr />
-        </header>
+        <Header alt="WKND logo"/>
       <Switch>
         <Route path='/adventure:path'>
           <AdventureDetail />
