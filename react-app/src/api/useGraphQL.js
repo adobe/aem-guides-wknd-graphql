@@ -9,9 +9,7 @@ it.
 import {useState, useEffect} from 'react';
 const {
   postQuery,
-  saveQuery,
-  getQuery,
-  listQueries
+  getQuery
 } = require('../sdk/api');
 
 /*

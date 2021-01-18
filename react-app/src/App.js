@@ -7,7 +7,7 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Adventures from './components/Adventures/Adventures';
 import AdventureDetail from './components/AdventureDetail/AdventureDetail';
 import Header from './components/Header/Header';
