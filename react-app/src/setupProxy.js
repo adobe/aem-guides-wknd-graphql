@@ -16,12 +16,12 @@ const {REACT_APP_HOST_URI, REACT_APP_AUTHORIZATION } = process.env;
 
 module.exports = function(app) {
   app.use(
-    '/content',
+    ['/apps', '/graphql', '/content'],
     createProxyMiddleware({
       target: REACT_APP_HOST_URI,
       changeOrigin: true,
       //pass in credentials when developing against an Author environment
-      auth: REACT_APP_AUTHORIZATION,
+      auth: REACT_APP_AUTHORIZATION
     })
   );
 };
