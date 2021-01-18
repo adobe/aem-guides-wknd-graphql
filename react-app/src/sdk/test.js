@@ -26,8 +26,8 @@ const queryString = `
 (async () => {
   const postRegular = await postQuery(queryString);
   const list = await listQueries();
-  const savePersist = await saveQuery('wknd/plain-article-query', queryString);
-  const getPersist = await getQuery('wknd/plain-article-query');
+  const savePersist = await saveQuery(queryString, 'wknd/plain-article-query5');
+  const getPersist = await getQuery('wknd/plain-article-query5');
 
   console.log('postRegular', JSON.stringify(postRegular, null, 2));
   console.log('list', JSON.stringify(list, null, 2));

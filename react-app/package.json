@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "testSDK": "REACT_APP_HOST_URI=http://localhost:4502 REACT_APP_GRAPHQL_ENDPOINT=/apps/graphql-enablement/content/endpoint.gql REACT_APP_AUTHORIZATION=admin:admin node src/sdk/test.js"
+    "testSDK": "AEM_HOST_URI=http://localhost:4502 AEM_GRAPHQL_ENDPOINT=/apps/graphql-enablement/content/endpoint.gql AEM_AUTHORIZATION=admin:admin node src/sdk/test.js"
   },
   "eslintConfig": {
     "extends": "react-app"
