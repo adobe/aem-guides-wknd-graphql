@@ -1,4 +1,8 @@
-const { AEM_AUTHORIZATION, AEM_GRAPHQL_ENDPOINT, AEM_HOST_URI } = process.env;
+const {
+  AEM_AUTHORIZATION,
+  AEM_GRAPHQL_ENDPOINT,
+  AEM_HOST_URI
+} = require('./env');
 
 const AEM_GRAPHQL_ACTIONS = {
   persist: '/graphql/persist.json',
