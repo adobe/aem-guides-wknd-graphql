@@ -28,6 +28,7 @@ function useGraphQL(query) {
             headers: {
             'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({query}),
         }
         ).then(response => response.json())
@@ -51,7 +52,7 @@ function useGraphQL(query) {
 
 /**
  * concatenate error messages into a single string.
- * @param {*} errors 
+ * @param {*} errors
  */
 function mapErrors(errors) {
     return errors.map((error) => error.message).join(",");
