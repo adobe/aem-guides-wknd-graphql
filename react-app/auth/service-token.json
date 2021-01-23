@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "integration": {
+    "imsEndpoint": "example.adobelogin.com",
+    "metascopes": "ent_aem_cloud_sdk,ent_cloudmgr_sdk",
+    "technicalAccount": {
+      "clientId": "cm-p123-e1234",
+      "clientSecret": "1REDACTED2"
+    },
+    "email": "abcd@techacct.adobe.com",
+    "id": "ABCDAE10A495E8C@techacct.adobe.com",
+    "org": "1234@AdobeOrg",
+    "privateKey": "-----BEGIN RSA PRIVATE KEY----------END RSA PRIVATE KEY-----\r\n",
+    "publicKey": "-----BEGIN CERTIFICATE---------END CERTIFICATE-----\r\n"
+  },
+  "statusCode": 200
+}
