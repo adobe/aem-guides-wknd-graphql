@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withMappable } from '@adobe/aem-react-editable-components';
+import { withMappable, MapTo } from '@adobe/aem-react-editable-components';
 import DOMPurify from 'dompurify';
 
 /**
@@ -41,3 +41,5 @@ class Text extends Component {
 }
 
 export const AEMText = withMappable(Text, TextEditConfig);
+
+MapTo('wknd-spa-react/components/text')(Text, TextEditConfig);
