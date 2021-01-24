@@ -17,11 +17,13 @@ import Home from './components/Home';
 
 import './App.scss';
 
+const { REACT_APP_HOST_URI, REACT_APP_AEM_PROJECT_ROOT } = process.env;
+
 function App() {
   // Transform routing path to accomodate for AEM specific paths
   // path updated only when opened within AEM editor
   const transformRoute = (path) => {
-    const aemPathRegex = PathUtils.toAEMPath(path, process.env.REACT_APP_HOST_URI, process.env.REACT_APP_AEM_PROJECT_ROOT);
+    const aemPathRegex = PathUtils.toAEMPath(path, REACT_APP_HOST_URI, REACT_APP_AEM_PROJECT_ROOT);
     return aemPathRegex;
   };
 
