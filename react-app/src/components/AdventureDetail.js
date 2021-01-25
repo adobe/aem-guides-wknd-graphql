@@ -26,7 +26,8 @@ function AdventureDetail(props) {
             const pathArray = adventures.adventureList?.items?.map((item) => item._path);
             let pathname = window.location.pathname;
             pathname = pathname.substring(pathname.lastIndexOf("/") + 1, pathname.length);
-            pathArray.forEach(path => path.indexOf(pathname >= 0) && setAdventurePath(path));
+            pathname = pathname.replace(/(.html)/, '');
+            pathArray.forEach(path => path.indexOf(pathname) >= 0 && setAdventurePath(path));
         }
     }, [adventures]);
 
@@ -43,6 +44,8 @@ function AdventureDetail(props) {
 
     //Set adventureData variable based on graphQL response
     let adventureData = data.adventureByPath.item;
+    let pathname = adventurePath.substring(adventurePath.lastIndexOf("/") + 1, adventurePath.length);
+
     return (
         <div className="adventure-detail">
           <Link className="adventure-detail-close-button" to={"/home"}>
@@ -50,9 +53,8 @@ function AdventureDetail(props) {
           </Link>
           <h1 className="adventure-detail-title">{adventureData.adventureTitle}</h1>
           <AEMText
-            pagePath={`/content/wknd-spa-react/us/en/adventures`}
-            itemPath='text20' />
-
+            pagePath={`/content/wknd-spa-react/us/en/adventures/${pathname}`}
+            itemPath='text21' />
           <div className="adventure-detail-info">
             <div className="adventure-detail-info-label">Activity</div>
             <div className="adventure-detail-info-description">{adventureData.adventureActivity}</div>
