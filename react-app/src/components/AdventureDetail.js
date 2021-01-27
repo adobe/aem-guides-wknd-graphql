@@ -6,22 +6,35 @@ NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter, Link} from "react-router-dom";
 import useGraphQL from '../api/useGraphQL';
 import backIcon from '../images/icon-close.svg';
 import Error from './Error';
 import Loading from './Loading';
 import './AdventureDetail.scss';
-
+import { AEMText } from './AEMText';
 
 function AdventureDetail(props) {
+    const [adventurePath, setAdventurePath] = useState(props.location?.data);
+
+    // if path is unavailable, fetch all adventures list and retrieve detail path
+    const { data: adventures } = useGraphQL(adventurePathsQuery, adventurePath);
+
+    useEffect(() => {
+        if(adventures) {
+            const pathArray = adventures.adventureList?.items?.map((item) => item._path);
+            let pathname = window.location.pathname;
+            pathname = pathname.substring(pathname.lastIndexOf("/") + 1, pathname.length);
+            pathname = pathname.replace(/(.html)/, '');
+            pathArray.forEach(path => path.indexOf(pathname) >= 0 && setAdventurePath(path));
+        }
+    }, [adventures]);
 
     //parse the content fragment from the url
-    const contentFragmentPath = props.location.pathname.substring(props.match.url.length);
-
     //Use a custom React Hook to execute the GraphQL query
-    const { data, errorMessage } = useGraphQL(adventureDetailQuery(contentFragmentPath));
+    // execute the query only when the path is available
+    const { data, errorMessage } = useGraphQL(adventureDetailQuery(adventurePath), !adventurePath);
 
     //If there is an error with the GraphQL query
     if(errorMessage) return <Error errorMessage={errorMessage} />;
@@ -31,12 +44,17 @@ function AdventureDetail(props) {
 
     //Set adventureData variable based on graphQL response
     let adventureData = data.adventureByPath.item;
+    let pathname = adventurePath.substring(adventurePath.lastIndexOf("/") + 1, adventurePath.length);
+
     return (
         <div className="adventure-detail">
-          <Link className="adventure-detail-close-button" to={"/Home"}>
+          <Link className="adventure-detail-close-button" to={"/home"}>
             <img className="Backbutton-icon" src={backIcon} alt="Return" />
           </Link>
           <h1 className="adventure-detail-title">{adventureData.adventureTitle}</h1>
+          <AEMText
+            pagePath={`/content/wknd-spa-react/us/en/adventures/${pathname}`}
+            itemPath='text21' />
           <div className="adventure-detail-info">
             <div className="adventure-detail-info-label">Activity</div>
             <div className="adventure-detail-info-description">{adventureData.adventureActivity}</div>
@@ -67,7 +85,7 @@ function AdventureDetail(props) {
 }
 
 function adventureDetailQuery(_path) {
-  return `{
+  return _path && `{
     adventureByPath (_path: "${_path}") {
       item {
         _path
@@ -98,6 +116,19 @@ function adventureDetailQuery(_path) {
   }
   `;
 }
+
+/**
+ * Query for all Adventures
+ */
+const adventurePathsQuery = `
+  {
+    adventureList {
+      items {
+        _path
+      }
+    }
+  }
+`;
 
 function Contributer(props) {
 

@@ -24,4 +24,8 @@ module.exports = function(app) {
       auth: REACT_APP_AUTHORIZATION,
     })
   );
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", REACT_APP_HOST_URI);
+    next();
+  });
 };

@@ -9,11 +9,23 @@ it.
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import logo from './images/wknd-logo-dk.svg';
-import Adventures from './components/Adventures';
+
+import { PathUtils } from '@adobe/aem-spa-page-model-manager';
+
 import AdventureDetail from './components/AdventureDetail';
+import Home from './components/Home';
+
 import './App.scss';
 
+const { REACT_APP_HOST_URI, REACT_APP_AEM_PROJECT_ROOT } = process.env;
+
 function App() {
+  // Transform routing path to accomodate for AEM specific paths
+  // path updated only when opened within AEM editor
+  const transformRoute = (path) => {
+    const aemPathRegex = PathUtils.toAEMPath(path, REACT_APP_HOST_URI, REACT_APP_AEM_PROJECT_ROOT);
+    return aemPathRegex;
+  };
 
   return (
     <Router>
@@ -23,29 +35,16 @@ function App() {
           <hr />
         </header>
       <Switch>
-        <Route path='/adventure:path'>
+        <Route path={transformRoute('/adventures/:path')}>
           <AdventureDetail />
-        </Route>  
+        </Route>
         <Route path="/">
           <Home />
         </Route>
       </Switch>
       </div>
-    </Router>   
+    </Router>
   );
 }
-
-/***
- * Displays a grid of current adventures
- */
-function Home() {
-  return (
-    <div className="Home">
-      <h2>Current Adventures</h2>
-      <Adventures />
-  </div>
-  );
-}
-
 
 export default App;

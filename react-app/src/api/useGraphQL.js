@@ -15,43 +15,45 @@ const {REACT_APP_GRAPHQL_ENDPOINT} = process.env;
     query paramter is a GraphQL query
     environment variable REACT_APP_GRAPHQL_ENDPOINT is used to point to endpoint in AEM
 */
-function useGraphQL(query) {
+function useGraphQL(query, skipCall) {
 
     let [data, setData] = useState(null);
     let [errorMessage, setErrors] = useState(null);
 
     useEffect(() => {
-        window.fetch(
-        REACT_APP_GRAPHQL_ENDPOINT,
-        {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({query}),
+        if(!skipCall) {
+            window.fetch(
+            REACT_APP_GRAPHQL_ENDPOINT,
+            {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({query}),
+            }
+            ).then(response => response.json())
+            .then(({data, errors}) => {
+                //If there are errors in the response set the error message
+                if(errors) {
+                    setErrors(mapErrors(errors));
+                }
+                //Otherwise if data in the response set the data as the results
+                if(data) {
+                    setData(data);
+                }
+            })
+            .catch((error) => {
+                setErrors(error);
+            });
         }
-        ).then(response => response.json())
-        .then(({data, errors}) => {
-            //If there are errors in the response set the error message
-            if(errors) {
-                setErrors(mapErrors(errors));
-            }
-            //Otherwise if data in the response set the data as the results
-            if(data) {
-                setData(data);
-            }
-        })
-        .catch((error) => {
-            setErrors(error);
-        });
-    }, [query]);
+    }, [query, skipCall]);
 
     return {data, errorMessage}
 }
 
 /**
  * concatenate error messages into a single string.
- * @param {*} errors 
+ * @param {*} errors
  */
 function mapErrors(errors) {
     return errors.map((error) => error.message).join(",");

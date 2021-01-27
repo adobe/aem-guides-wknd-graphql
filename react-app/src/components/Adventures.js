@@ -6,7 +6,7 @@ NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import useGraphQL from '../api/useGraphQL';
 import Error from './Error';
@@ -48,10 +48,18 @@ function Adventures() {
 
 // Render individual Adventure item
 function AdventureItem(props) {
+  const { _path: adventurePath } = props;
+
+  let adventureName = adventurePath.split("/");
+  adventureName = adventureName[adventureName.length - 1];
+
   return (
         <li className="adventure-item">
-          <Link to={`/adventure:${props._path}`}>
-            <img className="adventure-item-image" src={props.adventurePrimaryImage._path} 
+          <Link to={{
+              pathname:`/adventures/${adventureName}`,
+              data: adventurePath
+          }}>
+            <img className="adventure-item-image" src={props.adventurePrimaryImage?._path}
                  alt={props.adventureTitle}/>
           </Link>
           <div className="adventure-item-length-price">
