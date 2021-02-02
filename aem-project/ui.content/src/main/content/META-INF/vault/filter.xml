@@ -2,4 +2,6 @@
 <workspaceFilter version="1.0">
     <filter root="/content/graphiql" mode="merge"/>
     <filter root="/content/graphql" mode="merge"/>
+    <filter root="/content/wknd-spa" mode="merge" />
+    <filter root="/conf/wknd-spa" mode="merge" />
 </workspaceFilter>
