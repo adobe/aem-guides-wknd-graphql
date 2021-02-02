@@ -15,7 +15,7 @@ import './Adventures.scss';
 
 
 function Adventures() {
-    
+
     //Use React Hooks to set the initial GraphQL query to a variable named `query`
     const [query, setQuery] = useState(allAdventuresQuery);
     //Use a custom React Hook to execute the GraphQL query
@@ -26,7 +26,7 @@ function Adventures() {
 
     //If data is null then return a loading state...
     if(!data) return <Loading />;
-    
+
     return (
         <div className="adventures">
           <button onClick={() => setQuery(allAdventuresQuery)}>All</button>
