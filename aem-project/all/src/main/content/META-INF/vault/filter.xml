@@ -16,4 +16,5 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <workspaceFilter version="1.0">
     <filter root="/apps/wknd-graphql-packages"/>
+    <filter root="/apps/wknd-spa-vendor-packages"/>
 </workspaceFilter>
