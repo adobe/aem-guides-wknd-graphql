@@ -11,12 +11,13 @@ function Home() {
   return (
     <div className="Home">
       <h2>Current Adventures</h2>
-      <AEMPage
-        pagePath='/content/wknd-spa-react/us/en/home' />
-      <Adventures />
       <AEMText
-        pagePath='/content/wknd-spa-react/us/en/home'
-        itemPath='/root/responsivegrid/text20' />
+      pagePath='/content/wknd-spa/home'
+      itemPath='/root/responsivegrid/text' />
+      <AEMPage
+        pagePath='/content/wknd-spa/home' />
+      <Adventures />
+      
     </div>
   );
 }
