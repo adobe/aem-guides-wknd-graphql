@@ -7,7 +7,7 @@
         cq:template="/conf/wknd-spa/settings/wcm/templates/spa-remote-app"
         jcr:primaryType="cq:PageContent"
         jcr:title="WKND Sites Project Home Page"
-        sling:resourceType="wknd-spa/components/remotepage"
+        sling:resourceType="wknd-spa/components/page"
         remoteSPAUrl="http://localhost:3000">
         <root
             jcr:primaryType="nt:unstructured"

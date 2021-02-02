@@ -59,6 +59,12 @@
                     <embeddeds>
                         <embedded>
                             <groupId>com.adobe.aem.guides</groupId>
+                            <artifactId>aem-guides-wknd-graphql.ui.apps</artifactId>
+                            <type>zip</type>
+                            <target>/apps/wknd-graphql-packages/application/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>com.adobe.aem.guides</groupId>
                             <artifactId>aem-guides-wknd-graphql.ui.content</artifactId>
                             <type>zip</type>
                             <target>/apps/wknd-graphql-packages/content/install</target>
@@ -168,6 +174,12 @@
     <!-- D E P E N D E N C I E S                                                -->
     <!-- ====================================================================== -->
     <dependencies>
+        <dependency>
+            <groupId>com.adobe.aem.guides</groupId>
+            <artifactId>aem-guides-wknd-graphql.ui.apps</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
         <dependency>
             <groupId>com.adobe.aem.guides</groupId>
             <artifactId>aem-guides-wknd-graphql.ui.content</artifactId>
