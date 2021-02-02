@@ -53,7 +53,7 @@ function AdventureDetail(props) {
           </Link>
           <h1 className="adventure-detail-title">{adventureData.adventureTitle}</h1>
           <AEMText
-            pagePath={`/content/wknd-spa-react/us/en/adventures/${pathname}`}
+            pagePath={`/content/wknd-spa/home/adventures/${pathname}`}
             itemPath='text21' />
           <div className="adventure-detail-info">
             <div className="adventure-detail-info-label">Activity</div>

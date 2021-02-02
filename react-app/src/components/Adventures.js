@@ -59,8 +59,8 @@ function AdventureItem(props) {
               pathname:`/adventures/${adventureName}`,
               data: adventurePath
           }}>
-            <img className="adventure-item-image" src={props.adventurePrimaryImage?._path}
-                 alt={props.adventureTitle}/>
+            <img className="adventure-item-image" src={props.adventurePrimaryImage._path}
+                 alt={props.adventureTitle} />
           </Link>
           <div className="adventure-item-length-price">
             <div className="adventure-item-length">{props.adventureTripLength}</div>
