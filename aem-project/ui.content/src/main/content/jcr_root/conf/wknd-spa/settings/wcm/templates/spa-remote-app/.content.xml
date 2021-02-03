@@ -4,6 +4,7 @@
     <jcr:content
         cq:created="{Date}2018-10-22T17:08:28.689+05:30"
         cq:createdBy="admin"
+        cq:templateType="/conf/wknd-spa/settings/wcm/template-types/empty-page"
         jcr:primaryType="cq:PageContent"
         jcr:description="WKND SPA Remote App Template"
         jcr:title="SPA Remote App"
