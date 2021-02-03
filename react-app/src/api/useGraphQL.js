@@ -8,7 +8,7 @@ it.
 */
 import {useState, useEffect} from 'react';
 
-const {REACT_APP_GRAPHQL_ENDPOINT} = process.env;
+const { REACT_APP_HOST_URI, REACT_APP_GRAPHQL_ENDPOINT } = process.env;
 
 /*
     Custom React Hook to perform a GraphQL query
@@ -23,7 +23,7 @@ function useGraphQL(query, skipCall) {
     useEffect(() => {
         if(!skipCall) {
             window.fetch(
-            REACT_APP_GRAPHQL_ENDPOINT,
+            REACT_APP_HOST_URI + REACT_APP_GRAPHQL_ENDPOINT,
             {
                 method: 'POST',
                 headers: {

@@ -2,9 +2,9 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:template="/conf/wknd/settings/wcm/templates/spa-page-template"
+        cq:template="/conf/wknd-spa/settings/wcm/templates/spa-remote-app"
         jcr:primaryType="cq:PageContent"
-        sling:resourceType="spa-project-core/components/remotepage">
+        sling:resourceType="wknd-spa/components/page">
         <root
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid">

@@ -5,4 +5,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Container"
     sling:resourceSuperType="core/wcm/components/container/v1/container"
-    componentGroup="My Site - Content"/>
+    componentGroup="WKND GraphQL - Content"/>
