@@ -7,17 +7,18 @@
     "supportedmethods":[
       "GET",
       "HEAD",
-      "POST"
+      "POST",
+      "OPTIONS"
     ],
     "alloworigin":[
-      "localhost:3000"
+      "https://sharanyavinod.github.io", "localhost:3000"
     ],
     "maxage:Integer":1800,
     "alloworiginregexp":[
       ".*"
     ],
     "allowedpaths":[
-      "/content/graphql/endpoint.gql"
+      ".*"
     ],
     "supportedheaders":[
       "Origin",
