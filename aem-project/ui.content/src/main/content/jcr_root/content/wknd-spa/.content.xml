@@ -2,15 +2,15 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:allowedTemplates="[/conf/wknd/settings/wcm/templates/(?!xf-).*]"
-        cq:conf="/conf/wknd"
+        cq:allowedTemplates="[/conf/wknd-spa/settings/wcm/templates/(?!xf-).*]"
+        cq:conf="/conf/wknd-spa"
         jcr:primaryType="cq:PageContent"
         jcr:title="WKND Sites Project"
-        sling:configRef="/conf/wknd"
+        sling:configRef="/conf/wknd-spa"
         sling:redirect="{Boolean}true"
         sling:redirectStatus="{Long}302"
         sling:resourceType="foundation/components/redirect"
-        redirectTarget="/content/wknd/us/en">
+        redirectTarget="/content/wknd-spa/home">
         <image jcr:primaryType="nt:unstructured">
             <file/>
         </image>
