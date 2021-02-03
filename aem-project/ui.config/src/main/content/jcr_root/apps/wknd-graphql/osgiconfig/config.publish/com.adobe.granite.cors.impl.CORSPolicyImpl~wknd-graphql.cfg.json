@@ -11,7 +11,7 @@
     "OPTIONS"
   ],
   "alloworigin":[
-    "https://sharanyavinod.github.io", "localhost:3000"
+    "https://external-hosted-app", "localhost:3000"
   ],
   "maxage:Integer":1800,
   "alloworiginregexp":[
