@@ -2,7 +2,7 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2021-02-01T18:14:39.075-08:00"
+        cq:lastModified="{Date}2021-02-02T15:35:31.474-08:00"
         cq:lastModifiedBy="admin"
         cq:template="/conf/wknd-spa/settings/wcm/templates/spa-remote-app"
         jcr:primaryType="cq:PageContent"
@@ -16,10 +16,13 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
                 <text
+                    jcr:lastModified="{Date}2021-02-02T15:35:31.470-08:00"
+                    jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wknd-spa/components/text"
-                    text="&lt;p>Hello World!&lt;/p>"
-                    richText="true">
+                    richText="true"
+                    text="&lt;p>Hello world!&lt;/p>&#xd;&#xa;"
+                    textIsRich="true">
                     <cq:responsive jcr:primaryType="nt:unstructured"/>
                 </text>
             </responsivegrid>

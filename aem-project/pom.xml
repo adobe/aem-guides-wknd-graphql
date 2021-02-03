@@ -45,6 +45,7 @@
         <vault.password>admin</vault.password>
         <bnd.version>5.1.2</bnd.version>
         <spa.project.core.version>1.2.0</spa.project.core.version>
+        <wknd.project.version>0.1.0</wknd.project.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <componentGroupName>AEM Guides WKND GraphQL</componentGroupName>
@@ -427,6 +428,37 @@
                 <groupId>com.adobe.aem</groupId>
                 <artifactId>spa.project.core.core</artifactId>
                 <version>${spa.project.core.version}</version>
+            </dependency>
+
+            <!-- Include WKND Site Project -->
+            <dependency>
+                <groupId>com.adobe.aem.guides</groupId>
+                <artifactId>aem-guides-wknd.ui.apps</artifactId>
+                <version>${wknd.project.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>com.adobe.aem.guides</groupId>
+                <artifactId>aem-guides-wknd.core</artifactId>
+                <version>${wknd.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.adobe.aem.guides</groupId>
+                <artifactId>aem-guides-wknd.ui.content</artifactId>
+                <version>${wknd.project.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>com.adobe.aem.guides</groupId>
+                <artifactId>aem-guides-wknd.ui.config</artifactId>
+                <version>${wknd.project.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>com.adobe.aem.guides</groupId>
+                <artifactId>aem-guides-wknd.ui.content.sample</artifactId>
+                <version>${wknd.project.version}</version>
+                <type>zip</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
