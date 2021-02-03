@@ -85,6 +85,35 @@
                             <artifactId>spa.project.core.ui.apps</artifactId>
                             <target>/apps/wknd-spa-vendor-packages/application/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>com.adobe.aem.guides</groupId>
+                            <artifactId>aem-guides-wknd.ui.apps</artifactId>
+                            <type>zip</type>
+                            <target>/apps/wknd-spa-vendor-packages/application/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>com.adobe.aem.guides</groupId>
+                            <artifactId>aem-guides-wknd.core</artifactId>
+                            <target>/apps/wknd-spa-vendor-packages/application/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>com.adobe.aem.guides</groupId>
+                            <artifactId>aem-guides-wknd.ui.content</artifactId>
+                            <type>zip</type>
+                            <target>/apps/wknd-spa-vendor-packages/content/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>com.adobe.aem.guides</groupId>
+                            <artifactId>aem-guides-wknd.ui.config</artifactId>
+                            <type>zip</type>
+                            <target>/apps/wknd-spa-vendor-packages/application/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>com.adobe.aem.guides</groupId>
+                            <artifactId>aem-guides-wknd.ui.content.sample</artifactId>
+                            <type>zip</type>
+                            <target>/apps/wknd-spa-vendor-packages/content/install</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -202,6 +231,32 @@
         <dependency>
             <groupId>com.adobe.aem</groupId>
             <artifactId>spa.project.core.core</artifactId>
+        </dependency>
+
+        <!-- Include WKND Site Project -->
+        <dependency>
+            <groupId>com.adobe.aem.guides</groupId>
+            <artifactId>aem-guides-wknd.ui.apps</artifactId>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.aem.guides</groupId>
+            <artifactId>aem-guides-wknd.core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.aem.guides</groupId>
+            <artifactId>aem-guides-wknd.ui.content</artifactId>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.aem.guides</groupId>
+            <artifactId>aem-guides-wknd.ui.config</artifactId>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.aem.guides</groupId>
+            <artifactId>aem-guides-wknd.ui.content.sample</artifactId>
+            <type>zip</type>
         </dependency>
     </dependencies>
 </project>
