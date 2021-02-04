@@ -8,7 +8,7 @@ it.
 */
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const session = require('express-session')
-const { getToken } = require('@adobe/aem-headless-sdk');
+const { getToken } = require('@adobe/aem-headless-client');
 const { REACT_APP_HOST_URI } = process.env;
 
 /*
