@@ -16,7 +16,7 @@ const { REACT_APP_HOST_URI, REACT_APP_DEV_TOKEN } = process.env;
 
 module.exports = function(app) {
   app.use(
-    '/content',
+    ['/content', '/graphql'],
     createProxyMiddleware({
       target: REACT_APP_HOST_URI,
       changeOrigin: true,

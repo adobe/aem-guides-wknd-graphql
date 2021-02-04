@@ -24,7 +24,7 @@ module.exports = function(app) {
         saveUninitialized: true
     }))
     app.use(
-        '/content',
+        ['/content', '/graphql'],
         function (req, res, next) {
             if (!req.session.accessToken) {
                 getToken('auth/service-token.json')
