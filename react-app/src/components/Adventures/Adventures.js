@@ -8,18 +8,22 @@ it.
 */
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import useGraphQL from '../api/useGraphQL';
-import Error from './Error';
-import Loading from './Loading';
+import useGraphQL from '../../api/useGraphQL';
+import Error from '../Error';
+import Loading from '../Loading';
+import { allAdventuresQuery, filterQuery, persistentPath } from './config';
 import './Adventures.scss';
+
 
 
 function Adventures() {
     
     //Use React Hooks to set the initial GraphQL query to a variable named `query`
-    const [query, setQuery] = useState(allAdventuresQuery);
+    // If query is not defined, persistent query will be requested
+    // Initially use cached / persistent query.
+    const [query, setQuery] = useState('');
     //Use a custom React Hook to execute the GraphQL query
-    const { data, errorMessage } = useGraphQL(query);
+    const { data, errorMessage } = useGraphQL(query, persistentPath);
 
     //If there is an error with the GraphQL query
     if(errorMessage) return <Error errorMessage={errorMessage} />;
@@ -51,8 +55,7 @@ function AdventureItem(props) {
   return (
         <li className="adventure-item">
           <Link to={`/adventure:${props._path}`}>
-            <img className="adventure-item-image" src={props.adventurePrimaryImage._path} 
-                 alt={props.adventureTitle}/>
+            <AdventureItemImage image={props.adventurePrimaryImage} alt={props.adventureTitle}/>
           </Link>
           <div className="adventure-item-length-price">
             <div className="adventure-item-length">{props.adventureTripLength}</div>
@@ -63,63 +66,18 @@ function AdventureItem(props) {
       );
 }
 
-/**
- * Query for all Adventures
- */
-const allAdventuresQuery = `
-  {
-    adventureList {
-      items {
-        _path
-        adventureTitle
-        adventurePrice
-        adventureTripLength
-        adventurePrimaryImage {
-          ... on ImageRef {
-            _path
-            mimeType
-            width
-            height
-          }
-        }
-      }
-    }
+function AdventureItemImage(props) {
+  if (!props.image) {
+    return <></>;
   }
-`;
 
-/**
- * Returns a query for Adventures filtered by activity
- */
-function filterQuery(activity) {
-  return `
-    {
-      adventureList (filter: {
-        adventureActivity: {
-          _expressions: [
-            {
-              value: "${activity}"
-            }
-          ]
-        }
-      }){
-        items {
-          _path
-        adventureTitle
-        adventurePrice
-        adventureTripLength
-        adventurePrimaryImage {
-          ... on ImageRef {
-            _path
-            mimeType
-            width
-            height
-          }
-        }
-      }
-    }
-  }
-  `;
+  return (
+    <img className="adventure-item-image" src={props.image._path}
+         alt={props.alt}/>
+  );
 }
+
+
 
 
 export default Adventures;

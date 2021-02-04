@@ -8,10 +8,10 @@ it.
 */
 import React from 'react';
 import { withRouter, Link} from "react-router-dom";
-import useGraphQL from '../api/useGraphQL';
-import backIcon from '../images/icon-close.svg';
-import Error from './Error';
-import Loading from './Loading';
+import useGraphQL from '../../api/useGraphQL';
+import backIcon from '../../images/icon-close.svg';
+import Error from '../Error';
+import Loading from '../Loading';
 import './AdventureDetail.scss';
 
 

@@ -7,54 +7,37 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 import {useState, useEffect} from 'react';
+const {AEMHeadless } = require('@adobe/aem-headless-client')
 
+// environment variable REACT_APP_GRAPHQL_ENDPOINT is used to point to endpoint in AEM
 const {REACT_APP_GRAPHQL_ENDPOINT} = process.env;
+const sdk = new AEMHeadless(REACT_APP_GRAPHQL_ENDPOINT || 'content/graphql/endpoint.gql')
 
 /*
     Custom React Hook to perform a GraphQL query
-    query paramter is a GraphQL query
-    environment variable REACT_APP_GRAPHQL_ENDPOINT is used to point to endpoint in AEM
+-    query parameter is a GraphQL query
+
 */
-function useGraphQL(query) {
+function useGraphQL(query, path) {
 
     let [data, setData] = useState(null);
     let [errorMessage, setErrors] = useState(null);
+    const request = query ? sdk.postQuery : sdk.getQuery;
 
     useEffect(() => {
-        window.fetch(
-        REACT_APP_GRAPHQL_ENDPOINT,
-        {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify({query}),
-        }
-        ).then(response => response.json())
-        .then(({data, errors}) => {
-            //If there are errors in the response set the error message
-            if(errors) {
-                setErrors(mapErrors(errors));
-            }
-            //Otherwise if data in the response set the data as the results
-            if(data) {
-                setData(data);
-            }
+      request(query || path)
+        .then(({data}) => {
+          //If data in the response set the data as the results
+          if(data) {
+            setData(data);
+          }
         })
         .catch((error) => {
-            setErrors(error);
+          setErrors(error);
         });
-    }, [query]);
+    }, [query, path]);
 
     return {data, errorMessage}
 }
 
-/**
- * concatenate error messages into a single string.
- * @param {*} errors
- */
-function mapErrors(errors) {
-    return errors.map((error) => error.message).join(",");
-}
 export default useGraphQL
