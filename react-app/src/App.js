@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Adventures from './components/Adventures/Adventures';
 import AdventureDetail from './components/AdventureDetail/AdventureDetail';
 import Header from './components/Header/Header';
+import HeroTeaser from './components/HeroTeaser/HeroTeaser';
 import './App.scss';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
 function Home() {
   return (
     <div className="Home">
+      <HeroTeaser path="/content/dam/wknd/en/adventures/experience-the-world-with-us" />
       <h2>Current Adventures</h2>
       <Adventures />
   </div>
