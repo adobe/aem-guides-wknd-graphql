@@ -1,0 +1,18 @@
+.heroteaser-item-image {
+    margin: 1rem 0;
+    width: 100%;
+    border: 0;
+}
+
+.HeroTeaser {
+  position: relative;
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    background: #fff;
+    padding: 30px;
+    width: 60%;
+    left: 20%;
+  }
+}
