@@ -1,0 +1,20 @@
+// Configuration created by Apache Sling JCR Installer
+{
+  "allow.hosts.regexp":[
+    ""
+  ],
+  "allow.hosts":[
+    "https://myexternal-app"
+  ],
+  "filter.methods":[
+    "POST",
+    "PUT",
+    "DELETE",
+    "COPY",
+    "MOVE"
+  ],
+  "exclude.agents.regexp":[
+    ""
+  ],
+  "allow.empty":true
+}

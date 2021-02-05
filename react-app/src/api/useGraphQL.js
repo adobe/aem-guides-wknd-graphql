@@ -20,20 +20,13 @@ function useGraphQL(query, skipCall) {
     let [data, setData] = useState(null);
     let [errorMessage, setErrors] = useState(null);
 
-    // set headers and include authorization if authorization set
-    let httpHeaders = new Headers();
-    httpHeaders.append('Content-Type', 'application/json');
-    if(REACT_APP_AUTHORIZATION) {
-        httpHeaders.append('Authorization', 'Basic ' + btoa(REACT_APP_AUTHORIZATION))
-    }
-
     useEffect(() => {
         if(!skipCall) {
             window.fetch(
             REACT_APP_HOST_URI + REACT_APP_GRAPHQL_ENDPOINT,
             {
                 method: 'POST',
-                headers: httpHeaders,
+                headers: getHttpHeaders(),
                 body: JSON.stringify({query}),
             }
             ).then(response => response.json())
@@ -51,7 +44,7 @@ function useGraphQL(query, skipCall) {
                 setErrors(error);
             });
         }
-    }, [query, skipCall, httpHeaders]);
+    }, [query, skipCall]);
 
     return {data, errorMessage}
 }
@@ -63,4 +56,15 @@ function useGraphQL(query, skipCall) {
 function mapErrors(errors) {
     return errors.map((error) => error.message).join(",");
 }
+
+function getHttpHeaders() {
+    // set headers and include authorization if authorization set
+    let httpHeaders = new Headers();
+    httpHeaders.append('Content-Type', 'application/json');
+    if(REACT_APP_AUTHORIZATION) {
+        httpHeaders.append('Authorization', 'Basic ' + btoa(REACT_APP_AUTHORIZATION))
+    }
+    return httpHeaders;
+}
+
 export default useGraphQL
