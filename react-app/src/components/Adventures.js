@@ -12,6 +12,7 @@ import useGraphQL from '../api/useGraphQL';
 import Error from './Error';
 import Loading from './Loading';
 import './Adventures.scss';
+import Image from './Image';
 
 
 function Adventures() {
@@ -59,8 +60,12 @@ function AdventureItem(props) {
               pathname:`/adventures/${adventureName}`,
               data: adventurePath
           }}>
+            <Image className="adventure-item-image" alt={props.adventureTitle}
+            {... props.adventurePrimaryImage} />
+
+            { /*
             <img className="adventure-item-image" src={props.adventurePrimaryImage._path}
-                 alt={props.adventureTitle} />
+            alt={props.adventureTitle} />*/}
           </Link>
           <div className="adventure-item-length-price">
             <div className="adventure-item-length">{props.adventureTripLength}</div>
@@ -85,6 +90,8 @@ const allAdventuresQuery = `
         adventurePrimaryImage {
           ... on ImageRef {
             _path
+            _authorUrl
+            _publishUrl
             mimeType
             width
             height
@@ -118,6 +125,8 @@ function filterQuery(activity) {
         adventurePrimaryImage {
           ... on ImageRef {
             _path
+            _authorUrl
+            _publishUrl
             mimeType
             width
             height

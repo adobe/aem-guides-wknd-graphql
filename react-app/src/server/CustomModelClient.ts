@@ -13,12 +13,30 @@
  ~ See the License for the specific language governing permissions and
  ~ limitations under the License.
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-import { ModelClient } from '@adobe/aem-spa-page-model-manager';
+import { Model, ModelClient } from '@adobe/aem-spa-page-model-manager';
 
 /**
  * Custom ModelClient meant to demonstrate how to customize the request sent to the remote server
  */
 export class CustomModelClient extends ModelClient {
+    private _authorization: string | null;
+    /**
+     * @constructor
+     * @private
+     * @param [apiHost] Http host of the API.
+     */
+    constructor(apiHost?: string, authorization?:string) {
+        super(apiHost);
+        this._authorization = authorization || null;
+    }
+
+    /**
+     * Returns http host of the API.
+     * @returns API host or `null`.
+     */
+    get authorization(): string  {
+        return this._authorization ? this._authorization : '';
+    }
 
     /**
      * Fetches a model using the given a resource path
@@ -26,7 +44,7 @@ export class CustomModelClient extends ModelClient {
      * @param {string} modelPath - Path to the model
      * @return {*}
      */
-    fetch(modelPath) {
+    fetch<M extends Model>(modelPath: string): Promise<M> {
 
         if (!modelPath) {
             let err = 'Fetching model rejected for path: ' + modelPath;
@@ -34,17 +52,25 @@ export class CustomModelClient extends ModelClient {
         }
 
         // Either the API host has been provided or we make an absolute request relative to the current host
-        let url = `${this._apiHost}${modelPath}`;
-
-        return fetch(url).then(function(response) {
-            if (response.status >= 200 && response.status < 300) {
-                return response.json();
-            } else {
-                let error = new Error('while fetching the model for url: ' + url, response.statusText || response.status);
-                error.response = response;
-
+        let url = `${this.apiHost}${modelPath}`;
+        
+        // set headers and include authorization if authorization set
+        let httpHeaders = new Headers();
+        httpHeaders.append('Content-Type', 'application/json');
+        if(this.authorization) {
+            httpHeaders.append('Authorization', 'Basic ' + btoa(this.authorization))
+        }
+        
+        return fetch(
+            url, {headers: httpHeaders }
+            ).then((response) => {
+                if ((response.status >= 200) && (response.status < 300)) {
+                    return response.json() as Promise<M>;
+                }
+    
+                throw { response };
+            }).catch((error) => {
                 return Promise.reject(error);
-            }
-        });
+            });
     }
 }

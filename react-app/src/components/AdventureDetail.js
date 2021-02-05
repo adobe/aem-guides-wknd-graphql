@@ -14,6 +14,7 @@ import Error from './Error';
 import Loading from './Loading';
 import './AdventureDetail.scss';
 import { AEMText } from './AEMText';
+import Image from './Image';
 
 function AdventureDetail(props) {
     const [adventurePath, setAdventurePath] = useState(props.location?.data);
@@ -70,8 +71,8 @@ function AdventureDetail(props) {
             <div className="adventure-detail-info-description">{adventureData.adventurePrice}</div>
           </div>
           <div className="adventure-detail-content">
-            <img className="adventure-detail-primaryimage"
-                 src={adventureData.adventurePrimaryImage._path} alt={adventureData.adventureTitle}/>
+            <Image className="adventure-detail-primaryimage" alt={adventureData.adventureTitle}
+                   {... adventureData.adventurePrimaryImage} />
             <div dangerouslySetInnerHTML={{__html: adventureData.adventureDescription.html}}></div>
             <h2>Itinerary</h2>
             <hr />
@@ -100,6 +101,8 @@ function adventureDetailQuery(_path) {
           adventurePrimaryImage {
             ... on ImageRef {
               _path
+              _authorUrl
+              _publishUrl
               mimeType
               width
               height
