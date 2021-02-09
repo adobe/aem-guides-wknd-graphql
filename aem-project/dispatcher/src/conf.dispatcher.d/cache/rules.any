@@ -5,3 +5,7 @@
 #
 
 $include "./default_rules.any"
+/0001 {
+	/glob "/content/dam/*.cfm.gql.json"
+	/type "deny"
+}

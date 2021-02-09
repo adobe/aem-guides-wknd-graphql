@@ -6,12 +6,15 @@
 
 $include "./default_filters.any"
 
-# Allow components JSON model
-/0101 { /type "allow" /extension "json" /selectors "model" /path "/content/*" }
+# Allow components JSON model & quick search
+/0061 { /type "allow" /selectors '(model|searchresults)' /path "/content/*" /extension "json" }
 
+# Allow j_security check for login
+/0062 { /type "allow" /method "POST" /url "/system/sling/login/j_security_check" }
 
-# Allow GraphQL POST
-/0105 { /type "allow" /extension "gql" /method "POST" /url "/content/graphql/endpoint.gql" }
+# Allow logout path
+/0063 { /type "allow" /method "POST" /url "/system/sling/logout" }
 
-# Deny access to GraphiQL tool
-/0106 { /type "deny" /url "/content/graphiql.html" } 
+# Allow GraphQL global endpoint & preflight requests
+# GraphQL also supports GET requests, if you intend to use GET include it in the rule below
+/0064 { /type "allow" /method '(POST|OPTIONS)' /url "/content/graphql/global/endpoint.json" /extension "json"}
