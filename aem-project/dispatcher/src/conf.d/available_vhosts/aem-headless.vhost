@@ -14,8 +14,6 @@ Include conf.d/variables/custom.vars
 	ServerAlias	 "*"
 	# Use a document root that matches the one in conf.dispatcher.d/default.farm
 	DocumentRoot "${DOCROOT}"
-	AllowEncodedSlashes NoDecode
-	DispatcherNoCanonURL 1
 	# Add header breadcrumbs for help in troubleshooting
 	<IfModule mod_headers.c>
         Header add X-Vhost "publish"
@@ -58,11 +56,4 @@ Include conf.d/variables/custom.vars
 		RewriteEngine	on
 		Include conf.d/rewrites/rewrite.rules
 	</IfModule>
-
-    <LocationMatch "\.(gif|jpeg|jpg|js|mov|png|svg|txt|zip)$">
-        Header set Cache-Control "max-age=60,s-maxage=7200,stale-while-revalidate=300,stale-if-error=7200"
-    </LocationMatch>
-    <LocationMatch "^/content/dam/rendered/.*\.cfm\.gql\.json$">
-        Header set Cache-Control "max-age=60,s-maxage=1800,stale-while-revalidate=300,stale-if-error=7200"
-    </LocationMatch>
 </VirtualHost>
