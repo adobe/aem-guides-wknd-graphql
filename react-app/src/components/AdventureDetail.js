@@ -33,7 +33,7 @@ function AdventureDetail(props) {
     let adventureData = data.adventureByPath.item;
     return (
         <div className="adventure-detail">
-          <Link className="adventure-detail-close-button" to={"/Home"}>
+          <Link className="adventure-detail-close-button" to={"/"}>
             <img className="Backbutton-icon" src={backIcon} alt="Return" />
           </Link>
           <h1 className="adventure-detail-title">{adventureData.adventureTitle}</h1>
