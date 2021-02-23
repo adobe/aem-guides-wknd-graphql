@@ -22,6 +22,9 @@ $ npm start
 
 More details about the React app can be found [here](./react-app).
 
+## Tutorial
+
+Looking for a hands on guide? Checkout [Getting Started with AEM Headless - GraphQL](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/overview.html). An end-to-end tutorial illustrating how to build-out and expose content using AEM’s GraphQL APIs and consumed by an external app, in a headless CMS scenario. The React App in this repository is used as part of the tutorial.
 
 ## Contributing
 
