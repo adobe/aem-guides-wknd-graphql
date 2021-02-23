@@ -6,7 +6,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ![React App Screenshot](./docs/react-screenshot.png)
 
-## Quickstart
+## Configuring AEM
+
+This project assumes the latest WKND Reference site has been deployed to the target AEM environment. A more detailed setup and tutorial can be found [here](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/setup.html?lang=en#graphql).
+
+1. Download the [latest release of WKND](https://github.com/adobe/aem-guides-wknd/releases/latest)
+1. Install via [Package Manager](http://localhost:4502/crx/packmgr/index.jsp) on the local SDK Quickstart.
+
+> To deploy to an AEM as a Cloud service environment integrate the [WKND repository with Git](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/managing-code/integrating-with-git.html) and deploy using Cloud Manager's [CI/CD Pipeline](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/using-cloud-manager/configure-pipeline.html)
+
+## Start the App
 
 Run the commands:
 
@@ -18,24 +27,23 @@ $ npm start
 
 ## Connecting to AEM
 
-This project assumes that the AEM environment has the GraphQL API feature **enabled**. The GraphQL APIs are not enabled by default in AEM as a Cloud Service environments.
-
-> Interested in accessing the GraphQL feature? Contact your Adobe representative.
+This project assumes that the AEM environment has the GraphQL API feature **enabled**. The GraphQL APIs are not enabled by default in AEM as a Cloud Service environments. Fu
 
 ### Install Sample Content
 
-This project relies on sample content from the WKND Reference site. Install the [WKND Reference Site on your local AEM environment](https://github.com/adobe/aem-guides-wknd/releases/latest).
+This project assumes the latest WKND Reference site has been deployed to the target AEM environment.
 
-### Install Sample Endpoints
+1. Download the [latest release of WKND](https://github.com/adobe/aem-guides-wknd/releases/latest)
+1. Install via [Package Manager](http://localhost:4502/crx/packmgr/index.jsp) on the local SDK Quickstart.
 
-This project relies on GraphQL endpoints and configurations installed. Build and install the sample [AEM Project](../aem-project/README.md) on the target AEM environment.
+> To deploy to an AEM as a Cloud service environment integrate the [WKND repository with Git](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/managing-code/integrating-with-git.html) and deploy using Cloud Manager's [CI/CD Pipeline](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/using-cloud-manager/configure-pipeline.html)
 
 ### Update Environment Variables
 
 Several [environment variables](https://create-react-app.dev/docs/adding-custom-environment-variables) are used by this project to connect to an AEM environment. Default connects to an AEM author environment running at http://localhost:4502. If you wish to change this behavior update the `.env.development` file accordingly:
 
 * `REACT_APP_HOST_URI=http://localhost:4502` - Set to AEM target host
-* `REACT_APP_GRAPHQL_ENDPOINT=/content/graphql/endpoint.gql` - Set the GraphQL endpoint path
+* `REACT_APP_GRAPHQL_ENDPOINT=/content/graphql/global/endpoint.json` - Set the GraphQL endpoint path
 * `REACT_APP_AUTHORIZATION=admin:admin` - set basic auth credentials to use if connecting to an AEM Author environment (for development only). If connecting to a Publish environment, this setting is not necessary.
 
 ### Proxy API Requests
@@ -46,11 +54,20 @@ If connecting to a local AEM author environment, no updates are needed.
 
 ### CORS - Cross Origin Resource Sharing
 
-This project relies on a CORS configuration running on the target AEM environment and assumes that the app is running on http://localhost:3000 in development mode. The [CORs configuration](../aem-project/ui.config/src/main/content/jcr_root/apps/wknd-graphql/osgiconfig) is part of the sample [AEM Project](../aem-project/README.md).
+This project relies on a CORS configuration running on the target AEM environment and assumes that the app is running on http://localhost:3000 in development mode. The [CORs configuration](https://github.com/adobe/aem-guides-wknd/blob/master/ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/com.adobe.granite.cors.impl.CORSPolicyImpl~wknd-graphql.cfg.json) is part of the [WKND Reference site](https://github.com/adobe/aem-guides-wknd).
 
-![CORS Configuration](docs/cors-config-TMP.png)
+![CORS Configuration](docs/cross-origin-resource-sharing-configuration.png)
 
-*CORS config*
+*Sample CORS config for Author environment*
+
+## GraphiQL Tool
+
+[GraphiQL](https://github.com/graphql/graphiql) is a development tool used to explore the GraphQL API on an AEM environment. To install:
+
+1. Navigate to the **[Software Distribution Portal](https://experience.adobe.com/#/downloads/content/software-distribution/en/aemcloud.html)** > **AEM as a Cloud Service**.
+1. Download the latest **GraphiQL Content Package v.x.x.x**
+1. Install via [Package Manager](http://localhost:4502/crx/packmgr/index.jsp)
+1. Navigate to the GraphiQL IDE at [http://localhost:4502/content/graphiql.html](http://localhost:4502/content/graphiql.html) and begin exploring the GraphQL APIs.
 
 ## Installation
 
