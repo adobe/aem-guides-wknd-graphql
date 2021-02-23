@@ -48,6 +48,11 @@ function Adventures() {
 
 // Render individual Adventure item
 function AdventureItem(props) {
+
+  //Must have title, path, and image
+  if(!props || !props._path || !props.adventureTitle || !props.adventurePrimaryImage ) {
+    return null;
+  }
   return (
         <li className="adventure-item">
           <Link to={`/adventure:${props._path}`}>
