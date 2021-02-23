@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Configuring AEM
 
-This project assumes the latest WKND Reference site has been deployed to the target AEM environment.
+This project assumes the latest WKND Reference site has been deployed to the target AEM environment. A more detailed setup and tutorial can be found [here](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/setup.html?lang=en#graphql).
 
 1. Download the [latest release of WKND](https://github.com/adobe/aem-guides-wknd/releases/latest)
 1. Install via [Package Manager](http://localhost:4502/crx/packmgr/index.jsp) on the local SDK Quickstart.
