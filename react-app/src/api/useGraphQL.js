@@ -8,7 +8,7 @@ it.
 */
 import {useState, useEffect} from 'react';
 
-const { REACT_APP_HOST_URI, REACT_APP_GRAPHQL_ENDPOINT, REACT_APP_AUTHORIZATION } = process.env;
+const { NODE_ENV, REACT_APP_HOST_URI, REACT_APP_GRAPHQL_ENDPOINT, REACT_APP_AUTHORIZATION } = process.env;
 
 /*
     Custom React Hook to perform a GraphQL query
@@ -22,7 +22,7 @@ function useGraphQL(query) {
 
     useEffect(() => {
         window.fetch(
-            REACT_APP_HOST_URI + REACT_APP_GRAPHQL_ENDPOINT, 
+            getRequestUrl(), 
             getRequestOptions(query)
         ).then(response => response.json())
         .then(({data, errors}) => {
@@ -41,6 +41,20 @@ function useGraphQL(query) {
     }, [query]);
 
     return {data, errorMessage}
+}
+
+/**
+ * Get the request uri based on environment variables
+ */
+function getRequestUrl() {
+
+    if(NODE_ENV === 'development') {
+        // always use a relative url during development so the proxy is used at setupProxy.js
+        return REACT_APP_GRAPHQL_ENDPOINT;
+    }
+
+    // use an absolute URL for everything else
+    return REACT_APP_HOST_URI + REACT_APP_GRAPHQL_ENDPOINT;
 }
 
 /**
