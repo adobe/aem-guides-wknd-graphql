@@ -39,7 +39,7 @@ function App() {
 function Home() {
   return (
     <div className="Home">
-      <HeroTeaser path="/content/dam/wknd/en/adventures/experience-the-world-with-us" />
+      <HeroTeaser path="/content/dam/wknd/en/adventures/bali-surf-camp/bali-surf-camp" />
       <h2>Current Adventures</h2>
       <Adventures />
   </div>

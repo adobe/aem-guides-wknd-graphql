@@ -1,12 +1,12 @@
 export function heroteaserByPath(_path) {
   return `{
-    heroteaserByPath(_path: "${_path}") {
+    adventureByPath(_path: "${_path}") {
       item {
-        title
-        description {
+        adventureTitle
+        adventureDescription {
           html
         }
-        image {
+        adventurePrimaryImage {
           ... on ImageRef {
             _path
             width

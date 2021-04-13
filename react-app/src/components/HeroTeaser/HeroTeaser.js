@@ -45,14 +45,14 @@ function HeroTeaser(props) {
 
   if (!data) return <Loading />;
 
-  const item = data.heroteaserByPath.item
+  const item = data.adventureByPath.item
 
   return (
     <div className="HeroTeaser">
-      <Image image={item.image} alt={item.title} />
+      <Image image={item.adventurePrimaryImage} alt={item.adventureTitle} />
       <div className="HeroTeaser__content">
-        <Title title={item.title} />
-        <Description text={item.description} />
+        <Title title={item.adventureTitle} />
+        <Description text={item.adventureDescription} />
       </div>
     </div>
   );
