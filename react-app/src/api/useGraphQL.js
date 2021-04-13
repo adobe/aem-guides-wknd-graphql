@@ -27,7 +27,11 @@ function useGraphQL(query, path) {
       const request = query ? sdk.postQuery.bind(sdk) : sdk.getQuery.bind(sdk);
 
       request(query || path)
-        .then(({data}) => {
+        .then(({ data, errors }) => {
+          //If there are errors in the response set the error message
+          if(errors) {
+            setErrors(mapErrors(errors));
+          }
           //If data in the response set the data as the results
           if(data) {
             setData(data);
@@ -39,6 +43,14 @@ function useGraphQL(query, path) {
     }, [query, path]);
 
     return {data, errorMessage}
+}
+
+/**
+ * concatenate error messages into a single string.
+ * @param {*} errors
+ */
+function mapErrors(errors) {
+  return errors.map((error) => error.message).join(',');
 }
 
 export default useGraphQL
