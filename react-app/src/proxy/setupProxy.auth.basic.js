@@ -21,7 +21,7 @@ module.exports = function(app) {
       target: REACT_APP_HOST_URI,
       changeOrigin: true,
       // pass in credentials when developing against an Author environment
-      auth: REACT_APP_AUTHORIZATION
+      auth: REACT_APP_AUTHORIZATION.join(':')
     })
   );
 };
