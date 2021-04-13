@@ -21,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "saveQuery": "node ./tools/savePersistedQuery.js"
+    "saveQuery": "node ./tools/savePersistedQuery.js",
+    "listQueries": "node ./tools/listPersistedQueries.js"
   },
   "eslintConfig": {
     "extends": "react-app"
