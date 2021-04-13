@@ -31,9 +31,22 @@ function AdventureDetail(props) {
 
     //Set adventureData variable based on graphQL response
     let adventureData = data.adventureByPath.item;
+
+    //Must have title, path, and image
+    if(!adventureData || !adventureData._path || !adventureData.adventureTitle || !adventureData.adventurePrimaryImage ) {
+      return (
+        <div className="adventure-detail">
+          <Link className="adventure-detail-close-button" to={"/"}>
+            <img className="Backbutton-icon" src={backIcon} alt="Return" />
+          </Link>
+          <Error errorMessage="Missing data, adventure could not be rendered." />
+        </div>
+      );
+    }
+    
     return (
         <div className="adventure-detail">
-          <Link className="adventure-detail-close-button" to={"/Home"}>
+          <Link className="adventure-detail-close-button" to={"/"}>
             <img className="Backbutton-icon" src={backIcon} alt="Return" />
           </Link>
           <h1 className="adventure-detail-title">{adventureData.adventureTitle}</h1>

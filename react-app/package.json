@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@adobe/aem-headless-client": "git+https://github.com/adobe/aem-headless-client-sdk#main",
+    "@adobe/aem-headless-client": "^0.0.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -21,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "saveQuery": "node ./tools/savePersistedQuery.js"
+    "saveQuery": "node ./tools/savePersistedQuery.js",
+    "listQueries": "node ./tools/listPersistedQueries.js"
   },
   "eslintConfig": {
     "extends": "react-app"

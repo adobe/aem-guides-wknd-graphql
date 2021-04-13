@@ -9,11 +9,11 @@ it.
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const session = require('express-session')
 const { getToken } = require('@adobe/aem-headless-client');
-const { REACT_APP_HOST_URI } = process.env;
+const { REACT_APP_HOST_URI, REACT_APP_SERVICE_TOKEN } = process.env;
 
 /*
     Set up a proxy with AEM for local development
-    In a production enviroment this proxy should be set up at the webserver level or absolute URLs should be used.
+    In a production environment this proxy should be set up at the webserver level or absolute URLs should be used.
 */
 
 module.exports = function(app) {
@@ -27,7 +27,7 @@ module.exports = function(app) {
         ['/content', '/graphql'],
         function (req, res, next) {
             if (!req.session.accessToken) {
-                getToken('auth/service-token.json')
+                getToken(REACT_APP_SERVICE_TOKEN)
                     .then(({ accessToken, expires }) => {
                         console.log('Token received', accessToken.length, expires)
                         if (accessToken) {
