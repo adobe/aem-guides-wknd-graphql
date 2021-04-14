@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@adobe/aem-headless-client": "^0.0.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "express-session": "^1.17.1",
     "http-proxy-middleware": "^1.0.6",
     "node-sass": "^4.14.1",
     "normalize-scss": "^7.0.1",
@@ -18,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "saveQuery": "node ./tools/savePersistedQuery.js",
+    "listQueries": "node ./tools/listPersistedQueries.js"
   },
   "eslintConfig": {
     "extends": "react-app"
