@@ -15,11 +15,12 @@ import './Adventures.scss';
 
 
 function Adventures() {
-    
     //Use React Hooks to set the initial GraphQL query to a variable named `query`
-    const [query, setQuery] = useState(allAdventuresQuery);
+    // If query is not defined, persistent query will be requested
+    // Initially use cached / persistent query.
+    const [query, setQuery] = useState('');
     //Use a custom React Hook to execute the GraphQL query
-    const { data, errorMessage } = useGraphQL(query);
+    const { data, errorMessage } = useGraphQL(query, 'wknd/adventures-all');
 
     //If there is an error with the GraphQL query
     if(errorMessage) return <Error errorMessage={errorMessage} />;
