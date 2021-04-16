@@ -19,8 +19,9 @@ function Adventures() {
     // If query is not defined, persistent query will be requested
     // Initially use cached / persistent query.
     const [query, setQuery] = useState('');
+    const persistentQuery = 'wknd/adventures-all';
     //Use a custom React Hook to execute the GraphQL query
-    const { data, errorMessage } = useGraphQL(query, 'wknd/adventures-all');
+    const { data, errorMessage } = useGraphQL(query, persistentQuery);
 
     //If there is an error with the GraphQL query
     if(errorMessage) return <Error errorMessage={errorMessage} />;
