@@ -31,7 +31,7 @@ function Adventures() {
     
     return (
         <div className="adventures">
-          <button onClick={() => setQuery(allAdventuresQuery)}>All</button>
+          <button onClick={() => setQuery('')}>All</button>
           <button onClick={() => setQuery(filterQuery('Camping'))}>Camping</button>
           <button onClick={() => setQuery(filterQuery('Surfing'))}>Surfing</button>
           <ul className="adventure-items">
@@ -69,30 +69,6 @@ function AdventureItem(props) {
       </li>
       );
 }
-
-/**
- * Query for all Adventures
- */
-const allAdventuresQuery = `
-  {
-    adventureList {
-      items {
-        _path
-        adventureTitle
-        adventurePrice
-        adventureTripLength
-        adventurePrimaryImage {
-          ... on ImageRef {
-            _path
-            mimeType
-            width
-            height
-          }
-        }
-      }
-    }
-  }
-`;
 
 /**
  * Returns a query for Adventures filtered by activity
