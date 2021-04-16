@@ -63,8 +63,8 @@ typings/
 # next.js build output
 .next
 
-# VSCode
-
+# IDE
+.idea
 .vscode
 
 # Mac OS

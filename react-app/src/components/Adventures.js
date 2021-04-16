@@ -15,11 +15,13 @@ import './Adventures.scss';
 
 
 function Adventures() {
-    
     //Use React Hooks to set the initial GraphQL query to a variable named `query`
-    const [query, setQuery] = useState(allAdventuresQuery);
+    // If query is not defined, persistent query will be requested
+    // Initially use cached / persistent query.
+    const [query, setQuery] = useState('');
+    const persistentQuery = 'wknd/adventures-all';
     //Use a custom React Hook to execute the GraphQL query
-    const { data, errorMessage } = useGraphQL(query);
+    const { data, errorMessage } = useGraphQL(query, persistentQuery);
 
     //If there is an error with the GraphQL query
     if(errorMessage) return <Error errorMessage={errorMessage} />;
@@ -29,7 +31,7 @@ function Adventures() {
     
     return (
         <div className="adventures">
-          <button onClick={() => setQuery(allAdventuresQuery)}>All</button>
+          <button onClick={() => setQuery('')}>All</button>
           <button onClick={() => setQuery(filterQuery('Camping'))}>Camping</button>
           <button onClick={() => setQuery(filterQuery('Surfing'))}>Surfing</button>
           <ul className="adventure-items">
@@ -67,30 +69,6 @@ function AdventureItem(props) {
       </li>
       );
 }
-
-/**
- * Query for all Adventures
- */
-const allAdventuresQuery = `
-  {
-    adventureList {
-      items {
-        _path
-        adventureTitle
-        adventurePrice
-        adventureTripLength
-        adventurePrimaryImage {
-          ... on ImageRef {
-            _path
-            mimeType
-            width
-            height
-          }
-        }
-      }
-    }
-  }
-`;
 
 /**
  * Returns a query for Adventures filtered by activity
