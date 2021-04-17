@@ -21,4 +21,3 @@ const proxy = require('./proxy/setupProxy.auth.basic')
 */
 
 module.exports = proxy;
-
