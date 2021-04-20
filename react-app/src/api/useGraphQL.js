@@ -7,7 +7,7 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 import {useState, useEffect} from 'react';
-const {AEMHeadless} = require('@adobe/aem-headless-client')
+const {AEMHeadless} = require('@adobe/aem-headless-client-js')
 
 
 // environment variable REACT_APP_GRAPHQL_ENDPOINT is used to point to endpoint in AEM
