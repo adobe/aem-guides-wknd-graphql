@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@adobe/aem-headless-client": "^1.0.1",
     "@adobe/aem-headless-client-js": "^1.0.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -12,6 +13,7 @@
     "node-sass": "^4.14.1",
     "normalize-scss": "^7.0.1",
     "react": "^16.13.1",
+    "react-currency-format": "^1.0.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
