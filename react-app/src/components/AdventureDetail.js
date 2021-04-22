@@ -12,6 +12,7 @@ import useGraphQL from '../api/useGraphQL';
 import backIcon from '../images/icon-close.svg';
 import Error from './Error';
 import Loading from './Loading';
+import CurrencyFormat from 'react-currency-format';
 import './AdventureDetail.scss';
 
 
@@ -62,7 +63,7 @@ function AdventureDetail(props) {
             <div className="adventure-detail-info-label">Difficulty</div>
             <div className="adventure-detail-info-description">{adventureData.adventureDifficulty}</div>
             <div className="adventure-detail-info-label">Price</div>
-            <div className="adventure-detail-info-description">{adventureData.adventurePrice}</div>
+            <div className="adventure-detail-info-description"><CurrencyFormat value={adventureData.adventurePrice} displayType={'text'} thousandSeparator={true} prefix={'$'} /></div>
           </div>
           <div className="adventure-detail-content">
             <img className="adventure-detail-primaryimage"

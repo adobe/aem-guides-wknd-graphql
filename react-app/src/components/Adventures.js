@@ -11,6 +11,7 @@ import {Link} from 'react-router-dom';
 import useGraphQL from '../api/useGraphQL';
 import Error from './Error';
 import Loading from './Loading';
+import CurrencyFormat from 'react-currency-format';
 import './Adventures.scss';
 
 
@@ -63,7 +64,7 @@ function AdventureItem(props) {
           </Link>
           <div className="adventure-item-length-price">
             <div className="adventure-item-length">{props.adventureTripLength}</div>
-            <div className="adventure-item-price">{props.adventurePrice}</div>
+            <div className="adventure-item-price"><CurrencyFormat value={props.adventurePrice} displayType={'text'} thousandSeparator={true} prefix={'$'} /></div>
           </div>
           <div className="adventure-item-title">{props.adventureTitle}</div>
       </li>
