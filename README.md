@@ -1,6 +1,11 @@
-# AEM Guides WKND - GraphQL
+# AEM Guides WKND - GraphQL + SPA Editor
 
-This project includes example application(s) that highlights Adobe Experience Manager's GraphQL APIs.
+This branch is an augmentation of the base WKND GraphQL App to support SPA Editor (controlled, authorable zones in the SPA).
+
+The branch's contents will act as the "end state" of the AEM Headless SPA Editor tutorial when that is created/published. If this is run as-is without the supporting AEM packages from the tutorial, the authorable zones in the SPA will not render. Don't be alarmed!
+
+
+This project includes example application(s) that highlights Adobe Experience Manager's GraphQL APIs and SPA Editor.
 
 > Interested in accessing the GraphQL feature? Contact your Adobe representative.
 
@@ -22,9 +27,9 @@ $ npm start
 
 More details about the React app can be found [here](./react-app).
 
-## Tutorial
+## Tutorial (TBD)
 
-Looking for a hands on guide? Checkout [Getting Started with AEM Headless - GraphQL](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/overview.html). An end-to-end tutorial illustrating how to build-out and expose content using AEM’s GraphQL APIs and consumed by an external app, in a headless CMS scenario. The React App in this repository is used as part of the tutorial.
+A tutorial illustrating how to integrate SPA Editor with this WKND App is in the works! Stay tuned on Experience League!
 
 ## Contributing
 
