@@ -12,8 +12,11 @@ import useGraphQL from '../api/useGraphQL';
 import backIcon from '../images/icon-close.svg';
 import Error from './Error';
 import Loading from './Loading';
+import AEMResponsiveGrid from '../components/aem/AEMResponsiveGrid';
+
 import './AdventureDetail.scss';
 
+const {  REACT_APP_PUBLIC_URI } = process.env;
 
 function AdventureDetail(props) {
 
@@ -32,12 +35,15 @@ function AdventureDetail(props) {
     //Set adventureData variable based on graphQL response
     let adventureData = data.adventureByPath.item;
 
+    // Get the last segment of the Adventure Content Fragment path to used to generate the pagePath for the AEMResponsiveGrid
+    const adventureName = adventureData._path.split('/').pop();
+
     //Must have title, path, and image
     if(!adventureData || !adventureData._path || !adventureData.adventureTitle || !adventureData.adventurePrimaryImage ) {
       return (
         <div className="adventure-detail">
           <Link className="adventure-detail-close-button" to={"/"}>
-            <img className="Backbutton-icon" src={backIcon} alt="Return" />
+            <img className="Backbutton-icon" src={REACT_APP_PUBLIC_URI + '/' +backIcon} alt="Return" />
           </Link>
           <Error errorMessage="Missing data, adventure could not be rendered." />
         </div>
@@ -47,7 +53,7 @@ function AdventureDetail(props) {
     return (
         <div className="adventure-detail">
           <Link className="adventure-detail-close-button" to={"/"}>
-            <img className="Backbutton-icon" src={backIcon} alt="Return" />
+            <img className="Backbutton-icon" src={REACT_APP_PUBLIC_URI + '/' + backIcon} alt="Return" />
           </Link>
           <h1 className="adventure-detail-title">{adventureData.adventureTitle}</h1>
           <div className="adventure-detail-info">
@@ -68,6 +74,11 @@ function AdventureDetail(props) {
             <img className="adventure-detail-primaryimage"
                  src={adventureData.adventurePrimaryImage._path} alt={adventureData.adventureTitle}/>
             <div dangerouslySetInnerHTML={{__html: adventureData.adventureDescription.html}}></div>
+            
+            <AEMResponsiveGrid 
+                pagePath={`/content/wknd-app/us/en/home/adventure/${adventureName}`}
+                itemPath="root/responsivegrid"/>
+
             <h2>Itinerary</h2>
             <hr />
             <div className="adventure-detail-itinerary"
