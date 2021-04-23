@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@adobe/aem-core-components-react-base": "^1.1.3",
+    "@adobe/aem-core-components-react-spa": "^1.1.3",
     "@adobe/aem-headless-client-js": "^1.0.1",
+    "@adobe/aem-react-editable-components": "^1.1.6",
+    "@adobe/aem-spa-component-mapping": "^1.1.1",
+    "@adobe/aem-spa-page-model-manager": "^1.3.11",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
