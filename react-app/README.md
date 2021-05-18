@@ -48,6 +48,7 @@ Several [environment variables](https://create-react-app.dev/docs/adding-custom-
   * `service-token` - use Service token exchange for Cloud Env PROD
   * `dev-token` - use Dev token for local development with Cloud Env
   * `basic` - use user/pass for local development with Local Author Env
+  * leave blank to use no authentication method
 * `REACT_APP_AUTHORIZATION=admin:admin` - set basic auth credentials to use if connecting to an AEM Author environment (for development only). If connecting to a Publish environment, this setting is not necessary.
 * `REACT_APP_DEV_TOKEN` - Dev token string. To connect to remote instance, beside Basic auth (user:pass) you can use Bearer auth with DEV token from Cloud console
 * `REACT_APP_SERVICE_TOKEN` - Path to service token file. To connect to remote instance, authentication can be done with Service token also (download file from Cloud console)
