@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ $default-branch ]
 
+defaults:
+  run:
+    working-directory: ./react-app
+
 jobs:
   build:
 

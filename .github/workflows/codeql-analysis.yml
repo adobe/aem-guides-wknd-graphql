@@ -20,6 +20,10 @@ on:
   schedule:
     - cron: '20 12 * * 0'
 
+defaults:
+  run:
+    working-directory: ./react-app
+
 jobs:
   analyze:
     name: Analyze
