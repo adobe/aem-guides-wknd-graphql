@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@adobe/aem-headless-client-js": "^2.1.1",
+    "@adobe/aem-headless-client-js": "^3.0.0",
+    "@adobe/aem-headless-client-nodejs": "^1.0.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
