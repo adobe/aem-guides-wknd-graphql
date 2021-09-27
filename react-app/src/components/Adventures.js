@@ -21,7 +21,7 @@ function Adventures() {
     const [query, setQuery] = useState('');
     const persistentQuery = 'wknd/adventures-all';
     //Use a custom React Hook to execute the GraphQL query
-    const { data, errorMessage } = useGraphQL(query, persistentQuery);
+    const { data, errorMessage } = useGraphQL(query, false, persistentQuery);
 
     //If there is an error with the GraphQL query
     if(errorMessage) return <Error errorMessage={errorMessage} />;
@@ -50,6 +50,10 @@ function Adventures() {
 
 // Render individual Adventure item
 function AdventureItem(props) {
+  const { _path: adventurePath } = props;
+
+  let adventureName = adventurePath.split("/");
+  adventureName = adventureName[adventureName.length - 1];
 
   //Must have title, path, and image
   if(!props || !props._path || !props.adventureTitle || !props.adventurePrimaryImage ) {
@@ -57,7 +61,10 @@ function AdventureItem(props) {
   }
   return (
         <li className="adventure-item">
-          <Link to={`/adventure:${props._path}`}>
+          <Link to={{
+              pathname:`/adventure/${adventureName}`,
+              data: adventurePath
+          }}>
             <img className="adventure-item-image" src={props.adventurePrimaryImage._path} 
                  alt={props.adventureTitle}/>
           </Link>
@@ -69,6 +76,32 @@ function AdventureItem(props) {
       </li>
       );
 }
+
+/**
+ * Query for all Adventures
+ */
+ const allAdventuresQuery = `
+ {
+   adventureList {
+     items {
+       _path
+       adventureTitle
+       adventurePrice
+       adventureTripLength
+       adventurePrimaryImage {
+         ... on ImageRef {
+           _path
+           _authorUrl
+           _publishUrl
+           mimeType
+           width
+           height
+         }
+       }
+     }
+   }
+ }
+`;
 
 /**
  * Returns a query for Adventures filtered by activity

@@ -6,7 +6,7 @@ NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter, Link} from "react-router-dom";
 import useGraphQL from '../api/useGraphQL';
 import backIcon from '../images/icon-close.svg';
@@ -19,13 +19,25 @@ import './AdventureDetail.scss';
 const {  REACT_APP_PUBLIC_URI } = process.env;
 
 function AdventureDetail(props) {
+    const [adventurePath, setAdventurePath] = useState(props.location?.data);
+    // if path is unavailable, fetch all adventures list and retrieve detail path
+    const { data: adventures } = useGraphQL(adventurePathsQuery, false, adventurePath);
+
+    useEffect(() => {
+      if(adventures) {
+          const pathArray = adventures.adventureList?.items?.map((item) => item._path);
+          let pathname = window.location.pathname;
+          pathname = pathname.substring(pathname.lastIndexOf("/") + 1, pathname.length);
+          pathname = pathname.replace(/(.html)/, '');
+          pathArray.forEach(path => path.indexOf(pathname) >= 0 && setAdventurePath(path));
+      }
+  }, [adventures]);
 
     //parse the content fragment from the url
-    const contentFragmentPath = props.location.pathname.substring(props.match.url.length);
+    // const contentFragmentPath = props.location.pathname.substring(props.match.url.length);
 
-    //Use a custom React Hook to execute the GraphQL query
-    const { data, errorMessage } = useGraphQL(adventureDetailQuery(contentFragmentPath));
-
+    //Use a custom React Hook to execute the GraphQL query  
+    const { data, errorMessage } = useGraphQL(adventureDetailQuery(adventurePath), !adventurePath);
     //If there is an error with the GraphQL query
     if(errorMessage) return <Error errorMessage={errorMessage} />;
 
@@ -122,6 +134,19 @@ function adventureDetailQuery(_path) {
   }
   `;
 }
+
+/**
+ * Query for all Adventures
+ */
+ const adventurePathsQuery = `
+ {
+   adventureList {
+     items {
+       _path
+     }
+   }
+ }
+`;
 
 function Contributer(props) {
 
