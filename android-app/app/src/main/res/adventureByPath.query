@@ -1,0 +1,29 @@
+query ($adventurePath: String!) {
+  adventureByPath(_path: $adventurePath) {
+    item {
+      _path
+      adventureTitle
+      adventureActivity
+      adventureType
+      adventurePrice
+      adventureTripLength
+      adventureGroupSize
+      adventureDifficulty
+      adventurePrice
+      adventurePrimaryImage {
+        ... on ImageRef {
+          _path
+          mimeType
+          width
+          height
+        }
+      }
+      adventureDescription {
+        html
+      }
+      adventureItinerary {
+        html
+      }
+    }
+  }
+}
