@@ -22,6 +22,7 @@
 		1C92F87F2705195700BCF2D6 /* AdventureRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F87E2705195700BCF2D6 /* AdventureRowView.swift */; };
 		1C92F88127051C1700BCF2D6 /* AdventureDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F88027051C1700BCF2D6 /* AdventureDetailView.swift */; };
 		1C92F885270537D000BCF2D6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F884270537D000BCF2D6 /* API.swift */; };
+		1C94F3AE2714E8B500E8E725 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1C94F3AD2714E8B500E8E725 /* Config.xcconfig */; };
 		1CD8E507270BAD060015098E /* Adventure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD8E506270BAD050015098E /* Adventure.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		1C92F87E2705195700BCF2D6 /* AdventureRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureRowView.swift; sourceTree = "<group>"; };
 		1C92F88027051C1700BCF2D6 /* AdventureDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureDetailView.swift; sourceTree = "<group>"; };
 		1C92F884270537D000BCF2D6 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		1C94F3AD2714E8B500E8E725 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		1CD8E506270BAD050015098E /* Adventure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adventure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 		1C546EA1270395D700AFFB38 = {
 			isa = PBXGroup;
 			children = (
+				1C94F3AD2714E8B500E8E725 /* Config.xcconfig */,
 				1C546EAC270395D700AFFB38 /* WKNDAdventures */,
 				1C546EBE270395D900AFFB38 /* WKNDAdventuresTests */,
 				1C546EC9270395D900AFFB38 /* WKNDAdventuresUITests */,
@@ -283,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C546EB5270395D900AFFB38 /* Preview Assets.xcassets in Resources */,
+				1C94F3AE2714E8B500E8E725 /* Config.xcconfig in Resources */,
 				1C546EB2270395D900AFFB38 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +379,7 @@
 /* Begin XCBuildConfiguration section */
 		1C546ECD270395D900AFFB38 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C94F3AD2714E8B500E8E725 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -436,6 +441,7 @@
 		};
 		1C546ECE270395D900AFFB38 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C94F3AD2714E8B500E8E725 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

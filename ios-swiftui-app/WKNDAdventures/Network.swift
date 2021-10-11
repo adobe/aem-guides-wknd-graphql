@@ -16,11 +16,6 @@ class Network {
     
     static let shared = Network()
     
-    // AEM Host, a domain exception for unsecure http request for 'localhost' has been added to the project's Info.plist
-    private var aemHost: String = "http://localhost:4503"
-    // GraphQL endpoint for WKND-specific queries
-    private var graphQLEndpoint: String = "/content/cq:graphql/wknd/endpoint.json"
-    
     private(set) lazy var apollo: ApolloClient = {
         // The cache is necessary to set up the store, which we're going to hand to the provider
         let cache = InMemoryNormalizedCache()
@@ -28,10 +23,10 @@ class Network {
   
         let client = URLSessionClient()
         let provider = DefaultInterceptorProvider(client: client, shouldInvalidateClientOnDeinit: true, store: store)
-        let url = URL(string: aemHost + graphQLEndpoint)
+        let url = Connection.baseURL // from Configx.xcconfig 
 
         // no additional headers, public instances by default require no additional authentication
-        let requestChainTransport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url!)
+        let requestChainTransport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url)
         
         /*
           // Client using Basic auth (admin:admin)
@@ -53,4 +48,42 @@ class Network {
         // doesn't create one on its own
         return ApolloClient(networkTransport: requestChainTransport,store: store)
     }()
+}
+
+
+enum Configuration {
+    enum Error: Swift.Error {
+        case missingKey, invalidValue
+    }
+
+    static func value<T>(for key: String) throws -> T where T: LosslessStringConvertible {
+        guard let object = Bundle.main.object(forInfoDictionaryKey:key) else {
+            throw Error.missingKey
+        }
+
+        switch object {
+        case let value as T:
+            return value
+        case let string as String:
+            guard let value = T(string) else { fallthrough }
+            return value
+        default:
+            throw Error.invalidValue
+        }
+    }
+}
+
+// Reads properties from Config.xcconfig
+enum Connection {
+    static var baseURL: URL {
+        
+        let host: String = try! Configuration.value(for: "AEM_HOST")
+
+        // use http for localhost
+        if(host.contains("localhost")) {
+            return try! URL(string:  "http://" + host + Configuration.value(for: "AEM_GRAPHQL_ENDPOINT") )!
+        }
+        
+        return try! URL(string: "https://" + host + Configuration.value(for: "AEM_GRAPHQL_ENDPOINT"))!
+    }
 }
