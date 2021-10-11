@@ -4,15 +4,10 @@ This project includes sample applications that highlight Adobe Experience Manage
 
 ## Samples
 
-| Framework | Description |
-|-----------|-------------|
-| [React sample](./react-app) | `/react-app` contains a sample React application that uses the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js) library |
-| [iOS SwiftUI](./ios-swiftui-app) | `/ios-swiftui-app` contains a sample iOS application built using SwiftUI and the [Apollo iOS GraphQL client](https://www.apollographql.com/docs/ios/)
-
-A sample React application that displays a list of Adventures from AEM.
-
-More details about the React app can be found [here](./react-app).
-
+| Folder | Framework | Description |
+|--------|-----------|-------------|
+| [`/react-app`](./react-app) | [React](https://reactjs.org/) | A sample React application that uses the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js) library |
+| [`/ios-swiftui-app`](./ios-swiftui-app) | [iOS SwiftUI](https://developer.apple.com/xcode/swiftui/) | A sample iOS application built using SwiftUI and the [Apollo iOS GraphQL client](https://www.apollographql.com/docs/ios/)
 
 ## System Requirements
 

@@ -1,6 +1,6 @@
 # React App - WKND Adventures
 
-An sample React application that highlights Adobe Experience Manager's GraphQL APIs.
+An sample React application that highlights Adobe Experience Manager's GraphQL APIs and the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -59,5 +59,11 @@ This project relies on a CORS configuration running on the target AEM environmen
 ![CORS Configuration](docs/cross-origin-resource-sharing-configuration.png)
 
 *Sample CORS config for Author environment*
+
+## Documentation
+
+* [AEM Headless Tutorials](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/overview.html)
+* [AEM Headless Developer Journey](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/headless-journey/developer/overview.html)
+* [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js)
 
 
