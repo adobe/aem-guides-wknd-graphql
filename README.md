@@ -1,13 +1,13 @@
 # AEM Guides WKND - GraphQL
 
-This project includes sample applications that highlight Adobe Experience Manager's GraphQL APIs.
+This project includes example applications that highlight Adobe Experience Manager's GraphQL APIs.
 
-## Samples
+## Examples
 
-| Folder | Framework | Description |
+| Framework | Location | Description |
 |--------|-----------|-------------|
-| [`/react-app`](./react-app) | [React](https://reactjs.org/) | A sample React application that uses the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js) library |
-| [`/ios-swiftui-app`](./ios-swiftui-app) | [iOS SwiftUI](https://developer.apple.com/xcode/swiftui/) | A sample iOS application built using SwiftUI and the [Apollo iOS GraphQL client](https://www.apollographql.com/docs/ios/)
+| [React](./react-app) | [`/react-app`](./react-app) | A sample React application that uses the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js) library |
+| [iOS SwiftUI](./ios-swiftui-app) | [`/ios-swiftui-app`](./ios-swiftui-app) | A sample iOS application built using SwiftUI and the [Apollo iOS GraphQL client](https://www.apollographql.com/docs/ios/)
 
 ## System Requirements
 

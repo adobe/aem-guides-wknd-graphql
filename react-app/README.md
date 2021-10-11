@@ -1,6 +1,6 @@
 # React App - WKND Adventures
 
-An sample React application that highlights Adobe Experience Manager's GraphQL APIs and the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js)
+An example React application that highlights Adobe Experience Manager's GraphQL APIs and the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
