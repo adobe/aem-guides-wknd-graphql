@@ -10,12 +10,12 @@
     "@testing-library/user-event": "^7.1.2",
     "express-session": "^1.17.1",
     "http-proxy-middleware": "^1.0.6",
-    "node-sass": "^4.14.1",
     "normalize-scss": "^7.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "sass": "^1.42.1"
   },
   "scripts": {
     "start": "react-scripts start",
