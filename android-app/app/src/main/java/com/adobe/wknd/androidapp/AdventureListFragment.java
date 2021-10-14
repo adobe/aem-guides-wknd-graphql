@@ -3,6 +3,7 @@ package com.adobe.wknd.androidapp;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,19 +24,21 @@ import com.adobe.wknd.androidapp.loader.Adventure;
 import com.adobe.wknd.androidapp.loader.AdventureList;
 import com.adobe.wknd.androidapp.loader.AdventuresLoader;
 import com.adobe.wknd.androidapp.loader.RemoteImagesCache;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 public class AdventureListFragment extends Fragment implements LoaderManager.LoaderCallbacks<AdventureList> {
 
+    Loader<AdventureList> adventureListLoader;
     private FragmentAdventureListBinding binding;
-
     private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        LoaderManager.getInstance(this).initLoader(0, null, (LoaderManager.LoaderCallbacks<AdventureList>) this).forceLoad();
+        adventureListLoader = LoaderManager.getInstance(this).initLoader(0, null, (LoaderManager.LoaderCallbacks<AdventureList>) this);
+        adventureListLoader.forceLoad();
 
         binding = FragmentAdventureListBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -79,7 +82,21 @@ public class AdventureListFragment extends Fragment implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(@NonNull Loader<AdventureList> loader, AdventureList data) {
-        setupViewAfterDataLoaded(view, data);
+        if (data != null) {
+            setupViewAfterDataLoaded(view, data);
+        } else {
+            Snackbar.make(getView(), "Could not load adventures",
+                    Snackbar.LENGTH_LONG)
+                    .setAction("RETRY", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Log.i("AdventuresLoader", "Retrying loading adventures...");
+                            adventureListLoader.forceLoad();
+                        }
+                    })
+                    .show();
+        }
+
     }
 
     @Override

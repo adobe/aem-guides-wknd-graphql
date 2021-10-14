@@ -20,6 +20,7 @@ import com.adobe.wknd.androidapp.loader.Adventure;
 import com.adobe.wknd.androidapp.loader.AdventureLoader;
 import com.adobe.wknd.androidapp.loader.RemoteImagesCache;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.snackbar.Snackbar;
 
 public class AdventureDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Adventure> {
 
@@ -37,6 +38,7 @@ public class AdventureDetailFragment extends Fragment implements LoaderManager.L
     private FragmentAdventureDetailBinding binding;
 
     private String itemId;
+    private Loader<Adventure> adventureLoader;
 
     public AdventureDetailFragment() {
     }
@@ -51,7 +53,8 @@ public class AdventureDetailFragment extends Fragment implements LoaderManager.L
             Log.i("AdventureDetailFragment", "Received itemId in detail view: " + this.itemId);
         }
 
-        LoaderManager.getInstance(this).initLoader(0, null, this).forceLoad();
+        adventureLoader = LoaderManager.getInstance(this).initLoader(0, null, this);
+        adventureLoader.forceLoad();
 
     }
 
@@ -104,8 +107,22 @@ public class AdventureDetailFragment extends Fragment implements LoaderManager.L
 
     @Override
     public void onLoadFinished(@NonNull Loader<Adventure> loader, Adventure adventure) {
-        this.adventure = adventure;
-        updateContent();
+
+        if (adventure != null) {
+            this.adventure = adventure;
+            updateContent();
+        } else {
+            Snackbar.make(getView(), "Could not load adventure",
+                    Snackbar.LENGTH_LONG)
+                    .setAction("RETRY", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Log.i("AdventuresLoader", "Retrying loading adventure with id " + itemId + "...");
+                            adventureLoader.forceLoad();
+                        }
+                    })
+                    .show();
+        }
     }
 
     @Override
