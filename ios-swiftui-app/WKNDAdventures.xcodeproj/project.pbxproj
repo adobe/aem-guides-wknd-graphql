@@ -1,0 +1,701 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C546EAE270395D700AFFB38 /* WKNDAdventuresApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C546EAD270395D700AFFB38 /* WKNDAdventuresApp.swift */; };
+		1C546EB2270395D900AFFB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C546EB1270395D900AFFB38 /* Assets.xcassets */; };
+		1C546EB5270395D900AFFB38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C546EB4270395D900AFFB38 /* Preview Assets.xcassets */; };
+		1C546EC0270395D900AFFB38 /* WKNDAdventuresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C546EBF270395D900AFFB38 /* WKNDAdventuresTests.swift */; };
+		1C546ECB270395D900AFFB38 /* WKNDAdventuresUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C546ECA270395D900AFFB38 /* WKNDAdventuresUITests.swift */; };
+		1C546EDA2703962900AFFB38 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 1C546ED92703962900AFFB38 /* Apollo */; };
+		1C546EDC2703962900AFFB38 /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 1C546EDB2703962900AFFB38 /* ApolloWebSocket */; };
+		1C546EE32703A36500AFFB38 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C546EE22703A36500AFFB38 /* Network.swift */; };
+		1C5691E727061DB800673686 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1C5691E627061DB800673686 /* SDWebImageSwiftUI */; };
+		1C92F8722703C74800BCF2D6 /* AdventuresDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F8712703C74800BCF2D6 /* AdventuresDataModel.swift */; };
+		1C92F8762704E6E400BCF2D6 /* AdventureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F8752704E6E400BCF2D6 /* AdventureListView.swift */; };
+		1C92F87D2704EDDC00BCF2D6 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F87C2704EDDC00BCF2D6 /* TestData.swift */; };
+		1C92F87F2705195700BCF2D6 /* AdventureRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F87E2705195700BCF2D6 /* AdventureRowView.swift */; };
+		1C92F88127051C1700BCF2D6 /* AdventureDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F88027051C1700BCF2D6 /* AdventureDetailView.swift */; };
+		1C92F885270537D000BCF2D6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F884270537D000BCF2D6 /* API.swift */; };
+		1C94F3AE2714E8B500E8E725 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1C94F3AD2714E8B500E8E725 /* Config.xcconfig */; };
+		1CD8E507270BAD060015098E /* Adventure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD8E506270BAD050015098E /* Adventure.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1C546EBC270395D900AFFB38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C546EA2270395D700AFFB38 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C546EA9270395D700AFFB38;
+			remoteInfo = WKNDAdventures;
+		};
+		1C546EC7270395D900AFFB38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C546EA2270395D700AFFB38 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C546EA9270395D700AFFB38;
+			remoteInfo = WKNDAdventures;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1C546EAA270395D700AFFB38 /* WKNDAdventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WKNDAdventures.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C546EAD270395D700AFFB38 /* WKNDAdventuresApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKNDAdventuresApp.swift; sourceTree = "<group>"; };
+		1C546EB1270395D900AFFB38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1C546EB4270395D900AFFB38 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1C546EB6270395D900AFFB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C546EBB270395D900AFFB38 /* WKNDAdventuresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WKNDAdventuresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C546EBF270395D900AFFB38 /* WKNDAdventuresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKNDAdventuresTests.swift; sourceTree = "<group>"; };
+		1C546EC1270395D900AFFB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C546EC6270395D900AFFB38 /* WKNDAdventuresUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WKNDAdventuresUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C546ECA270395D900AFFB38 /* WKNDAdventuresUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKNDAdventuresUITests.swift; sourceTree = "<group>"; };
+		1C546ECC270395D900AFFB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C546EDE27039F9600AFFB38 /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		1C546EDF2703A0C900AFFB38 /* AdventureList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AdventureList.graphql; sourceTree = "<group>"; };
+		1C546EE22703A36500AFFB38 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		1C92F8712703C74800BCF2D6 /* AdventuresDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventuresDataModel.swift; sourceTree = "<group>"; };
+		1C92F8752704E6E400BCF2D6 /* AdventureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureListView.swift; sourceTree = "<group>"; };
+		1C92F87C2704EDDC00BCF2D6 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		1C92F87E2705195700BCF2D6 /* AdventureRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureRowView.swift; sourceTree = "<group>"; };
+		1C92F88027051C1700BCF2D6 /* AdventureDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureDetailView.swift; sourceTree = "<group>"; };
+		1C92F884270537D000BCF2D6 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		1C94F3AD2714E8B500E8E725 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		1CD8E506270BAD050015098E /* Adventure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adventure.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1C546EA7270395D700AFFB38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C5691E727061DB800673686 /* SDWebImageSwiftUI in Frameworks */,
+				1C546EDA2703962900AFFB38 /* Apollo in Frameworks */,
+				1C546EDC2703962900AFFB38 /* ApolloWebSocket in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C546EB8270395D900AFFB38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C546EC3270395D900AFFB38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C546EA1270395D700AFFB38 = {
+			isa = PBXGroup;
+			children = (
+				1C94F3AD2714E8B500E8E725 /* Config.xcconfig */,
+				1C546EAC270395D700AFFB38 /* WKNDAdventures */,
+				1C546EBE270395D900AFFB38 /* WKNDAdventuresTests */,
+				1C546EC9270395D900AFFB38 /* WKNDAdventuresUITests */,
+				1C546EAB270395D700AFFB38 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1C546EAB270395D700AFFB38 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C546EAA270395D700AFFB38 /* WKNDAdventures.app */,
+				1C546EBB270395D900AFFB38 /* WKNDAdventuresTests.xctest */,
+				1C546EC6270395D900AFFB38 /* WKNDAdventuresUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1C546EAC270395D700AFFB38 /* WKNDAdventures */ = {
+			isa = PBXGroup;
+			children = (
+				1CD8E506270BAD050015098E /* Adventure.swift */,
+				1C92F8712703C74800BCF2D6 /* AdventuresDataModel.swift */,
+				1C92F884270537D000BCF2D6 /* API.swift */,
+				1C546EDF2703A0C900AFFB38 /* AdventureList.graphql */,
+				1C546EE22703A36500AFFB38 /* Network.swift */,
+				1C546EDE27039F9600AFFB38 /* schema.json */,
+				1C92F8772704E86000BCF2D6 /* Views */,
+				1C546EAD270395D700AFFB38 /* WKNDAdventuresApp.swift */,
+				1C546EB1270395D900AFFB38 /* Assets.xcassets */,
+				1C546EB6270395D900AFFB38 /* Info.plist */,
+				1C546EB3270395D900AFFB38 /* Preview Content */,
+			);
+			path = WKNDAdventures;
+			sourceTree = "<group>";
+		};
+		1C546EB3270395D900AFFB38 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1C546EB4270395D900AFFB38 /* Preview Assets.xcassets */,
+				1C92F87C2704EDDC00BCF2D6 /* TestData.swift */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1C546EBE270395D900AFFB38 /* WKNDAdventuresTests */ = {
+			isa = PBXGroup;
+			children = (
+				1C546EBF270395D900AFFB38 /* WKNDAdventuresTests.swift */,
+				1C546EC1270395D900AFFB38 /* Info.plist */,
+			);
+			path = WKNDAdventuresTests;
+			sourceTree = "<group>";
+		};
+		1C546EC9270395D900AFFB38 /* WKNDAdventuresUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1C546ECA270395D900AFFB38 /* WKNDAdventuresUITests.swift */,
+				1C546ECC270395D900AFFB38 /* Info.plist */,
+			);
+			path = WKNDAdventuresUITests;
+			sourceTree = "<group>";
+		};
+		1C92F8772704E86000BCF2D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1C92F8752704E6E400BCF2D6 /* AdventureListView.swift */,
+				1C92F87E2705195700BCF2D6 /* AdventureRowView.swift */,
+				1C92F88027051C1700BCF2D6 /* AdventureDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1C546EA9270395D700AFFB38 /* WKNDAdventures */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C546ECF270395D900AFFB38 /* Build configuration list for PBXNativeTarget "WKNDAdventures" */;
+			buildPhases = (
+				1C546EDD27039C4300AFFB38 /* Apollo CLI */,
+				1C546EA6270395D700AFFB38 /* Sources */,
+				1C546EA7270395D700AFFB38 /* Frameworks */,
+				1C546EA8270395D700AFFB38 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WKNDAdventures;
+			packageProductDependencies = (
+				1C546ED92703962900AFFB38 /* Apollo */,
+				1C546EDB2703962900AFFB38 /* ApolloWebSocket */,
+				1C5691E627061DB800673686 /* SDWebImageSwiftUI */,
+			);
+			productName = WKNDAdventures;
+			productReference = 1C546EAA270395D700AFFB38 /* WKNDAdventures.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1C546EBA270395D900AFFB38 /* WKNDAdventuresTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C546ED2270395D900AFFB38 /* Build configuration list for PBXNativeTarget "WKNDAdventuresTests" */;
+			buildPhases = (
+				1C546EB7270395D900AFFB38 /* Sources */,
+				1C546EB8270395D900AFFB38 /* Frameworks */,
+				1C546EB9270395D900AFFB38 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1C546EBD270395D900AFFB38 /* PBXTargetDependency */,
+			);
+			name = WKNDAdventuresTests;
+			productName = WKNDAdventuresTests;
+			productReference = 1C546EBB270395D900AFFB38 /* WKNDAdventuresTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1C546EC5270395D900AFFB38 /* WKNDAdventuresUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C546ED5270395D900AFFB38 /* Build configuration list for PBXNativeTarget "WKNDAdventuresUITests" */;
+			buildPhases = (
+				1C546EC2270395D900AFFB38 /* Sources */,
+				1C546EC3270395D900AFFB38 /* Frameworks */,
+				1C546EC4270395D900AFFB38 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1C546EC8270395D900AFFB38 /* PBXTargetDependency */,
+			);
+			name = WKNDAdventuresUITests;
+			productName = WKNDAdventuresUITests;
+			productReference = 1C546EC6270395D900AFFB38 /* WKNDAdventuresUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1C546EA2270395D700AFFB38 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					1C546EA9270395D700AFFB38 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					1C546EBA270395D900AFFB38 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 1C546EA9270395D700AFFB38;
+					};
+					1C546EC5270395D900AFFB38 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 1C546EA9270395D700AFFB38;
+					};
+				};
+			};
+			buildConfigurationList = 1C546EA5270395D700AFFB38 /* Build configuration list for PBXProject "WKNDAdventures" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1C546EA1270395D700AFFB38;
+			packageReferences = (
+				1C546ED82703962900AFFB38 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				1C5691E527061DB800673686 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
+			productRefGroup = 1C546EAB270395D700AFFB38 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1C546EA9270395D700AFFB38 /* WKNDAdventures */,
+				1C546EBA270395D900AFFB38 /* WKNDAdventuresTests */,
+				1C546EC5270395D900AFFB38 /* WKNDAdventuresUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1C546EA8270395D700AFFB38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C546EB5270395D900AFFB38 /* Preview Assets.xcassets in Resources */,
+				1C94F3AE2714E8B500E8E725 /* Config.xcconfig in Resources */,
+				1C546EB2270395D900AFFB38 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C546EB9270395D900AFFB38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C546EC4270395D900AFFB38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C546EDD27039C4300AFFB38 /* Apollo CLI */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Apollo CLI";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n\n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"http://localhost:4502/content/cq:graphql/wknd/endpoint.json\" --header \"Authorization: Basic YWRtaW46YWRtaW4=\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1C546EA6270395D700AFFB38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CD8E507270BAD060015098E /* Adventure.swift in Sources */,
+				1C92F885270537D000BCF2D6 /* API.swift in Sources */,
+				1C92F8762704E6E400BCF2D6 /* AdventureListView.swift in Sources */,
+				1C92F87F2705195700BCF2D6 /* AdventureRowView.swift in Sources */,
+				1C92F88127051C1700BCF2D6 /* AdventureDetailView.swift in Sources */,
+				1C92F87D2704EDDC00BCF2D6 /* TestData.swift in Sources */,
+				1C92F8722703C74800BCF2D6 /* AdventuresDataModel.swift in Sources */,
+				1C546EE32703A36500AFFB38 /* Network.swift in Sources */,
+				1C546EAE270395D700AFFB38 /* WKNDAdventuresApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C546EB7270395D900AFFB38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C546EC0270395D900AFFB38 /* WKNDAdventuresTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C546EC2270395D900AFFB38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C546ECB270395D900AFFB38 /* WKNDAdventuresUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1C546EBD270395D900AFFB38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C546EA9270395D700AFFB38 /* WKNDAdventures */;
+			targetProxy = 1C546EBC270395D900AFFB38 /* PBXContainerItemProxy */;
+		};
+		1C546EC8270395D900AFFB38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C546EA9270395D700AFFB38 /* WKNDAdventures */;
+			targetProxy = 1C546EC7270395D900AFFB38 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1C546ECD270395D900AFFB38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C94F3AD2714E8B500E8E725 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1C546ECE270395D900AFFB38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C94F3AD2714E8B500E8E725 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1C546ED0270395D900AFFB38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"WKNDAdventures/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = WKNDAdventures/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adobe.aem.guides.WKNDAdventures;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		1C546ED1270395D900AFFB38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"WKNDAdventures/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = WKNDAdventures/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adobe.aem.guides.WKNDAdventures;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		1C546ED3270395D900AFFB38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WKNDAdventuresTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adobe.aem.WKNDAdventuresTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WKNDAdventures.app/WKNDAdventures";
+			};
+			name = Debug;
+		};
+		1C546ED4270395D900AFFB38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WKNDAdventuresTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adobe.aem.WKNDAdventuresTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WKNDAdventures.app/WKNDAdventures";
+			};
+			name = Release;
+		};
+		1C546ED6270395D900AFFB38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WKNDAdventuresUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adobe.aem.WKNDAdventuresUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WKNDAdventures;
+			};
+			name = Debug;
+		};
+		1C546ED7270395D900AFFB38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WKNDAdventuresUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adobe.aem.WKNDAdventuresUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WKNDAdventures;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1C546EA5270395D700AFFB38 /* Build configuration list for PBXProject "WKNDAdventures" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C546ECD270395D900AFFB38 /* Debug */,
+				1C546ECE270395D900AFFB38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C546ECF270395D900AFFB38 /* Build configuration list for PBXNativeTarget "WKNDAdventures" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C546ED0270395D900AFFB38 /* Debug */,
+				1C546ED1270395D900AFFB38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C546ED2270395D900AFFB38 /* Build configuration list for PBXNativeTarget "WKNDAdventuresTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C546ED3270395D900AFFB38 /* Debug */,
+				1C546ED4270395D900AFFB38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C546ED5270395D900AFFB38 /* Build configuration list for PBXNativeTarget "WKNDAdventuresUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C546ED6270395D900AFFB38 /* Debug */,
+				1C546ED7270395D900AFFB38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1C546ED82703962900AFFB38 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.49.1;
+			};
+		};
+		1C5691E527061DB800673686 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1C546ED92703962900AFFB38 /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1C546ED82703962900AFFB38 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+		1C546EDB2703962900AFFB38 /* ApolloWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1C546ED82703962900AFFB38 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloWebSocket;
+		};
+		1C5691E627061DB800673686 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1C5691E527061DB800673686 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1C546EA2270395D700AFFB38 /* Project object */;
+}

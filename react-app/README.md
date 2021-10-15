@@ -1,42 +1,35 @@
-# AEM Guides WKND GraphQL - React App
+# React App - WKND Adventures
 
-An example React application that highlights Adobe Experience Manager's GraphQL APIs.
+An example React application that highlights Adobe Experience Manager's GraphQL APIs and the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ![React App Screenshot](./docs/react-screenshot.png)
 
-## Configuring AEM
+## Tutorial
 
-This project assumes the latest WKND Reference site has been deployed to the target AEM environment. A more detailed setup and tutorial can be found [here](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/setup.html?lang=en#graphql).
+A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/setup.html) is available where you can learn how to setup and run the application to query data from an AEM environment using GraphQL.
 
-1. Download the [latest release of WKND](https://github.com/adobe/aem-guides-wknd/releases/latest)
-1. Install via [Package Manager](http://localhost:4502/crx/packmgr/index.jsp) on the local SDK Quickstart.
+## How to use
 
-> To deploy to an AEM as a Cloud service environment integrate the [WKND repository with Git](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/managing-code/integrating-with-git.html) and deploy using Cloud Manager's [CI/CD Pipeline](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/using-cloud-manager/configure-pipeline.html)
+1. On the target AEM environment install the [latest release of the WKND Reference site](https://github.com/adobe/aem-guides-wknd/releases/latest) using [Package Manager](http://localhost:4502/crx/packmgr/index.jsp) for local environments or using Cloud Manager's [CI/CD Pipeline](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/using-cloud-manager/configure-pipeline.html) for cloud environments.
+1. Update the [environment variables](#update-environment-variables) to point to your target AEM instance and add authentication (if needed)
+1. Download and install [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/)
+1. Start the app from the command line:
 
-## Start the App
+    ```shell
+    $ cd aem-guides-wknd-graphql/react-app
+    $ npm install
+    $ npm start
+    ```
 
-Run the commands:
+## System Requirements
 
-```
-$ cd aem-guides-wknd-graphql/react-app
-$ npm install
-$ npm start
-```
+ AEM as a Cloud Service | AEM 6.5 | Sample Content | Node   | npm | 
+------------------------|---------|--------------------|---------|-----|
+Continual               | 6.5.10+ |  [WKND Site 1.0+](https://github.com/adobe/aem-guides-wknd/releases/latest) | 10+  | 6+
 
-## Connecting to AEM
-
-This project assumes that the AEM environment has the GraphQL API feature **enabled**. The GraphQL APIs are not enabled by default in AEM as a Cloud Service environments. Fu
-
-### Install Sample Content
-
-This project assumes the latest WKND Reference site has been deployed to the target AEM environment.
-
-1. Download the [latest release of WKND](https://github.com/adobe/aem-guides-wknd/releases/latest)
-1. Install via [Package Manager](http://localhost:4502/crx/packmgr/index.jsp) on the local SDK Quickstart.
-
-> To deploy to an AEM as a Cloud service environment integrate the [WKND repository with Git](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/managing-code/integrating-with-git.html) and deploy using Cloud Manager's [CI/CD Pipeline](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/using-cloud-manager/configure-pipeline.html)
+## Notes
 
 ### Update Environment Variables
 
@@ -67,40 +60,10 @@ This project relies on a CORS configuration running on the target AEM environmen
 
 *Sample CORS config for Author environment*
 
-## GraphiQL Tool
+## Documentation
 
-[GraphiQL](https://github.com/graphql/graphiql) is a development tool used to explore the GraphQL API on an AEM environment. To install:
+* [AEM Headless Tutorials](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/overview.html)
+* [AEM Headless Developer Journey](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/headless-journey/developer/overview.html)
+* [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js)
 
-1. Navigate to the **[Software Distribution Portal](https://experience.adobe.com/#/downloads/content/software-distribution/en/aemcloud.html)** > **AEM as a Cloud Service**.
-1. Download the latest **GraphiQL Content Package v.x.x.x**
-1. Install via [Package Manager](http://localhost:4502/crx/packmgr/index.jsp)
-1. Navigate to the GraphiQL IDE at [http://localhost:4502/content/graphiql.html](http://localhost:4502/content/graphiql.html) and begin exploring the GraphQL APIs.
 
-## Installation
-
-### `npm install`
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!

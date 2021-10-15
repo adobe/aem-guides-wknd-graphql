@@ -1,0 +1,19 @@
+//
+// Copyright 2021 Adobe
+// All Rights Reserved.
+// NOTICE: Adobe permits you to use, modify, and distribute this file in
+// accordance with the terms of the Adobe license agreement accompanying
+// it.
+//
+//  Config.xcconfig
+//  WKNDAdventures
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// Target hostname for AEM environment, do not include http:// or https://
+AEM_HOST = localhost:4503
+
+// GraphQL Endpoint
+AEM_GRAPHQL_ENDPOINT = /content/cq:graphql/wknd/endpoint.json
