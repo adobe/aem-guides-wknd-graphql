@@ -6,7 +6,7 @@ An example Android app that highlights Adobe Experience Manager's GraphQL APIs a
 
 ## Tutorial
 
-A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/overview.html) is available where you can learn how to setup and run the application to query data from an AEM environment using GraphQL.
+A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/example-apps/android-app.html) is available where you can learn how to setup and run the application to query data from an AEM environment using GraphQL.
 
 ## How to use
 
@@ -42,7 +42,7 @@ If connecting to an AEM author environment [authorization](https://github.com/ad
   builder.tokenAuth(token)
   ```
   
-A more detailed setup and tutorial can be found [here](#).
+A more detailed setup and tutorial can be found [here](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/example-apps/android-app.html).
 
 ## System Requirements
 
@@ -52,6 +52,7 @@ Continual               | 6.5.10+ |  [WKND Site 1.0+](https://github.com/adobe/a
 
 ## Documentation
 
+* [AEM Headless Android Tutorial](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/example-apps/android-app.html)
 * [AEM Headless Tutorials](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/overview.html)
 * [AEM Headless Developer Journey](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/headless-journey/developer/overview.html)
 * [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js)

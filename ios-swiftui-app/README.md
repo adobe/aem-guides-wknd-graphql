@@ -6,7 +6,7 @@ An example SwiftUI application that highlights Adobe Experience Manager's GraphQ
 
 ## Tutorial
 
-A corresponding tutorial is available where you can learn how to setup and run the application to query data from an AEM environment using GraphQL.
+A corresponding [tutorial is available](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/example-apps/ios-swiftui-app.html) where you can learn how to setup and run the application to query data from an AEM environment using GraphQL.
 
 ## How to use
 
@@ -49,7 +49,7 @@ let requestChainTransport = RequestChainNetworkTransport(interceptorProvider: pr
 
 > Note, images will not load automatically when connecting to an author instance, as these are not served anonymously. Updates are needed for `Adventure.swift` to point to the `_authorUrl` and authentication headers will need to be added to the `WebImage` used.
 
-A more detailed setup and tutorial can be found [here](#).
+A more detailed setup and tutorial can be found [here](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/example-apps/ios-swiftui-app.html).
 
 ## System Requirements
 
@@ -66,5 +66,6 @@ Two 3rd party frameworks are used to power the application.
 
 ## Documentation
 
+* [AEM Headless iOS SwiftUI App Tutorial](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/example-apps/ios-swiftui-app.html)
 * [AEM Headless Tutorials](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/overview.html)
 * [AEM Headless Developer Journey](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/headless-journey/developer/overview.html)
