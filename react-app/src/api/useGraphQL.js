@@ -8,7 +8,7 @@ it.
 */
 import {useState, useEffect} from 'react';
 
-const {REACT_APP_GRAPHQL_ENDPOINT} = process.env;
+const { NODE_ENV, REACT_APP_HOST_URI, REACT_APP_GRAPHQL_ENDPOINT, REACT_APP_AUTHORIZATION } = process.env;
 
 /*
     Custom React Hook to perform a GraphQL query
@@ -22,14 +22,8 @@ function useGraphQL(query) {
 
     useEffect(() => {
         window.fetch(
-        REACT_APP_GRAPHQL_ENDPOINT,
-        {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({query}),
-        }
+            getRequestUrl(), 
+            getRequestOptions(query)
         ).then(response => response.json())
         .then(({data, errors}) => {
             //If there are errors in the response set the error message
@@ -47,6 +41,40 @@ function useGraphQL(query) {
     }, [query]);
 
     return {data, errorMessage}
+}
+
+/**
+ * Get the request uri based on environment variables
+ */
+function getRequestUrl() {
+
+    if(NODE_ENV === 'development') {
+        // always use a relative url during development so the proxy is used at setupProxy.js
+        return REACT_APP_GRAPHQL_ENDPOINT;
+    }
+
+    // use an absolute URL for everything else
+    return REACT_APP_HOST_URI + REACT_APP_GRAPHQL_ENDPOINT;
+}
+
+/**
+ * Set the GraphQL endpoint based on environment variables and passed in query
+ * @param {*} query 
+ */
+function getRequestOptions(query) {
+
+    // headers and include authorization if authorization set
+    let httpHeaders = new Headers();
+    httpHeaders.append('Content-Type', 'application/json');
+    if(REACT_APP_AUTHORIZATION) {
+        httpHeaders.append('Authorization', 'Basic ' + btoa(REACT_APP_AUTHORIZATION))
+    }
+
+    return  {
+        method: 'POST',
+        headers: httpHeaders,
+        body: JSON.stringify({query}),
+    };
 }
 
 /**
