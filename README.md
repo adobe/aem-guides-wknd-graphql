@@ -20,11 +20,11 @@ Continual               | 6.5.10+ |  [WKND Site 1.0+](https://github.com/adobe/a
 
 ## Tutorial
 
-Looking for a hands on guide? Checkout [Getting Started with AEM Headless - GraphQL](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/overview.html). An end-to-end tutorial illustrating how to build-out and expose content using AEM’s GraphQL APIs and consumed by an external app, in a headless CMS scenario. The React App in this repository is used as part of the tutorial.
+Looking for a hands on guide? Checkout [Getting Started with AEM Headless - GraphQL](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/overview.html). An end-to-end tutorial illustrating how to build-out and expose content using AEM’s GraphQL APIs and consumed by an external app, in a headless CMS scenario. The React App in this repository is used as part of the tutorial. Additional resources can be found on the  [AEM Headless Developer Portal](https://experienceleague.adobe.com/landing/experience-manager/headless/developer.html).
 
 ## Documentation
 
-* [AEM Headless Developer Journey](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/headless-journey/developer/overview.html)
+* [AEM Headless Developer Portal](https://experienceleague.adobe.com/landing/experience-manager/headless/developer.html)
 
 ## Contributing
 
