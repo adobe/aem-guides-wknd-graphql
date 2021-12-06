@@ -26,7 +26,7 @@ function App() {
     const aemPathRegex = PathUtils.toAEMPath(path, REACT_APP_HOST_URI, REACT_APP_AEM_PROJECT_ROOT);
     return aemPathRegex;
   };
-  console.log(transformRoute('/adventure/:path'));
+  
   return (
     <Router>
       <div className="App">
@@ -56,11 +56,6 @@ function Home() {
         <AEMResponsiveGrid
             pagePath='/content/wknd-app/us/en/home' 
             itemPath='root/responsivegrid'/>
-
-        <AEMTitle
-            pagePath='/content/wknd-app/us/en/home' 
-            itemPath='root/title'/>
-      <Adventures />
   </div>
   );
 }
