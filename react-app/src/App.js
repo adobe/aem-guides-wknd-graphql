@@ -15,13 +15,18 @@ import AEMResponsiveGrid from './components/aem/AEMResponsiveGrid';
 import AEMTitle from './components/aem/AEMTitle';
 import AEMText from './components/aem/AEMText';
 import AEMImage from './components/aem/AEMImage';
-
+import { PathUtils } from '@adobe/aem-spa-page-model-manager';
 import './App.scss';
 
-const {  REACT_APP_PUBLIC_URI } = process.env;
+const {  REACT_APP_PUBLIC_URI, REACT_APP_HOST_URI, REACT_APP_AEM_PROJECT_ROOT } = process.env;
 
 function App() {
 
+  const transformRoute = (path) => {
+    const aemPathRegex = PathUtils.toAEMPath(path, REACT_APP_HOST_URI, REACT_APP_AEM_PROJECT_ROOT);
+    return aemPathRegex;
+  };
+  
   return (
     <Router>
       <div className="App">
@@ -30,7 +35,7 @@ function App() {
           <hr />
         </header>
       <Switch>
-        <Route path='/adventure:path'>
+        <Route path={transformRoute('/adventure/:path')}>
           <AdventureDetail />
         </Route>  
         <Route path="/">
@@ -48,13 +53,12 @@ function App() {
 function Home() {
   return (
     <div className="Home">
-        <AEMResponsiveGrid
-            pagePath='/content/wknd-app/us/en/home' 
-            itemPath='root/responsivegrid'/>
-
-        <AEMTitle
-            pagePath='/content/wknd-app/us/en/home' 
-            itemPath='root/title'/>
+      <AEMResponsiveGrid
+        pagePath='/content/wknd-app/us/en/home' 
+        itemPath='root/responsivegrid'/>
+      <AEMTitle
+        pagePath='/content/wknd-app/us/en/home' 
+        itemPath='root/title'/>
       <Adventures />
   </div>
   );

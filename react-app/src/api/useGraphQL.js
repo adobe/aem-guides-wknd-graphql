@@ -18,29 +18,31 @@ const { REACT_APP_GRAPHQL_ENDPOINT } = process.env;
  * @param query - GraphQL query
  * @param path - Persistent query path
  */
-function useGraphQL(query, path) {
+function useGraphQL(query, skipCall, path) {
     let [data, setData] = useState(null);
     let [errorMessage, setErrors] = useState(null);
 
     useEffect(() => {
-      const sdk = new AEMHeadless(REACT_APP_GRAPHQL_ENDPOINT)
-      const request = query ? sdk.postQuery.bind(sdk) : sdk.getQuery.bind(sdk);
+      if (!skipCall) {
+        const sdk = new AEMHeadless(REACT_APP_GRAPHQL_ENDPOINT)
+        const request = query ? sdk.postQuery.bind(sdk) : sdk.getQuery.bind(sdk);
 
-      request(query || path)
-        .then(({ data, errors }) => {
-          //If there are errors in the response set the error message
-          if(errors) {
-            setErrors(mapErrors(errors));
-          }
-          //If data in the response set the data as the results
-          if(data) {
-            setData(data);
-          }
-        })
-        .catch((error) => {
-          setErrors(error);
-        });
-    }, [query, path]);
+        request(query || path)
+          .then(({ data, errors }) => {
+            //If there are errors in the response set the error message
+            if(errors) {
+              setErrors(mapErrors(errors));
+            }
+            //If data in the response set the data as the results
+            if(data) {
+              setData(data);
+            }
+          })
+          .catch((error) => {
+            setErrors(error);
+          });
+        }
+    }, [query, path, skipCall]);
 
     return {data, errorMessage}
 }
