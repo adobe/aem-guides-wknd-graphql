@@ -78,32 +78,6 @@ function AdventureItem(props) {
 }
 
 /**
- * Query for all Adventures
- */
- const allAdventuresQuery = `
- {
-   adventureList {
-     items {
-       _path
-       adventureTitle
-       adventurePrice
-       adventureTripLength
-       adventurePrimaryImage {
-         ... on ImageRef {
-           _path
-           _authorUrl
-           _publishUrl
-           mimeType
-           width
-           height
-         }
-       }
-     }
-   }
- }
-`;
-
-/**
  * Returns a query for Adventures filtered by activity
  */
 function filterQuery(activity) {

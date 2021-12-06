@@ -53,9 +53,13 @@ function App() {
 function Home() {
   return (
     <div className="Home">
-        <AEMResponsiveGrid
-            pagePath='/content/wknd-app/us/en/home' 
-            itemPath='root/responsivegrid'/>
+      <AEMResponsiveGrid
+        pagePath='/content/wknd-app/us/en/home' 
+        itemPath='root/responsivegrid'/>
+      <AEMTitle
+        pagePath='/content/wknd-app/us/en/home' 
+        itemPath='root/title'/>
+      <Adventures />
   </div>
   );
 }
