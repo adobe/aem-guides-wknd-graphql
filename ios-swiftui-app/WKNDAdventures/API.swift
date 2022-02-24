@@ -29,6 +29,7 @@ public final class AdventureListQuery: GraphQLQuery {
             ... on ImageRef {
               _authorUrl
               _publishUrl
+              _path
             }
           }
         }
@@ -309,8 +310,8 @@ public final class AdventureListQuery: GraphQLQuery {
             return AdventurePrimaryImage(unsafeResultMap: ["__typename": "AdventureModel"])
           }
 
-          public static func makeImageRef(_authorUrl: String? = nil, _publishUrl: String? = nil) -> AdventurePrimaryImage {
-            return AdventurePrimaryImage(unsafeResultMap: ["__typename": "ImageRef", "_authorUrl": _authorUrl, "_publishUrl": _publishUrl])
+          public static func makeImageRef(_authorUrl: String? = nil, _publishUrl: String? = nil, _path: GraphQLID? = nil) -> AdventurePrimaryImage {
+            return AdventurePrimaryImage(unsafeResultMap: ["__typename": "ImageRef", "_authorUrl": _authorUrl, "_publishUrl": _publishUrl, "_path": _path])
           }
 
           public var __typename: String {
@@ -341,6 +342,7 @@ public final class AdventureListQuery: GraphQLQuery {
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
                 GraphQLField("_authorUrl", type: .scalar(String.self)),
                 GraphQLField("_publishUrl", type: .scalar(String.self)),
+                GraphQLField("_path", type: .scalar(GraphQLID.self)),
               ]
             }
 
@@ -350,8 +352,8 @@ public final class AdventureListQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(_authorUrl: String? = nil, _publishUrl: String? = nil) {
-              self.init(unsafeResultMap: ["__typename": "ImageRef", "_authorUrl": _authorUrl, "_publishUrl": _publishUrl])
+            public init(_authorUrl: String? = nil, _publishUrl: String? = nil, _path: GraphQLID? = nil) {
+              self.init(unsafeResultMap: ["__typename": "ImageRef", "_authorUrl": _authorUrl, "_publishUrl": _publishUrl, "_path": _path])
             }
 
             public var __typename: String {
@@ -378,6 +380,15 @@ public final class AdventureListQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "_publishUrl")
+              }
+            }
+
+            public var _path: GraphQLID? {
+              get {
+                return resultMap["_path"] as? GraphQLID
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "_path")
               }
             }
           }

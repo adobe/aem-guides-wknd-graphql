@@ -11,6 +11,7 @@
 
 import Foundation
 import Apollo
+import SDWebImage
 
 class Network {
     
@@ -26,23 +27,25 @@ class Network {
         let url = Connection.baseURL // from Configx.xcconfig 
 
         // no additional headers, public instances by default require no additional authentication
-        let requestChainTransport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url)
+        var requestChainTransport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url)
         
-        /*
-          // Client using Basic auth (admin:admin)
-          // useful for developing against a local author instance
+        // Client using Basic auth (admin:admin)
+        // useful for developing against a local author instance
+        if(Connection.authMethod == "basic") {
+            requestChainTransport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url, additionalHeaders: ["Authorization": Connection.basicAuthCredentials])
+    
+            SDWebImageDownloader.shared.setValue(Connection.basicAuthCredentials, forHTTPHeaderField: "Authorization")
+        }
         
-        let requestChainTransport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url!, additionalHeaders: ["Authorization": "Basic YWRtaW46YWRtaW4="])
-        */
         
-        /*
          // Client using developer access token
-         // see for more details https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/authentication/overview.html
-         
-        let bearerToken = "<developer access token here>"
-        let requestChainTransport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url!,
-                                                       additionalHeaders: ["Authorization": "Bearer \(bearerToken)"])
-         */
+         // see for more details
+         // https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/authentication/overview.html
+        if(Connection.authMethod == "token") {
+            requestChainTransport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url,
+                                                                 additionalHeaders: ["Authorization": Connection.bearerToken])
+            SDWebImageDownloader.shared.setValue(Connection.bearerToken, forHTTPHeaderField: "Authorization")
+        }
         
         // Remember to give the store you already created to the client so it
         // doesn't create one on its own
@@ -75,15 +78,36 @@ enum Configuration {
 
 // Reads properties from Config.xcconfig
 enum Connection {
-    static var baseURL: URL {
-        
+    
+    static var host: String {
         let host: String = try! Configuration.value(for: "AEM_HOST")
-
-        // use http for localhost
         if(host.contains("localhost")) {
-            return try! URL(string:  "http://" + host + Configuration.value(for: "AEM_GRAPHQL_ENDPOINT") )!
+            return "http://" + host;
         }
         
-        return try! URL(string: "https://" + host + Configuration.value(for: "AEM_GRAPHQL_ENDPOINT"))!
+        return "https://" + host;
+    }
+    
+    static var baseURL: URL {
+        
+        let urlString = try! Connection.host + Configuration.value(for: "AEM_GRAPHQL_ENDPOINT")
+        print(urlString)
+        return URL(string: urlString)!
+    }
+    
+    static var authMethod: String {
+        let authMethod: String = try! Configuration.value(for: "AUTH_METHOD")
+        return authMethod
+    }
+    
+    static var basicAuthCredentials: String {
+        let authCredentials: String = try! Configuration.value(for: "BASIC_AUTH_CREDENTIALS")
+        let encoded = authCredentials.data(using: .utf8)?.base64EncodedString()
+        return "Basic " + encoded!
+    }
+    
+    static var bearerToken: String {
+        let bearerToken: String = try! Configuration.value(for: "BEARER_TOKEN")
+        return "Bearer " + bearerToken
     }
 }

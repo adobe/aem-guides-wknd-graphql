@@ -1289,7 +1289,7 @@
       {
         "kind": "SCALAR",
         "name": "Calendar",
-        "description": "com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@36e732aa",
+        "description": "com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@10eefac1",
         "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
@@ -1628,7 +1628,7 @@
       {
         "kind": "SCALAR",
         "name": "Date",
-        "description": "com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@eca38a8",
+        "description": "com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@4e7cc0f8",
         "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
@@ -2998,7 +2998,7 @@
       {
         "kind": "SCALAR",
         "name": "Json",
-        "description": "com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@44996cb1",
+        "description": "com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@26efd7b1",
         "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
@@ -3963,7 +3963,7 @@
       {
         "kind": "SCALAR",
         "name": "Time",
-        "description": "com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@65fb098f",
+        "description": "com.adobe.aem.graphql.sites.adapters.sling.ScalarComponentWrapper@11845577",
         "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
