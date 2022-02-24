@@ -38,8 +38,8 @@ struct Adventure: Identifiable {
        
         // Use the Publish URL for our image
         // can add logic to switch between _authorUrl or _publishUrl
-        if let imageUrl = adventureData.adventurePrimaryImage?.asImageRef?._publishUrl {
-            self.adventurePrimaryImageUrl = imageUrl
+        if let imageUrl = adventureData.adventurePrimaryImage?.asImageRef?._path {
+            self.adventurePrimaryImageUrl = Connection.host + imageUrl
         } else {
             self.adventurePrimaryImageUrl = ""
         }

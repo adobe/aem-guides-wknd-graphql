@@ -16,6 +16,7 @@ query AdventureList
         ...on ImageRef {
           _authorUrl
           _publishUrl
+          _path
         }
       }
     }

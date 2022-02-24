@@ -10,11 +10,11 @@ A corresponding [tutorial is available](https://experienceleague.adobe.com/docs/
 
 ## How to use
 
-This application is designed to connect to an AEM Publish environment.
+This application is designed to connect to an AEM Author or Publish environment.
 
-1. On the target **AEM Publish** environment install the [latest release of the WKND Reference site](https://github.com/adobe/aem-guides-wknd/releases/latest) using [Package Manager](http://localhost:4503/crx/packmgr/index.jsp) for local environments or using Cloud Manager's [CI/CD Pipeline](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/using-cloud-manager/configure-pipeline.html) for cloud environments.
+1. On the target **AEM** environment install the [latest release of the WKND Reference site](https://github.com/adobe/aem-guides-wknd/releases/latest) using [Package Manager](http://localhost:4503/crx/packmgr/index.jsp) for local environments or using Cloud Manager's [CI/CD Pipeline](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/using-cloud-manager/configure-pipeline.html) for cloud environments.
 1. Download and install [Xcode](https://developer.apple.com/xcode/) and open the folder `ios-swiftui-app`
-1. Modify the file `Config.xcconfig` file and update `AEM_HOST` to match your target AEM Publish environment
+1. Modify the file `Config.xcconfig` file and update `AEM_HOST` to match your target AEM environment
 
     ```plain
     // Target hostname for AEM environment, do not include http:// or https://
@@ -24,30 +24,34 @@ This application is designed to connect to an AEM Publish environment.
     AEM_GRAPHQL_ENDPOINT = /content/cq:graphql/wknd/endpoint.json
     ```
 
+1. Set the authentication method in the file `Config.xcconfig` based on your use case. `basic` and `token` based authentication is supported. If connecting to an **AEM Publish** environment no authentication is needed and the auth methods can be commented out.
 1. Build using Xcode and deploy using the iOS simulator.
 
 ### Connect to AEM Author
 
 The application was designed to connect to a Publish instance. Connecting directly to an **AEM Author** environment is useful during development, since the changes made are immediately reflected without having to publish. 
 
-**Author** environments require authentication, the following updates to the `Network.swift` file need to be made.
+**Author** environments require authentication, the following updates to the `Config.xcconfig` file need to be made.
 
 **Basic authentication:**
 
-```swift
-// Client using Basic auth (admin:admin)
-let requestChainTransport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url!, additionalHeaders: ["Authorization": "Basic YWRtaW46YWRtaW4="])
+```plain
+// Support for Basic Authentication - Set AUTH_METHOD to basic and set BASIC_AUTH_CREDENTIALS
+AUTH_METHOD = basic
+
+// Basic Authentication Info
+BASIC_AUTH_CREDENTIALS = admin:admin
 ```
 
-**[Developer access token](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/authentication/overview.html):**
+**Token authentication:**
 
-```swift
-// Client using developer access token
-let bearerToken = "<developer access token here>"
-let requestChainTransport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url!, additionalHeaders: ["Authorization": "Bearer \(bearerToken)"])
+```plain
+// Support for Token Authentication - set AUTH_METHOD to token
+AUTH_METHOD = token
+
+// Bearer token value, ensure AUTH_METHOD=token to use.
+BEARER_TOKEN = <token here>
 ```
-
-> Note, images will not load automatically when connecting to an author instance, as these are not served anonymously. Updates are needed for `Adventure.swift` to point to the `_authorUrl` and authentication headers will need to be added to the `WebImage` used.
 
 A more detailed setup and tutorial can be found [here](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/example-apps/ios-swiftui-app.html).
 

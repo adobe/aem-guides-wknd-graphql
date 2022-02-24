@@ -2,10 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AEM_HOST</key>
-	<string>$(AEM_HOST)</string>
 	<key>AEM_GRAPHQL_ENDPOINT</key>
 	<string>$(AEM_GRAPHQL_ENDPOINT)</string>
+	<key>AEM_HOST</key>
+	<string>$(AEM_HOST)</string>
+	<key>AUTH_METHOD</key>
+	<string>$(AUTH_METHOD)</string>
+	<key>BASIC_AUTH_CREDENTIALS</key>
+	<string>$(BASIC_AUTH_CREDENTIALS)</string>
+	<key>BEARER_TOKEN</key>
+	<string>$(BEARER_TOKEN)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
