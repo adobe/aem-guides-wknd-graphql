@@ -12,6 +12,7 @@ import useGraphQL from '../api/useGraphQL';
 import backIcon from '../images/icon-close.svg';
 import Error from './Error';
 import Loading from './Loading';
+import { mapJsonRichText } from '../utils/renderRichText';
 import './AdventureDetail.scss';
 
 
@@ -31,6 +32,7 @@ function AdventureDetail(props) {
 
     //Set adventureData variable based on graphQL response
     let adventureData = data.adventureByPath.item;
+    let references = data.adventureByPath._references;
 
     //Must have title, path, and image
     if(!adventureData || !adventureData._path || !adventureData.adventureTitle || !adventureData.adventurePrimaryImage ) {
@@ -67,17 +69,59 @@ function AdventureDetail(props) {
           <div className="adventure-detail-content">
             <img className="adventure-detail-primaryimage"
                  src={adventureData.adventurePrimaryImage._path} alt={adventureData.adventureTitle}/>
-            <div dangerouslySetInnerHTML={{__html: adventureData.adventureDescription.html}}></div>
+            <div>{mapJsonRichText(adventureData.adventureDescription.json, customRenderOptions(references))}</div>
             <h2>Itinerary</h2>
             <hr />
-            <div className="adventure-detail-itinerary"
-                 dangerouslySetInnerHTML={{__html: adventureData.adventureItinerary.html}}></div>
+            <div className="adventure-detail-itinerary">{mapJsonRichText(adventureData.adventureItinerary.json, customRenderOptions(references))}</div>
             <Contributer {...adventureData.adventureContributor} />
           </div>
 
         </div>
     );
 }
+
+/**
+ * Example of using a custom render for in-line references in a multi line field
+ */
+function customRenderOptions(references) {
+
+    const renderReference = {
+        // node contains merged properties of the in-line reference and _references object
+        'ImageRef': (node) => {
+            // when __typename === ImageRef
+           return <img src={node._path} alt={'in-line reference'} /> 
+        },
+        'AdventureModel': (node) => {
+            // when __typename === AdventureModel
+            return <Link to={`/adventure:${node._path}`}>{`${node.adventureTitle}: ${node.adventurePrice}`}</Link>;
+        }
+    };
+
+    return {
+        nodeMap: {
+            'reference': (node, children) => {
+
+                // variable for reference in _references object
+                let reference;
+
+                // asset reference
+                if(node.data.path) {
+                    // find reference based on path
+                    reference = references.find( ref => ref._path === node.data.path);
+                }
+                // Fragment Reference
+                if(node.data.href) {
+                    // find in-line reference within _references array based on href and _path properties
+                    reference = references.find( ref => ref._path === node.data.href);
+                }
+
+                // if reference found return render method of it
+                return reference ? renderReference[reference.__typename]({...reference, ...node}) : null;
+            }
+        },
+    };
+}
+
 
 function adventureDetailQuery(_path) {
   return `{
@@ -101,11 +145,25 @@ function adventureDetailQuery(_path) {
             }
           }
           adventureDescription {
-            html
+            json
           }
           adventureItinerary {
-            html
+            json
           }
+      }
+      _references {
+        ...on ImageRef {
+          _path
+          __typename
+          width
+          height
+        }
+        ...on AdventureModel {
+          _path
+          __typename
+          adventureTitle
+          adventurePrice
+        }
       }
     }
   }
