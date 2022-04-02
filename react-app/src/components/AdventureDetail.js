@@ -30,7 +30,7 @@ function AdventureDetail(props) {
     //If data is null then return a loading icon...
     if(!data) return <Loading />;
 
-    //Set adventureData variable based on graphQL response
+    //Set adventure properties variable based on graphQL response
     const {_path, 
            adventureTitle, 
            adventurePrimaryImage, 
@@ -48,7 +48,7 @@ function AdventureDetail(props) {
     const references = data.adventureByPath._references;
 
     //Must have title, path, and image
-    if(!_path || !adventureTitle) {
+    if(!_path || !adventureTitle || !adventurePrimaryImage) {
       return (
         <div className="adventure-detail">
           <Link className="adventure-detail-close-button" to={"/"}>
