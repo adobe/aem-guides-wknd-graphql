@@ -31,11 +31,24 @@ function AdventureDetail(props) {
     if(!data) return <Loading />;
 
     //Set adventureData variable based on graphQL response
-    let adventureData = data.adventureByPath.item;
-    let references = data.adventureByPath._references;
+    const {_path, 
+           adventureTitle, 
+           adventurePrimaryImage, 
+           adventureActivity,
+           adventureType, 
+           adventureTripLength,
+           adventureGroupSize,
+           adventureDifficulty,
+           adventurePrice,
+           adventureDescription,
+           adventureItinerary,
+           adventureContributor } = data.adventureByPath.item;
+    
+    // set references of current adventure
+    const references = data.adventureByPath._references;
 
     //Must have title, path, and image
-    if(!adventureData || !adventureData._path || !adventureData.adventureTitle || !adventureData.adventurePrimaryImage ) {
+    if(!_path || !adventureTitle) {
       return (
         <div className="adventure-detail">
           <Link className="adventure-detail-close-button" to={"/"}>
@@ -51,29 +64,29 @@ function AdventureDetail(props) {
           <Link className="adventure-detail-close-button" to={"/"}>
             <img className="Backbutton-icon" src={backIcon} alt="Return" />
           </Link>
-          <h1 className="adventure-detail-title">{adventureData.adventureTitle}</h1>
+          <h1 className="adventure-detail-title">{adventureTitle}</h1>
           <div className="adventure-detail-info">
             <div className="adventure-detail-info-label">Activity</div>
-            <div className="adventure-detail-info-description">{adventureData.adventureActivity}</div>
+            <div className="adventure-detail-info-description">{adventureActivity}</div>
             <div className="adventure-detail-info-label">Type</div>
-            <div className="adventure-detail-info-description">{adventureData.adventureType}</div>
+            <div className="adventure-detail-info-description">{adventureType}</div>
             <div className="adventure-detail-info-label">Trip Length</div>
-            <div className="adventure-detail-info-description">{adventureData.adventureTripLength}</div>
+            <div className="adventure-detail-info-description">{adventureTripLength}</div>
             <div className="adventure-detail-info-label">Group Size</div>
-            <div className="adventure-detail-info-description">{adventureData.adventureGroupSize}</div>
+            <div className="adventure-detail-info-description">{adventureGroupSize}</div>
             <div className="adventure-detail-info-label">Difficulty</div>
-            <div className="adventure-detail-info-description">{adventureData.adventureDifficulty}</div>
+            <div className="adventure-detail-info-description">{adventureDifficulty}</div>
             <div className="adventure-detail-info-label">Price</div>
-            <div className="adventure-detail-info-description">{adventureData.adventurePrice}</div>
+            <div className="adventure-detail-info-description">{adventurePrice}</div>
           </div>
           <div className="adventure-detail-content">
             <img className="adventure-detail-primaryimage"
-                 src={adventureData.adventurePrimaryImage._path} alt={adventureData.adventureTitle}/>
-            <div>{mapJsonRichText(adventureData.adventureDescription.json, customRenderOptions(references))}</div>
+                 src={adventurePrimaryImage._path} alt={adventureTitle}/>
+            <div>{mapJsonRichText(adventureDescription.json, customRenderOptions(references))}</div>
             <h2>Itinerary</h2>
             <hr />
-            <div className="adventure-detail-itinerary">{mapJsonRichText(adventureData.adventureItinerary.json, customRenderOptions(references))}</div>
-            <Contributer {...adventureData.adventureContributor} />
+            <div className="adventure-detail-itinerary">{mapJsonRichText(adventureItinerary.json, customRenderOptions(references))}</div>
+            <Contributer {...adventureContributor} />
           </div>
 
         </div>
@@ -103,7 +116,7 @@ function customRenderOptions(references) {
 
                 // variable for reference in _references object
                 let reference;
-
+                
                 // asset reference
                 if(node.data.path) {
                     // find reference based on path
