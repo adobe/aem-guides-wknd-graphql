@@ -116,30 +116,33 @@ function renderNode(node, options) {
         return null;
     }
 
-    if(node.content) {
-        // block node
-        const children = renderNodeList(node.content, options);
-        // special case for header
-        if(node.nodeType === 'header') {
-            return nodeMap[node.nodeType]?.(node, children, headerStyle);
-        }
-        return nodeMap[node.nodeType]?.(node, children) ?? null;
-    } else {
-        //leaf node
-        // special case for text
-        if(node.nodeType === 'text') {
-            return nodeMap[node.nodeType]?.(node, textFormat);
-        }
+    const children = node.content ? renderNodeList(node.content, options) : null;
 
-        return nodeMap[node.nodeType]?.(node, null) ?? null;
+    // special case for header, since it requires processing of header styles
+    if(node.nodeType === 'header') {
+        return nodeMap[node.nodeType]?.(node, children, headerStyle);
     }
+
+    // special case for text, since it may require formatting (i.e bold, italic, underline)
+    if(node.nodeType === 'text') {
+        return nodeMap[node.nodeType]?.(node, textFormat);
+    }
+
+    // use a map to render the current node based on it's nodeType
+    // pass the children (if they exist)
+    return nodeMap[node.nodeType]?.(node, children) ?? null;
 }
 
 /**
- * 
- * @param {*} json 
- * @param {*} options {nodeMap, textFormat, headerStyle}
- * @returns 
+ * Expose the utility as a public function mapJsonRichText.
+ * Calling functions can choose to override various mappings and/or formatting 
+ * by passing in an `options` object that may contain overrides for `nodeMap`, `textFormat` and `headerStyle`
+ * @param {*} json - the json response of a Multi Line rich text field
+ * @param {*} options {nodeMap,  - override defaultNodeMap
+ *                     textFormat, - override defaultTextFormat
+ *                     headerStyle, - override defaultHeaderStyle 
+ *                     }
+ * @returns a JSX representation of the JSON object
  */
 export function mapJsonRichText(json, options={}) {
     // merge options override with default options for nodeMap, textFormat, and headerStyle
