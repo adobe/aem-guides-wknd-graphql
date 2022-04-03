@@ -85,7 +85,9 @@ function AdventureDetail(props) {
             <div>{mapJsonRichText(adventureDescription.json, customRenderOptions(references))}</div>
             <h2>Itinerary</h2>
             <hr />
-            <div className="adventure-detail-itinerary">{mapJsonRichText(adventureItinerary.json, customRenderOptions(references))}</div>
+
+            {/* Render the itinerary without any custom render options (just use defaults) */}
+            <div className="adventure-detail-itinerary">{mapJsonRichText(adventureItinerary.json)}</div>
             <Contributer {...adventureContributor} />
           </div>
 

@@ -128,7 +128,7 @@ function renderNode(node, options) {
         return nodeMap[node.nodeType]?.(node, textFormat);
     }
 
-    // use a map to render the current node based on it's nodeType
+    // use a map to render the current node based on its nodeType
     // pass the children (if they exist)
     return nodeMap[node.nodeType]?.(node, children) ?? null;
 }
