@@ -94,7 +94,7 @@ function addKeyToElement(element, key) {
 function renderNodeList(childNodes, options) {
     if(childNodes && options) {
         return childNodes.map((node, index) => {
-            return addKeyToElement(renderNodeTypes(node, options), index);
+            return addKeyToElement(renderNode(node, options), index);
         });
     }
 
@@ -102,12 +102,13 @@ function renderNodeList(childNodes, options) {
 }
 
 /**
- * 
+ * Renders an individual node based on nodeType.
+ * Makes a recursive call to render any children of the current node (node.content)
  * @param {*} node 
  * @param {*} options 
  * @returns 
  */
-function renderNodeTypes(node, options) {
+function renderNode(node, options) {
     const {nodeMap, textFormat, headerStyle} = options;
 
     // null check
