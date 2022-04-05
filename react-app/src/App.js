@@ -8,6 +8,7 @@ it.
 */
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ScrollToTop from './utils/scrollToTop';
 import logo from './images/wknd-logo-dk.svg';
 import Adventures from './components/Adventures';
 import AdventureDetail from './components/AdventureDetail';
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <Router>
+        <ScrollToTop />
       <div className="App">
         <header>
           <img src={logo} className="logo" alt="WKND Logo"/>
