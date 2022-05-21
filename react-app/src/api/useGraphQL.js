@@ -11,39 +11,77 @@ const {AEMHeadless} = require('@adobe/aem-headless-client-js')
 
 
 // environment variable REACT_APP_GRAPHQL_ENDPOINT is used to point to endpoint in AEM
-const { REACT_APP_GRAPHQL_ENDPOINT } = process.env;
+const {
+    REACT_APP_HOST_URI,
+    REACT_APP_GRAPHQL_ENDPOINT,
+  } = process.env;
+
+// Use the AEM Headless SDK to make the GraphQL requests
+const sdk = new AEMHeadless({
+      serviceURL: REACT_APP_HOST_URI,
+      endpoint: REACT_APP_GRAPHQL_ENDPOINT
+  })
 
 /**
- * Custom React Hook to perform a GraphQL query
- * @param query - GraphQL query
- * @param path - Persistent query path
+ * Custom React Hook to perform a Persisted GraphQL query
+ * uses the AEM Headless SDK to execute the query
+ * Persisted queries should be the ONLY queries used in a production app
+ * @param persistedPath - the short path to the persisted query
+ * @param fragmentPathParam - optional parameters object that can be passed in for parameterized persistent queries
  */
-function useGraphQL(query, path) {
+ export function useGraphQLPersisted(persistedPath, fragmentPathVariable) {
     let [data, setData] = useState(null);
-    let [errorMessage, setErrors] = useState(null);
+    let [errors, setErrors] = useState(null);
 
     useEffect(() => {
-      const sdk = new AEMHeadless({ endpoint: REACT_APP_GRAPHQL_ENDPOINT })
-      const request = query ? sdk.runQuery.bind(sdk) : sdk.runPersistedQuery.bind(sdk);
 
-      request(query || path)
-        .then(({ data, errors }) => {
-          //If there are errors in the response set the error message
-          if(errors) {
-            setErrors(mapErrors(errors));
-          }
-          //If data in the response set the data as the results
-          if(data) {
-            setData(data);
-          }
+
+        let queryVariables = {};
+
+        // we pass in a primitive fragmentPathVariable (String) and then construct the object {fragmentPath: fragmentPathParam} to pass as query params to the persisted query
+        // It is simpler to pass a primitive into a React hooks, as comparing the state of a dependent object can be difficult. 
+        //see https://reactjs.org/docs/hooks-faq.html#can-i-skip-an-effect-on-updates
+        if(fragmentPathVariable) {
+            queryVariables = {fragmentPath: fragmentPathVariable};
+        }
+
+        sdk.runPersistedQuery(persistedPath, queryVariables)
+            .then(({ data, errors }) => {
+            if (errors) setErrors(mapErrors(errors));
+            if (data) setData(data);
         })
         .catch((error) => {
           setErrors(error);
         });
-    }, [query, path]);
+  }, [persistedPath, fragmentPathVariable]);
 
-    return {data, errorMessage}
+  return { data, errors }
 }
+
+/**
+ * Custom React Hook to perform a GraphQL query using POST
+ * Executing a GraphQL query directly using POST should ONLY be done during development
+ * for production use cases use Persisted Queries
+ * 
+ * @param query - GraphQL query
+ */
+ export function useGraphQL(query) {
+    let [data, setData] = useState(null);
+    let [errors, setErrors] = useState(null);
+  
+    useEffect(() => {
+      sdk.runQuery(query)
+          .then(({ data, errors }) => {
+            if (errors) setErrors(mapErrors(errors));
+            if (data) setData(data);
+          })
+          .catch((error) => {
+            setErrors(error);
+          });
+    }, [query]);
+  
+    return { data, errors }
+  }
 
 /**
  * concatenate error messages into a single string.
@@ -52,5 +90,3 @@ function useGraphQL(query, path) {
 function mapErrors(errors) {
     return errors.map((error) => error.message).join(",");
 }
-
-export default useGraphQL

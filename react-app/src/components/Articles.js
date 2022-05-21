@@ -6,31 +6,22 @@ NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-//import {useGraphQLPersisted} from '../api/useGraphQL';
-import {getAllAdventures} from '../api/persistedQueries';
+import useGraphQL from '../api/useGraphQL';
 import Error from './Error';
 import Loading from './Loading';
 import './Adventures.scss';
 
 
-function Adventures() {
+function Articles() {
     //Use React Hooks to set the initial GraphQL query to a variable named `query`
     // If query is not defined, persistent query will be requested
     // Initially use cached / persistent query.
-    const [adventureType, setAdventureType] = useState('');
-    const [data, setData] = useState();
-    const [errorMessage, setErrorMessage] = useState();
-
-    useEffect(() => {
-        if (adventureType === '') {
-            getAllAdventures().then(response => {
-                setData(response.data);
-                setErrorMessage(response.errors);
-            });
-        }
-      }, [adventureType])
+    const [query, setQuery] = useState('');
+    const persistentQuery = 'WKND-Models/all-articles';
+    //Use a custom React Hook to execute the GraphQL query
+    const { data, errorMessage } = useGraphQL(query, persistentQuery);
 
     //If there is an error with the GraphQL query
     if(errorMessage) return <Error errorMessage={errorMessage} />;
@@ -40,15 +31,12 @@ function Adventures() {
     
     return (
         <div className="adventures">
-          <button onClick={() => setAdventureType('')}>All</button>
-          <button onClick={() => setAdventureType('Camping')}>Camping</button>
-          <button onClick={() => setAdventureType('Surfing')}>Surfing</button>
           <ul className="adventure-items">
             {
                 //Iterate over the returned data items from the query
-                data.adventureList.items.map((adventure, index) => {
+                data.articleList.items.map((article, index) => {
                     return (
-                        <AdventureItem key={index} {...adventure} />
+                        <li key={index}>{article.title}</li>
                     );
                 })
             }
@@ -114,4 +102,4 @@ function filterQuery(activity) {
 }
 
 
-export default Adventures;
+export default Articles;
