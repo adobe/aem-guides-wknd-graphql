@@ -6,93 +6,126 @@ NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-import React from 'react';
-import { withRouter, Link} from "react-router-dom";
-import {useGraphQL} from '../api/useGraphQL';
+import React, { useEffect, useState } from 'react';
+import { withRouter, Link, useLocation} from "react-router-dom";
 import backIcon from '../images/icon-close.svg';
 import Error from './Error';
 import Loading from './Loading';
 import { mapJsonRichText } from '../utils/renderRichText';
 import './AdventureDetail.scss';
+import { getAdventureBySlug } from '../api/persistedQueries';
 
 
 function AdventureDetail(props) {
 
-    //parse the content fragment from the url
-    const contentFragmentPath = props.location.pathname.substring(props.match.url.length);
+    // location hook from React router
+    const location = useLocation();
+    const [response, setResponse] = useState();
 
-    //Use a custom React Hook to execute the GraphQL query
-    const { data, errorMessage } = useGraphQL(adventureDetailQuery(contentFragmentPath));
+    useEffect(() => {
+        // set response to null on change
+        setResponse();
+        //parse the slug from the pathname
+        const slug = location.pathname.substring(location.pathname.indexOf(':/') + 2);
+        // execute persisted query based on the adventure slug
+        getAdventureBySlug(slug)
+            .then(response => setResponse(response));
+    }, [location]);
+    
+
+    //If query response is null then return a loading icon...
+    if(!response) return <Loading />;
 
     //If there is an error with the GraphQL query
-    if(errorMessage) return <Error errorMessage={errorMessage} />;
+    if(response && response.errors) return <Error errorMessage={response.errors} />;
 
-    //If data is null then return a loading icon...
-    if(!data) return <Loading />;
 
     //Set adventure properties variable based on graphQL response
-    const {_path, 
-           adventureTitle, 
-           adventurePrimaryImage, 
-           adventureActivity,
-           adventureType, 
-           adventureTripLength,
-           adventureGroupSize,
-           adventureDifficulty,
-           adventurePrice,
-           adventureDescription,
-           adventureItinerary,
-           adventureContributor } = data.adventureByPath.item;
+    const currentAdventure = getAdventure(response);
     
     // set references of current adventure
-    const references = data.adventureByPath._references;
+    const references = response.data.adventureList._references;
 
     //Must have title, path, and image
-    if(!_path || !adventureTitle || !adventurePrimaryImage) {
-      return (
-        <div className="adventure-detail">
-          <Link className="adventure-detail-close-button" to={"/"}>
-            <img className="Backbutton-icon" src={backIcon} alt="Return" />
-          </Link>
-          <Error errorMessage="Missing data, adventure could not be rendered." />
-        </div>
-      );
+    if( !currentAdventure) {
+      return <NoAdventureFound />;
     }
     
+    return <AdventureDetailRender {...currentAdventure} references={references}/>;
+}
+
+function AdventureDetailRender({title, 
+                                primaryImage, 
+                                activity,
+                                adventureType, 
+                                tripLength,
+                                groupSize,
+                                difficulty,
+                                price,
+                                description,
+                                itinerary,
+                                contributor, references}) {
+
     return (
         <div className="adventure-detail">
-          <Link className="adventure-detail-close-button" to={"/"}>
-            <img className="Backbutton-icon" src={backIcon} alt="Return" />
-          </Link>
-          <h1 className="adventure-detail-title">{adventureTitle}</h1>
-          <div className="adventure-detail-info">
-            <div className="adventure-detail-info-label">Activity</div>
-            <div className="adventure-detail-info-description">{adventureActivity}</div>
-            <div className="adventure-detail-info-label">Type</div>
-            <div className="adventure-detail-info-description">{adventureType}</div>
-            <div className="adventure-detail-info-label">Trip Length</div>
-            <div className="adventure-detail-info-description">{adventureTripLength}</div>
-            <div className="adventure-detail-info-label">Group Size</div>
-            <div className="adventure-detail-info-description">{adventureGroupSize}</div>
-            <div className="adventure-detail-info-label">Difficulty</div>
-            <div className="adventure-detail-info-description">{adventureDifficulty}</div>
-            <div className="adventure-detail-info-label">Price</div>
-            <div className="adventure-detail-info-description">{adventurePrice}</div>
-          </div>
-          <div className="adventure-detail-content">
-            <img className="adventure-detail-primaryimage"
-                 src={adventurePrimaryImage._path} alt={adventureTitle}/>
-            <div>{mapJsonRichText(adventureDescription.json, customRenderOptions(references))}</div>
+            <Link className="adventure-detail-close-button" to={"/"}>
+                <img className="Backbutton-icon" src={backIcon} alt="Return" />
+            </Link>
+            <h1 className="adventure-detail-title">{title}</h1>
+            <div className="adventure-detail-info">
+                <div className="adventure-detail-info-label">Activity</div>
+                <div className="adventure-detail-info-description">{activity}</div>
+                <div className="adventure-detail-info-label">Type</div>
+                <div className="adventure-detail-info-description">{adventureType}</div>
+                <div className="adventure-detail-info-label">Trip Length</div>
+                <div className="adventure-detail-info-description">{tripLength}</div>
+                <div className="adventure-detail-info-label">Group Size</div>
+                <div className="adventure-detail-info-description">{groupSize}</div>
+                <div className="adventure-detail-info-label">Difficulty</div>
+                <div className="adventure-detail-info-description">{difficulty}</div>
+                <div className="adventure-detail-info-label">Price</div>
+                <div className="adventure-detail-info-description">{price}</div>
+            </div>
+            <div className="adventure-detail-content">
+                <img className="adventure-detail-primaryimage"
+                    src={primaryImage._path} alt={title}/>
+            <div>{mapJsonRichText(description.json, customRenderOptions(references))}</div>
             <h2>Itinerary</h2>
             <hr />
 
             {/* Render the itinerary without any custom render options (just use defaults) */}
-            <div className="adventure-detail-itinerary">{mapJsonRichText(adventureItinerary.json)}</div>
-            <Contributer {...adventureContributor} />
-          </div>
-
-        </div>
+            <div className="adventure-detail-itinerary">{mapJsonRichText(itinerary.json)}</div>
+            <Contributer {...contributor} />
+            </div>
+    </div>
     );
+
+}
+
+function NoAdventureFound() {
+    return (
+    <div className="adventure-detail">
+        <Link className="adventure-detail-close-button" to={"/"}>
+            <img className="Backbutton-icon" src={backIcon} alt="Return" />
+        </Link>
+        <Error errorMessage="Missing data, adventure could not be rendered." />
+  </div>
+  );
+}
+
+/**
+ * Helper function to get the first adventure from the response
+ * @param {*} response 
+ */
+function getAdventure(response) {
+
+    if(response && response.data && response.data.adventureList && response.data.adventureList.items) {
+        // expect there only to be a single adventure in the array
+        if(response.data.adventureList.items.length === 1) {
+            return response.data.adventureList.items[0];
+        }
+    }
+    return undefined;
 }
 
 /**
@@ -108,7 +141,7 @@ function customRenderOptions(references) {
         },
         'AdventureModel': (node) => {
             // when __typename === AdventureModel
-            return <Link to={`/adventure:${node._path}`}>{`${node.adventureTitle}: ${node.adventurePrice}`}</Link>;
+            return <Link to={`/adventure:/${node.slug}`}>{`${node.title}: ${node.price}`}</Link>;
         }
     };
 
@@ -135,54 +168,6 @@ function customRenderOptions(references) {
             }
         },
     };
-}
-
-
-function adventureDetailQuery(_path) {
-  return `{
-    adventureByPath (_path: "${_path}") {
-      item {
-        _path
-          adventureTitle
-          adventureActivity
-          adventureType
-          adventurePrice
-          adventureTripLength
-          adventureGroupSize
-          adventureDifficulty
-          adventurePrice
-          adventurePrimaryImage {
-            ... on ImageRef {
-              _path
-              mimeType
-              width
-              height
-            }
-          }
-          adventureDescription {
-            json
-          }
-          adventureItinerary {
-            json
-          }
-      }
-      _references {
-        ...on ImageRef {
-          _path
-          __typename
-          width
-          height
-        }
-        ...on AdventureModel {
-          _path
-          __typename
-          adventureTitle
-          adventurePrice
-        }
-      }
-    }
-  }
-  `;
 }
 
 function Contributer(props) {

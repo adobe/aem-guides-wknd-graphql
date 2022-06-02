@@ -6,6 +6,7 @@ NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
+@use "sass:math";
 /* Normalize */
 @import '~normalize-scss/sass/normalize';
 @import './styles/variables';
@@ -37,7 +38,7 @@ h3, .h3 {
 font-family: $font-family-serif;
 font-weight: $font-weight-normal;
 margin-top: $line-height-computed;
-margin-bottom: ($line-height-computed / 2);
+margin-bottom: math.div($line-height-computed, 2);
 }
 
 h4, .h4,
@@ -73,7 +74,7 @@ h1 u, h2 u, h3 u {
 // -------------------------
 
 p {
-margin: 0 0 ($line-height-computed / 2);
+margin: 0 0 math.div($line-height-computed , 2);
 font-size: $font-size-base;
 line-height: $line-height-base + 0.75;
 text-align: justify;

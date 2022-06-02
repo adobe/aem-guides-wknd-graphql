@@ -9,46 +9,56 @@ it.
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 //import {useGraphQLPersisted} from '../api/useGraphQL';
-import {getAllAdventures} from '../api/persistedQueries';
+import {getAllAdventures, getAdventuresByActivity} from '../api/persistedQueries';
 import Error from './Error';
 import Loading from './Loading';
 import './Adventures.scss';
 
 
 function Adventures() {
-    //Use React Hooks to set the initial GraphQL query to a variable named `query`
-    // If query is not defined, persistent query will be requested
-    // Initially use cached / persistent query.
-    const [adventureType, setAdventureType] = useState('');
-    const [data, setData] = useState();
-    const [errorMessage, setErrorMessage] = useState();
+    
+    const [adventureActivity, setAdventureActivity] = useState('');
+    const [response, setResponse] = useState();
 
     useEffect(() => {
-        if (adventureType === '') {
-            getAllAdventures().then(response => {
-                setData(response.data);
-                setErrorMessage(response.errors);
-            });
+
+        // set response to null while fetching the new data (prompts loading icon)
+        setResponse();
+
+        // if an activity is set (i.e "Camping", "Hiking"...)
+        if(adventureActivity && adventureActivity !== '') {
+            // run a filter query to get adventures based on the activity
+            getAdventuresByActivity(adventureActivity)
+                .then(response => setResponse(response));
         }
-      }, [adventureType])
+        else {
+            // Otherwise get all the adventures data (unfiltered)
+            getAllAdventures()
+                .then(response => setResponse(response));
+        }
+      }, [adventureActivity])
+
+    //If response is null then return a loading state...
+    if(!response) return <Loading />;
 
     //If there is an error with the GraphQL query
-    if(errorMessage) return <Error errorMessage={errorMessage} />;
-
-    //If data is null then return a loading state...
-    if(!data) return <Loading />;
+    if(response && response.errors) return <Error errorMessage={response.errors} />;
     
     return (
         <div className="adventures">
-          <button onClick={() => setAdventureType('')}>All</button>
-          <button onClick={() => setAdventureType('Camping')}>Camping</button>
-          <button onClick={() => setAdventureType('Surfing')}>Surfing</button>
+          <button onClick={() => setAdventureActivity('')}>All</button>
+          <button onClick={() => setAdventureActivity('Camping')}>Camping</button>
+          <button onClick={() => setAdventureActivity('Cycling')}>Cycling</button>
+          <button onClick={() => setAdventureActivity('Rock Climbing')}>Rock Climbing</button>
+          <button onClick={() => setAdventureActivity('Skiing')}>Skiing</button>
+          <button onClick={() => setAdventureActivity('Social')}>Social</button>
+          <button onClick={() => setAdventureActivity('Surfing')}>Surfing</button>
           <ul className="adventure-items">
             {
                 //Iterate over the returned data items from the query
-                data.adventureList.items.map((adventure, index) => {
+                response.data.adventureList.items.map((adventure) => {
                     return (
-                        <AdventureItem key={index} {...adventure} />
+                        <AdventureListItem key={adventure.slug} {...adventure} />
                     );
                 })
             }
@@ -58,59 +68,25 @@ function Adventures() {
 }
 
 // Render individual Adventure item
-function AdventureItem(props) {
+function AdventureListItem({title, slug, primaryImage, tripLength, price}) {
 
   //Must have title, path, and image
-  if(!props || !props._path || !props.adventureTitle || !props.adventurePrimaryImage ) {
+  if(!title || !title || !primaryImage ) {
     return null;
   }
   return (
         <li className="adventure-item">
-          <Link to={`/adventure:${props._path}`}>
-            <img className="adventure-item-image" src={props.adventurePrimaryImage._path} 
-                 alt={props.adventureTitle}/>
+          <Link to={`/adventure:/${slug}`}>
+            <img className="adventure-item-image" src={primaryImage._path} 
+                 alt={title}/>
           </Link>
           <div className="adventure-item-length-price">
-            <div className="adventure-item-length">{props.adventureTripLength}</div>
-            <div className="adventure-item-price">{props.adventurePrice}</div>
+            <div className="adventure-item-length">{tripLength}</div>
+            <div className="adventure-item-price">{price}</div>
           </div>
-          <div className="adventure-item-title">{props.adventureTitle}</div>
+          <div className="adventure-item-title">{title}</div>
       </li>
       );
-}
-
-/**
- * Returns a query for Adventures filtered by activity
- */
-function filterQuery(activity) {
-  return `
-    {
-      adventureList (filter: {
-        adventureActivity: {
-          _expressions: [
-            {
-              value: "${activity}"
-            }
-          ]
-        }
-      }){
-        items {
-          _path
-        adventureTitle
-        adventurePrice
-        adventureTripLength
-        adventurePrimaryImage {
-          ... on ImageRef {
-            _path
-            mimeType
-            width
-            height
-          }
-        }
-      }
-    }
-  }
-  `;
 }
 
 

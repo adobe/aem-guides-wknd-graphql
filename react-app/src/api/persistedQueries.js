@@ -1,40 +1,79 @@
-const {AEMHeadless} = require('@adobe/aem-headless-client-js');
+/*
+Copyright 2020 Adobe
+All Rights Reserved.
 
-// environment variable REACT_APP_GRAPHQL_ENDPOINT is used to point to endpoint in AEM
-const {
-    REACT_APP_HOST_URI,
-    REACT_APP_GRAPHQL_ENDPOINT,
-  } = process.env;
+NOTICE: Adobe permits you to use, modify, and distribute this file in
+accordance with the terms of the Adobe license agreement accompanying
+it.
+*/
 
-// Use the AEM Headless SDK to make the GraphQL requests
-const aemHeadlessClient = new AEMHeadless({
-      serviceURL: REACT_APP_HOST_URI,
-      endpoint: REACT_APP_GRAPHQL_ENDPOINT
-})
+/**
+ * persistedQueries.js - provides a wrapper utility of persisted queries that are expected to be available on the AEM environment
+ */
+import { aemHeadlessClient , mapErrors} from "./headlessClient";
 
-export const getAllAdventures = async function() {
-    const persistedQueryPath = 'wknd/adventures-all';
+/**
+ * Uses the AEM Headless SDK to execute a query besed on a persistedQueryPath and optional query variables
+ * @param {*} persistedQueryPath 
+ * @param {*} queryVariables 
+ * @returns 
+ */
+ const executePersistedQuery = async function(persistedQueryPath, queryVariables) {
+
     let data;
     let errors;
 
     try {
         // AEM GraphQL queries are asynchronous, either await their return or use Promise-based .then(..) { ... } syntax
-        const response = await aemHeadlessClient.runPersistedQuery(persistedQueryPath);
+        const response = await aemHeadlessClient.runPersistedQuery(persistedQueryPath, queryVariables);
         // The GraphQL data is stored on the response's data field
         data = response.data;
-        errors = mapErrors(response.errors);
+        errors = response.errors ? mapErrors(response.errors) : undefined;
     } catch (e) {
         console.error(e.toJSON());
         errors = e;
     }
 
     return {data, errors}; 
+
 }
 
 /**
- * concatenate error messages into a single string.
- * @param {*} errors
+ * Queries a list of all Adventures using the persisted path "wknd/adventures-all"
+ * @returns {data, errors}
  */
- function mapErrors(errors) {
-    return errors.map((error) => error.message).join(",");
+export const getAllAdventures = async function() {
+    return executePersistedQuery('wknd/adventures-all');
+}
+/**
+ * Filters a list of adventures by activity 
+ * using the persisted path 'wknd/adventures-by-activity'
+ * @param {*} activityType 
+ * @returns 
+ */
+export const getAdventuresByActivity = async function(activityType) {
+    const queryVariables = { 'activity': activityType }; // expected query variables
+    return executePersistedQuery('wknd/adventures-by-activity', queryVariables);
+}
+
+/**
+ * Queries a single adventure based on its slug to a content fragment
+ * uses persisted path 'wknd/adventure-by-slug'
+ * @param {*} adventurePath 
+ * @returns 
+ */
+ export const getAdventureBySlug = async function(adventureSlug) {
+    const queryVariables = {'slug': adventureSlug};
+    return executePersistedQuery('wknd/adventure-by-slug', queryVariables);
+}
+
+/**
+ * Queries a single adventure based on a path to a content fragment
+ * uses persisted path 'wknd/adventures-by-path'
+ * @param {*} adventurePath 
+ * @returns 
+ */
+export const getAdventureByPath = async function(adventurePath) {
+    const queryVariables = {'adventurePath': adventurePath};
+    return executePersistedQuery('wknd/adventures-by-path', queryVariables);
 }
