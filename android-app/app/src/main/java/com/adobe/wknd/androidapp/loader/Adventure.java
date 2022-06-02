@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Adventure implements Serializable {
     final String path;
     final String title;
+    final String slug;
     final String activity;
     final String price;
     final String tripLength;
@@ -16,25 +17,27 @@ public class Adventure implements Serializable {
     final String type;
     final String groupSize;
 
-    final String adventureDescription;
-    final String adventureItinerary;
+    final String description;
+    final String itinerary;
 
     final PrimaryImage primaryImage;
 
     public Adventure(
             @JsonProperty(value = "_path", required = true) String path,
-            @JsonProperty(value = "adventureTitle", required = true) String title,
-            @JsonProperty("adventureActivity") String activity,
-            @JsonProperty("adventurePrice") String price,
-            @JsonProperty("adventureTripLength") String tripLength,
-            @JsonProperty("adventureDifficulty") String difficulty,
+            @JsonProperty(value = "title", required = true) String title,
+            @JsonProperty(value = "slug", required = true) String slug,
+            @JsonProperty("activity") String activity,
+            @JsonProperty("price") String price,
+            @JsonProperty("tripLength") String tripLength,
+            @JsonProperty("difficulty") String difficulty,
             @JsonProperty("adventureType") String type,
-            @JsonProperty("adventureGroupSize") String groupSize,
-            @JsonProperty("adventurePrimaryImage") PrimaryImage primaryImage,
-            @JsonProperty("adventureDescription") AdventureHtml adventureDescription,
-            @JsonProperty("adventureItinerary") AdventureHtml adventureItinerary) {
+            @JsonProperty("groupSize") String groupSize,
+            @JsonProperty("primaryImage") PrimaryImage primaryImage,
+            @JsonProperty("description") AdventureHtml description,
+            @JsonProperty("itinerary") AdventureHtml itinerary) {
         this.path = path;
         this.title = title;
+        this.slug = slug;
         this.activity = activity;
         this.price = price;
         this.tripLength = tripLength;
@@ -42,8 +45,8 @@ public class Adventure implements Serializable {
         this.type = type;
         this.groupSize = groupSize;
         this.primaryImage = primaryImage;
-        this.adventureDescription = adventureDescription != null ? adventureDescription.html : null;
-        this.adventureItinerary = adventureItinerary != null ? adventureItinerary.html : null;
+        this.description = description != null ? description.html : null;
+        this.itinerary = itinerary != null ? itinerary.html : null;
     }
 
     @Override
@@ -51,6 +54,7 @@ public class Adventure implements Serializable {
         return "[Adventure " +
                 "path='" + path + '\'' +
                 ", title='" + title + '\'' +
+                ", slug='" + slug + '\'' +
                 ", price='" + price + '\'' +
                 ", tripLength='" + tripLength + '\'' +
                 ", primaryImagePath='" + primaryImage.path + '\'' +
@@ -68,6 +72,8 @@ public class Adventure implements Serializable {
     public String getTitle() {
         return title;
     }
+
+    public String getSlug() { return slug; }
 
     public String getActivity() {
         return activity;
@@ -89,12 +95,12 @@ public class Adventure implements Serializable {
         return price;
     }
 
-    public String getAdventureDescription() {
-        return adventureDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public String getAdventureItinerary() {
-        return adventureItinerary;
+    public String getItinerary() {
+        return itinerary;
     }
 
     public String getTripLength() {

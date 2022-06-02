@@ -18,15 +18,17 @@ import java.util.Map;
 
 public class AdventureLoader extends AsyncTaskLoader<Adventure> {
 
-    public static final String QUERY_FILE_NAME = "adventureByPath.query";
-    public static final String JSON_KEY_ADVENTURE_BY_PATH = "adventureByPath";
-    public static final String JSON_KEY_ITEM = "item";
-    private final String path;
+    public static final String PERSISTED_QUERY_NAME = "/wknd/adventure-by-slug";
+
+    public static final String JSON_KEY_ADVENTURE_LIST = "adventureList";
+    public static final String JSON_KEY_ITEMS = "items";
+    
+    private final String slug;
     private Adventure adventure;
 
-    public AdventureLoader(Context context, String path) {
+    public AdventureLoader(Context context, String slug) {
         super(context);
-        this.path = path;
+        this.slug = slug;
         Log.i("AdventureLoader", "context in loader constructor: " + context + " class " + context.getClass());
     }
 
@@ -36,7 +38,7 @@ public class AdventureLoader extends AsyncTaskLoader<Adventure> {
         Config config = new Config(getContext());
 
         try {
-            Log.i("AdventureLoader", "Loading adventure for " + this.path + " from " + config.getContentApiEndpoint());
+            Log.i("AdventureLoader", "Loading adventure for slug " + this.slug + " from " + config.getContentApiEndpoint());
             AEMHeadlessClientBuilder builder = AEMHeadlessClient.builder().endpoint(config.getContentApiEndpoint());
             String user = config.getContentApiUser();
             String password = config.getContentApiPassword();
@@ -45,43 +47,28 @@ public class AdventureLoader extends AsyncTaskLoader<Adventure> {
             }
             AEMHeadlessClient client = builder.build();
 
-            String query = readFile(getContext(), QUERY_FILE_NAME);
-
             Map<String, Object> params = new HashMap<>();
-            params.put("adventurePath", this.path);
-            GraphQlResponse response = client.runQuery(query, params);
+            params.put("slug", this.slug);
+
+            GraphQlResponse response = client.runPersistedQuery(PERSISTED_QUERY_NAME, params);
 
             JsonNode data = response.getData();
 
             ObjectMapper mapper = new ObjectMapper();
 
-            this.adventure = mapper.treeToValue(data.get(JSON_KEY_ADVENTURE_BY_PATH).get(JSON_KEY_ITEM), Adventure.class);
+            this.adventure = mapper.treeToValue(data.get(JSON_KEY_ADVENTURE_LIST).get(JSON_KEY_ITEMS).get(0), Adventure.class);
 
             Log.i("AdventureLoader", "Loaded adventure: " + adventure);
 
             return this.adventure;
 
         } catch (Exception e) {
-            Log.e("MainActivity", "Error while loading adventure " + this.path + " from " + config.getContentApiEndpoint(), e);
+            Log.e("MainActivity", "Error while loading adventure " + this.slug + " from " + config.getContentApiEndpoint(), e);
             return null;
         }
-
     }
 
     public Adventure getAdventure() {
         return adventure;
     }
-
-    public String readFile(Context context, String file) {
-        try (InputStream stream = context.getAssets().open(file)) {
-            int size = stream.available();
-            byte[] buffer = new byte[size];
-            stream.read(buffer);
-            stream.close();
-            return new String(buffer);
-        } catch (Exception e) {
-            throw new IllegalStateException("Could not load file " + file + ": " + e, e);
-        }
-    }
-
 }

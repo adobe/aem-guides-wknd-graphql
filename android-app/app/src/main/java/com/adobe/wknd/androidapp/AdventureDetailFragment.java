@@ -90,8 +90,8 @@ public class AdventureDetailFragment extends Fragment implements LoaderManager.L
                                     + "<p><strong>Group Size:</strong> " + adventure.getGroupSize() + "</p>"
                                     + "<p><strong>Difficulty:</strong> " + adventure.getDifficulty() + "</p>"
                                     + "<p><strong>Price:</strong> " + adventure.getPrice() + "</p>"
-                                    + "<br/><p>" + adventure.getAdventureDescription() + "</p>" +
-                                    "<br/><h3>Itinerary<h3><br/><p>" + adventure.getAdventureItinerary() + "</p>", Html.FROM_HTML_MODE_COMPACT));
+                                    + "<br/><p>" + adventure.getDescription() + "</p>" +
+                                    "<br/><h3>Itinerary<h3><br/><p>" + adventure.getItinerary() + "</p>", Html.FROM_HTML_MODE_COMPACT));
             if (adventureDetailToolbar != null) {
                 adventureDetailToolbar.setTitle(adventure.getTitle());
             }

@@ -42,7 +42,6 @@ public class AdventureListFragment extends Fragment implements LoaderManager.Loa
 
         binding = FragmentAdventureListBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
     }
 
     @Override
@@ -57,7 +56,7 @@ public class AdventureListFragment extends Fragment implements LoaderManager.Loa
         View.OnClickListener onClickListener = itemView -> {
             Adventure item = (Adventure) itemView.getTag();
             Bundle arguments = new Bundle();
-            arguments.putString(AdventureDetailFragment.ARG_ITEM_ID, item.getPath());
+            arguments.putString(AdventureDetailFragment.ARG_ITEM_ID, item.getSlug());
             Navigation.findNavController(itemView).navigate(R.id.show_item_detail, arguments);
         };
 
