@@ -1,5 +1,5 @@
 //
-// Copyright 2021 Adobe
+// Copyright 2022 Adobe
 // All Rights Reserved.
 // NOTICE: Adobe permits you to use, modify, and distribute this file in
 // accordance with the terms of the Adobe license agreement accompanying
@@ -12,22 +12,18 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
+// The scheme AEM runs on (http or https)
+AEM_SCHEME = http
+
 // Target hostname for AEM environment, do not include http:// or https://
 AEM_HOST = localhost:4502
 
-// GraphQL Endpoint
-AEM_GRAPHQL_ENDPOINT = /content/cq:graphql/wknd/endpoint.json
-
 // If connecting to an AEM Publish environment, no need to set an AUTH_METHOD
-
 // Support for Basic Authentication - Set AUTH_METHOD to basic and set BASIC_AUTH_CREDENTIALS
-AUTH_METHOD = basic
-
-// Basic Authentication Info
-BASIC_AUTH_CREDENTIALS = admin:admin
+AEM_AUTH_TYPE = basic
+AEM_USERNAME = admin
+AEM_PASSWORD = admin
 
 // Support for Token Authentication - set AUTH_METHOD to token
-// AUTH_METHOD = token
-
-// Bearer token value, ensure AUTH_METHOD=token to use.
-// BEARER_TOKEN = <token here>
+// AEM_AUTH_TYPE = token
+// AEM_TOKEN = <token here>

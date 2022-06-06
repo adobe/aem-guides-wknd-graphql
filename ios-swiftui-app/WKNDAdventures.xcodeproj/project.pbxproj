@@ -12,18 +12,15 @@
 		1C546EB5270395D900AFFB38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C546EB4270395D900AFFB38 /* Preview Assets.xcassets */; };
 		1C546EC0270395D900AFFB38 /* WKNDAdventuresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C546EBF270395D900AFFB38 /* WKNDAdventuresTests.swift */; };
 		1C546ECB270395D900AFFB38 /* WKNDAdventuresUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C546ECA270395D900AFFB38 /* WKNDAdventuresUITests.swift */; };
-		1C546EDA2703962900AFFB38 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 1C546ED92703962900AFFB38 /* Apollo */; };
-		1C546EDC2703962900AFFB38 /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 1C546EDB2703962900AFFB38 /* ApolloWebSocket */; };
-		1C546EE32703A36500AFFB38 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C546EE22703A36500AFFB38 /* Network.swift */; };
 		1C5691E727061DB800673686 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1C5691E627061DB800673686 /* SDWebImageSwiftUI */; };
-		1C92F8722703C74800BCF2D6 /* AdventuresDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F8712703C74800BCF2D6 /* AdventuresDataModel.swift */; };
 		1C92F8762704E6E400BCF2D6 /* AdventureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F8752704E6E400BCF2D6 /* AdventureListView.swift */; };
 		1C92F87D2704EDDC00BCF2D6 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F87C2704EDDC00BCF2D6 /* TestData.swift */; };
 		1C92F87F2705195700BCF2D6 /* AdventureRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F87E2705195700BCF2D6 /* AdventureRowView.swift */; };
 		1C92F88127051C1700BCF2D6 /* AdventureDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F88027051C1700BCF2D6 /* AdventureDetailView.swift */; };
-		1C92F885270537D000BCF2D6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92F884270537D000BCF2D6 /* API.swift */; };
 		1C94F3AE2714E8B500E8E725 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1C94F3AD2714E8B500E8E725 /* Config.xcconfig */; };
-		1CD8E507270BAD060015098E /* Adventure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD8E506270BAD050015098E /* Adventure.swift */; };
+		6FCD25ED284E6320000D414A /* Aem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD25EC284E6320000D414A /* Aem.swift */; };
+		6FCD25EF284E635D000D414A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD25EE284E635D000D414A /* Models.swift */; };
+		6FCD25F1284E63ED000D414A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD25F0284E63ED000D414A /* Configuration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,17 +52,14 @@
 		1C546EC6270395D900AFFB38 /* WKNDAdventuresUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WKNDAdventuresUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C546ECA270395D900AFFB38 /* WKNDAdventuresUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKNDAdventuresUITests.swift; sourceTree = "<group>"; };
 		1C546ECC270395D900AFFB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1C546EDE27039F9600AFFB38 /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
-		1C546EDF2703A0C900AFFB38 /* AdventureList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AdventureList.graphql; sourceTree = "<group>"; };
-		1C546EE22703A36500AFFB38 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		1C92F8712703C74800BCF2D6 /* AdventuresDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventuresDataModel.swift; sourceTree = "<group>"; };
 		1C92F8752704E6E400BCF2D6 /* AdventureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureListView.swift; sourceTree = "<group>"; };
 		1C92F87C2704EDDC00BCF2D6 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		1C92F87E2705195700BCF2D6 /* AdventureRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureRowView.swift; sourceTree = "<group>"; };
 		1C92F88027051C1700BCF2D6 /* AdventureDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureDetailView.swift; sourceTree = "<group>"; };
-		1C92F884270537D000BCF2D6 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		1C94F3AD2714E8B500E8E725 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		1CD8E506270BAD050015098E /* Adventure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adventure.swift; sourceTree = "<group>"; };
+		6FCD25EC284E6320000D414A /* Aem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aem.swift; sourceTree = "<group>"; };
+		6FCD25EE284E635D000D414A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		6FCD25F0284E63ED000D414A /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +68,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C5691E727061DB800673686 /* SDWebImageSwiftUI in Frameworks */,
-				1C546EDA2703962900AFFB38 /* Apollo in Frameworks */,
-				1C546EDC2703962900AFFB38 /* ApolloWebSocket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,17 +112,13 @@
 		1C546EAC270395D700AFFB38 /* WKNDAdventures */ = {
 			isa = PBXGroup;
 			children = (
-				1CD8E506270BAD050015098E /* Adventure.swift */,
-				1C92F8712703C74800BCF2D6 /* AdventuresDataModel.swift */,
-				1C92F884270537D000BCF2D6 /* API.swift */,
-				1C546EDF2703A0C900AFFB38 /* AdventureList.graphql */,
-				1C546EE22703A36500AFFB38 /* Network.swift */,
-				1C546EDE27039F9600AFFB38 /* schema.json */,
+				6FCD25EB284E62F4000D414A /* AEM */,
 				1C92F8772704E86000BCF2D6 /* Views */,
 				1C546EAD270395D700AFFB38 /* WKNDAdventuresApp.swift */,
 				1C546EB1270395D900AFFB38 /* Assets.xcassets */,
 				1C546EB6270395D900AFFB38 /* Info.plist */,
 				1C546EB3270395D900AFFB38 /* Preview Content */,
+				6FCD25F0284E63ED000D414A /* Configuration.swift */,
 			);
 			path = WKNDAdventures;
 			sourceTree = "<group>";
@@ -172,6 +160,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		6FCD25EB284E62F4000D414A /* AEM */ = {
+			isa = PBXGroup;
+			children = (
+				6FCD25EC284E6320000D414A /* Aem.swift */,
+				6FCD25EE284E635D000D414A /* Models.swift */,
+			);
+			path = AEM;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -179,7 +176,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1C546ECF270395D900AFFB38 /* Build configuration list for PBXNativeTarget "WKNDAdventures" */;
 			buildPhases = (
-				1C546EDD27039C4300AFFB38 /* Apollo CLI */,
 				1C546EA6270395D700AFFB38 /* Sources */,
 				1C546EA7270395D700AFFB38 /* Frameworks */,
 				1C546EA8270395D700AFFB38 /* Resources */,
@@ -190,8 +186,6 @@
 			);
 			name = WKNDAdventures;
 			packageProductDependencies = (
-				1C546ED92703962900AFFB38 /* Apollo */,
-				1C546EDB2703962900AFFB38 /* ApolloWebSocket */,
 				1C5691E627061DB800673686 /* SDWebImageSwiftUI */,
 			);
 			productName = WKNDAdventures;
@@ -266,7 +260,6 @@
 			);
 			mainGroup = 1C546EA1270395D700AFFB38;
 			packageReferences = (
-				1C546ED82703962900AFFB38 /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				1C5691E527061DB800673686 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 1C546EAB270395D700AFFB38 /* Products */;
@@ -307,41 +300,19 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		1C546EDD27039C4300AFFB38 /* Apollo CLI */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Apollo CLI";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n\n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"http://localhost:4502/content/cq:graphql/wknd/endpoint.json\" --header \"Authorization: Basic YWRtaW46YWRtaW4=\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		1C546EA6270395D700AFFB38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CD8E507270BAD060015098E /* Adventure.swift in Sources */,
-				1C92F885270537D000BCF2D6 /* API.swift in Sources */,
 				1C92F8762704E6E400BCF2D6 /* AdventureListView.swift in Sources */,
 				1C92F87F2705195700BCF2D6 /* AdventureRowView.swift in Sources */,
 				1C92F88127051C1700BCF2D6 /* AdventureDetailView.swift in Sources */,
+				6FCD25ED284E6320000D414A /* Aem.swift in Sources */,
 				1C92F87D2704EDDC00BCF2D6 /* TestData.swift in Sources */,
-				1C92F8722703C74800BCF2D6 /* AdventuresDataModel.swift in Sources */,
-				1C546EE32703A36500AFFB38 /* Network.swift in Sources */,
 				1C546EAE270395D700AFFB38 /* WKNDAdventuresApp.swift in Sources */,
+				6FCD25F1284E63ED000D414A /* Configuration.swift in Sources */,
+				6FCD25EF284E635D000D414A /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +400,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -485,7 +456,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -505,7 +476,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WKNDAdventures/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -527,7 +498,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WKNDAdventures/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -661,14 +632,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1C546ED82703962900AFFB38 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.49.1;
-			};
-		};
 		1C5691E527061DB800673686 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
@@ -680,16 +643,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1C546ED92703962900AFFB38 /* Apollo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1C546ED82703962900AFFB38 /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = Apollo;
-		};
-		1C546EDB2703962900AFFB38 /* ApolloWebSocket */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1C546ED82703962900AFFB38 /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = ApolloWebSocket;
-		};
 		1C5691E627061DB800673686 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1C5691E527061DB800673686 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

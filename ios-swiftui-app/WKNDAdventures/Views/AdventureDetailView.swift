@@ -1,5 +1,5 @@
 //
-// Copyright 2021 Adobe
+// Copyright 2022 Adobe
 // All Rights Reserved.
 // NOTICE: Adobe permits you to use, modify, and distribute this file in
 // accordance with the terms of the Adobe license agreement accompanying
@@ -14,8 +14,17 @@ import SDWebImageSwiftUI
 
 // Displays the details of a single adventure
 struct AdventureDetailView: View {
-    var adventure: Adventure
+    @EnvironmentObject private var aem: Aem
+    @State var adventure: Adventure = Adventure.empty()
     
+    let slug: String
+    
+    private func loadAdventure(slug: String) {
+        aem.getAdventureBySlug( slug: slug, completion: { (adventure) in
+            self.adventure = adventure
+        })
+    }
+
     var body: some View {
         ScrollView {
             
@@ -24,19 +33,20 @@ struct AdventureDetailView: View {
                 .foregroundColor(Color(.systemGray5))
                 .ignoresSafeArea(edges: .top)
                 .frame(height: 250.0)
-                
-            AdventureDetailImage(imageUrl: adventure.adventurePrimaryImageUrl)
+                            
+            AdventureDetailImage(imageUrl: aem.imageUrl(path: adventure.image()))
                 .offset(y: -230)
                 .padding(.bottom, -230)
             
             VStack(alignment: .leading) {
-                Text(adventure.adventureTitle)
-                    .font(.title)
+                
+                Text(adventure.title).font(.title)
+                
                 HStack {
-                    Text(adventure.adventureActivity)
+                    Text(adventure.activity ?? "")
                         .font(.subheadline)
                     Spacer()
-                    Text(adventure.adventurePrice)
+                    Text(adventure.price)
                         .font(.subheadline)
                         .foregroundColor(.green)
                 }
@@ -46,27 +56,30 @@ struct AdventureDetailView: View {
                 Divider()
                 Spacer()
 
-                Text("About \(adventure.adventureTitle)")
-                        .font(.title2)
+                Text("About \(adventure.title)").font(.title2)
                 
                 Spacer()
                 
-                Text(adventure.adventureDescription)
+                Text(adventure.description) // description
                 
                 Spacer()
             }
             .padding()
         }
-        .navigationTitle(adventure.adventureTitle)
+        .onAppear {
+            // Fetch adventure by slug from AEM using GraphQL
+            loadAdventure(slug: slug)
+        }
+        .navigationTitle(adventure.title)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct AdventureDetailImage: View {
-    var imageUrl: String
+    var imageUrl: URL
     
     var body: some View {
-        WebImage(url: URL(string: imageUrl))
+        WebImage(url: imageUrl)
             .resizable()
             .placeholder {
                 Rectangle().foregroundColor(.gray)
@@ -83,6 +96,6 @@ struct AdventureDetailImage: View {
 
 struct AdventureDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        AdventureDetailView(adventure: TestData.adventures[0])
+        AdventureDetailView(adventure: TestAdventureBySlug.get(), slug: "bali-surf-camp")
     }
 }

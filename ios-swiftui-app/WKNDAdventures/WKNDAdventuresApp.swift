@@ -1,5 +1,5 @@
 //
-// Copyright 2021 Adobe
+// Copyright 2022 Adobe
 // All Rights Reserved.
 // NOTICE: Adobe permits you to use, modify, and distribute this file in
 // accordance with the terms of the Adobe license agreement accompanying
@@ -14,34 +14,34 @@ import SDWebImage
 
 @main
 struct WKNDAdventuresApp: App {
-    
-    // instantiates an observable object that can be passed to subsequent views
-    @StateObject private var dataModel = AdventuresDataModel()
-    
+        
     var body: some Scene {
         WindowGroup {
-            
-            AdventureListView(adventures: dataModel.adventures)
-                .onAppear {
-                    // fetch results using apollo graphQL query
-                    dataModel.fetchAdventures()
-                }
-            
-            // include a button to easily refresh the data
-            Button("Refresh Data") {
-                
-                // clear the apollo graphql cache
-                dataModel.clearCache()
-                
-                // clear the image cache
-                SDImageCache.shared.clearMemory()
-                SDImageCache.shared.clearDisk()
-                
-                // re-fetch the adventure content
-                dataModel.fetchAdventures()
-            }
+            AdventureListView().environmentObject(initAem())
         }
     }
     
-  
+    private func initAem() -> Aem {
+        do {
+            let aemScheme: String = try Configuration.value(for: "AEM_SCHEME")
+            let aemHost: String = try Configuration.value(for: "AEM_HOST")
+            let aemAuthType: String = try Configuration.value(for: "AEM_AUTH_TYPE")
+            
+            if aemAuthType == "basic" {
+                // Basic authentication/authorization
+                let username: String = try Configuration.value(for: "AEM_USERNAME")
+                let password: String = try Configuration.value(for: "AEM_PASSWORD")
+                return Aem(scheme: aemScheme, host: aemHost, username: username, password: password);
+            } else if aemAuthType == "token" {
+                // Toked-based authentication/authorization
+                let token: String = try Configuration.value(for: "AEM_TOKEN")
+                return Aem(scheme: aemScheme, host: aemHost, token: token);
+            } else {
+                // No AEM authorization
+                return Aem(scheme: aemScheme, host: aemHost);
+            }
+        } catch {
+            fatalError("Could not initialize connection to AEM")
+        }
+    }
 }

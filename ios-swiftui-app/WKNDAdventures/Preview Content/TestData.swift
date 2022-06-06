@@ -10,38 +10,87 @@
 //
 
 import Foundation
-import Apollo
 
-// Static test data to power preview
-struct TestData {
-    static var adventures: [Adventure] = {
-        return [
-            Adventure(adventureData:
-                            AdventureData(
-                                _path: "/content/dam/wknd/en/adventures/bali-surf-camp/bali-surf-camp",
-                                adventureTitle: "Bali Surf Camping",
-                                adventurePrice: "$5000 USD",
-                                adventureActivity: "Surfing",
-                                adventureDescription: AdventureData.AdventureDescription(plaintext:
-                                                       "Surfing in Bali is on the bucket list of every surfer - whether you're a beginner or someone who's been surfing for decades, there will be a break to cater to your ability. Bali offers warm water, tropical vibes, awesome breaks and low cost expenses."),
-                                adventureDifficulty: "Beginner",
-                                adventureTripLength: "6 Days",
-                                adventurePrimaryImage: AdventureData.AdventurePrimaryImage.makeImageRef(_authorUrl: "http://localhost:4502/content/dam/wknd/en/adventures/bali-surf-camp/AdobeStock_175749320.jpg", _publishUrl: "http://localhost:4503/content/dam/wknd/en/adventures/bali-surf-camp/AdobeStock_175749320.jpg")
-                                )
-                         ),
-            Adventure(adventureData:
-                            AdventureData(
-                                _path: "/content/dam/wknd/en/adventures/climbing-new-zealand/climbing-new-zealand",
-                                adventureTitle: "Climbing New Zealand",
-                                adventurePrice: "$900 USD",
-                                adventureActivity: "Rock Climbing",
-                                adventureDescription: AdventureData.AdventureDescription(plaintext:
-                                                       "Let us take you on a spectacular climbing experience unique to New Zealand\n\nFeel the raw adventure and excitement of our guided rock climbing experience. Reach new heights under our professional instruction and feel your body and mind work together in harmony. Come join us for a guided rock climbing adventure in the mountains that trained Sir Edmund Hilary. Whether it is your first time thinking of putting on climbing shoes or you are an old hand looking for some new challenges, our guides can make your climbing adventure a trip you won’t soon forget. New Zealand has countless climbing routes to choose from and is known as one of the premiere climbing destinations in the world. With so many different routes and areas to choose from our guides can tailor each trip to your exact specifications. Let us help you make your New Zealand climbing vacation a memory you will cherish forever!"),
-                                adventureDifficulty: "Intermediate",
-                                adventureTripLength: "2 Days",
-                                adventurePrimaryImage: AdventureData.AdventurePrimaryImage.makeImageRef(_authorUrl: "http://localhost:4502/content/dam/wknd/en/adventures/climbing-new-zealand/AdobeStock_140634652.jpeg", _publishUrl: "http://localhost:4503/content/dam/wknd/en/adventures/climbing-new-zealand/AdobeStock_140634652.jpeg")
-                                )
-                         )
-        ]
-    }()
+struct TestAdventuresAll {
+    static func get() -> [Adventure] {
+        let json = """
+            {
+            "data": {
+              "adventureList": {
+                "items": [
+                  {
+                    "_path": "/content/dam/wknd/en/adventures/bali-surf-camp/bali-surf-camp",
+                    "title": "Bali Surf Camp",
+                    "slug": "bali-surf-camp",
+                    "price": "5000.00",
+                    "tripLength": "6 Days",
+                    "primaryImage": {
+                      "_path": "/content/dam/wknd/en/adventures/bali-surf-camp/AdobeStock_175749320.jpg",
+                      "mimeType": "image/jpeg",
+                      "width": 1600,
+                      "height": 899
+                    }
+                  },
+                  {
+                    "_path": "/content/dam/wknd/en/adventures/beervana-portland/beervana-in-portland",
+                    "title": "Beervana in Portland",
+                    "slug": "beervana-portland",
+                    "price": "300.00",
+                    "tripLength": "1 Day",
+                    "primaryImage": {
+                      "_path": "/content/dam/wknd/en/adventures/beervana-portland/AdobeStock_279232449.jpeg",
+                      "mimeType": "image/jpeg",
+                      "width": 1381,
+                      "height": 920
+                    }
+                  }]
+              }
+            }
+            """.data(using: .utf8)!
+        
+            let adventures = try! JSONDecoder().decode(Adventures.self, from: json)
+            return adventures.data.adventureList.items
+    }
+}
+
+
+struct TestAdventureBySlug {
+    static func get() -> Adventure {
+        let json = """
+            {
+              "data": {
+                "adventureList": {
+                  "items": [
+                    {
+                      "_path": "/content/dam/wknd/en/adventures/bali-surf-camp/bali-surf-camp",
+                      "title": "Bali Surf Camp",
+                      "slug": "bali-surf-camp",
+                      "activity": "Surfing",
+                      "adventureType": "Overnight Trip",
+                      "price": "5000.00",
+                      "tripLength": "6 Days",
+                      "groupSize": 6,
+                      "difficulty": "Beginner",
+                      "primaryImage": {
+                        "_path": "/content/dam/wknd/en/adventures/bali-surf-camp/AdobeStock_175749320.jpg",
+                        "mimeType": "image/jpeg",
+                        "width": 1600,
+                        "height": 899
+                      },
+                      "description": {
+                        "plaintext": "Surfing in Bali is on the bucket list of every surfer - whether you're a beginner or someone who's been surfing for decades, there will be a break to cater to your ability. Bali offers warm water, tropical vibes, awesome breaks and low cost expenses."
+                      },
+                      "itinerary": {
+                        "plaintext": "Keramas\n\nThe most famous break in Bali is home to a WSL stop and features a fast barrelling right-hand reef break. One of Bali's most consistent waves, you'll have fun on waves from 2ft to 20 ft.\n\nNusa Dua\n\nHome to the best right handers in Bali, Nusa Dua is famous for big wave surfing and is suitable for the advanced surfers in the group. The Nusa Dua reef has numerous waves that break on different tides and slightly different conditions.\n\nSanur\n\nLocated on the East coast, Sanur only breaks when there is a big swell and is at it's best when it's well overhead. Waves break over a very sharp reef so be prepared to leave some skin behind."
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+            """.data(using: .utf8)!
+        
+            let adventures =  try! JSONDecoder().decode(Adventures.self, from: json)
+            return adventures.data.adventureList.items[0]
+    }
 }
