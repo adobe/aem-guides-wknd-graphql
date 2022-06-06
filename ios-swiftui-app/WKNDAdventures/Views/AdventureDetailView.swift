@@ -28,12 +28,12 @@ struct AdventureDetailView: View {
     var body: some View {
         ScrollView {
             
-            // background color
-            Rectangle()
+            AdventureDetailBgImage(imageUrl: aem.imageUrl(path: adventure.image()))
                 .foregroundColor(Color(.systemGray5))
                 .ignoresSafeArea(edges: .top)
+                .offset(y: 30)
                 .frame(height: 250.0)
-                            
+
             AdventureDetailImage(imageUrl: aem.imageUrl(path: adventure.image()))
                 .offset(y: -230)
                 .padding(.bottom, -230)
@@ -93,6 +93,23 @@ struct AdventureDetailImage: View {
             .shadow(radius: 7)
     }
 }
+
+struct AdventureDetailBgImage: View {
+    var imageUrl: URL
+    
+    var body: some View {
+        WebImage(url: imageUrl)
+            .resizable()
+            .placeholder {
+                Rectangle().foregroundColor(.gray)
+            }
+            .transition(.fade(duration: 0.5)) // Fade Transition with duration
+            .aspectRatio(contentMode: .fill)
+            .frame(height:250, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .opacity(0.45)
+    }
+}
+
 
 struct AdventureDetailView_Previews: PreviewProvider {
     static var previews: some View {
