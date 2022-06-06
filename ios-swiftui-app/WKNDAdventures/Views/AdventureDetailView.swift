@@ -16,7 +16,7 @@ import SDWebImageSwiftUI
 struct AdventureDetailView: View {
     @EnvironmentObject private var aem: Aem
     @State var adventure: Adventure = Adventure.empty()
-    
+        
     let slug: String
     
     private func loadAdventure(slug: String) {
@@ -27,44 +27,48 @@ struct AdventureDetailView: View {
 
     var body: some View {
         ScrollView {
-            
-            AdventureDetailBgImage(imageUrl: aem.imageUrl(path: adventure.image()))
-                .foregroundColor(Color(.systemGray5))
-                .ignoresSafeArea(edges: .top)
-                .offset(y: 30)
-                .frame(height: 250.0)
+            if (!adventure.isEmpty()) {
+                AdventureDetailBgImage(imageUrl: aem.imageUrl(path: adventure.image()))
+                    .foregroundColor(Color(.systemGray5))
+                    .ignoresSafeArea(edges: .top)
+                    .offset(y: 30)
+                    .frame(height: 250.0)
 
-            AdventureDetailImage(imageUrl: aem.imageUrl(path: adventure.image()))
-                .offset(y: -230)
-                .padding(.bottom, -230)
-            
-            VStack(alignment: .leading) {
+                AdventureDetailImage(imageUrl: aem.imageUrl(path: adventure.image()))
+                    .offset(y: -230)
+                    .padding(.bottom, -230)
                 
-                Text(adventure.title).font(.title)
-                
-                HStack {
-                    Text(adventure.activity ?? "")
-                        .font(.subheadline)
+                VStack(alignment: .leading) {
+                    
+                    Text(adventure.title).font(.title)
+                    
+                    HStack {
+                        Text(adventure.activity ?? "")
+                            .font(.subheadline)
+                        Spacer()
+                        
+                        TextField("FREE!", value: $adventure.price, formatter: getNumberFormatter())
+                            .multilineTextAlignment(.trailing)
+                            .font(Font.headline.weight(.bold))
+                            .foregroundColor(.black)
+                    
+                    }
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    
+                    Divider()
                     Spacer()
-                    Text(adventure.price)
-                        .font(.subheadline)
-                        .foregroundColor(.green)
-                }
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-                
-                Divider()
-                Spacer()
 
-                Text("About \(adventure.title)").font(.title2)
-                
-                Spacer()
-                
-                Text(adventure.description) // description
-                
-                Spacer()
+                    Text("About \(adventure.title)").font(.title2)
+                    
+                    Spacer()
+                    
+                    Text(adventure.description)
+                    
+                    Spacer()
+                }
+                .padding()
             }
-            .padding()
         }
         .onAppear {
             // Fetch adventure by slug from AEM using GraphQL
@@ -108,6 +112,14 @@ struct AdventureDetailBgImage: View {
             .frame(height:250, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .opacity(0.45)
     }
+}
+
+private func getNumberFormatter() -> NumberFormatter {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .currency
+    numberFormatter.maximumFractionDigits = 2
+    
+    return numberFormatter;
 }
 
 

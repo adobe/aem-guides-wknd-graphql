@@ -66,11 +66,12 @@ class Adventure: Identifiable, Decodable {
     let id: UUID = UUID()
     let title: String
     let slug: String
-    let price: String
     let tripLength: String
     let activity: String?
     let difficulty: String?
-    
+
+    var price: Double?
+
     var description: String {
         return descriptionMultiLine?.plaintext ?? ""
     }
@@ -87,13 +88,17 @@ class Adventure: Identifiable, Decodable {
         return ""
     }
     
+    func isEmpty() -> Bool {
+        return slug.isEmpty
+    }
+    
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         // Required fields
         title = try values.decode(String.self, forKey: .title)
         slug = try values.decode(String.self, forKey: .slug)
-        price = try values.decode(String.self, forKey: .price)
+        price = try values.decode(Double.self, forKey: .price)
         tripLength = try values.decode(String.self, forKey: .tripLength)
         primaryImage = try values.decode(Image.self, forKey: .primaryImage)
 
@@ -104,7 +109,7 @@ class Adventure: Identifiable, Decodable {
         itineraryMultiLine = try values.decodeIfPresent(MultiLine.self, forKey: .itinerary)
     }
     
-    init(title: String, slug: String, price: String, tripLength: String, activity: String, difficulty: String, descriptionMultiLine: MultiLine?, itineraryMultiLine: MultiLine?, primaryImage: Image) {
+    init(title: String, slug: String, price: Double, tripLength: String, activity: String, difficulty: String, descriptionMultiLine: MultiLine?, itineraryMultiLine: MultiLine?, primaryImage: Image) {
         self.title = title
         self.slug = slug
         self.price = price
@@ -117,7 +122,7 @@ class Adventure: Identifiable, Decodable {
     }
            
     static func empty() -> Adventure {
-        return Adventure(title: "", slug: "", price: "", tripLength: "", activity: "", difficulty: "", descriptionMultiLine: nil, itineraryMultiLine: nil, primaryImage: Image(_path: "", mimeType: "", width: 0, height: 0))
+        return Adventure(title: "", slug: "", price: 0, tripLength: "", activity: "", difficulty: "", descriptionMultiLine: nil, itineraryMultiLine: nil, primaryImage: Image(_path: "", mimeType: "", width: 0, height: 0))
     }
 }
 

@@ -40,6 +40,7 @@ struct AdventureRowImage: View {
                 .transition(.fade(duration: 0.5)) // Fade Transition with duration
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 50, height: 50)
+                .cornerRadius(8)
                 .clipped()
     }
 }
