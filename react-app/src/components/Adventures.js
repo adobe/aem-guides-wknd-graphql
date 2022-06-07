@@ -15,9 +15,8 @@ import Loading from './Loading';
 import './Adventures.scss';
 
 
-function Adventures() {
+function Adventures({adventureActivity}) {
     
-    const [adventureActivity, setAdventureActivity] = useState('');
     const [response, setResponse] = useState();
 
     useEffect(() => {
@@ -46,13 +45,6 @@ function Adventures() {
     
     return (
         <div className="adventures">
-          <button onClick={() => setAdventureActivity('')}>All</button>
-          <button onClick={() => setAdventureActivity('Camping')}>Camping</button>
-          <button onClick={() => setAdventureActivity('Cycling')}>Cycling</button>
-          <button onClick={() => setAdventureActivity('Rock Climbing')}>Rock Climbing</button>
-          <button onClick={() => setAdventureActivity('Skiing')}>Skiing</button>
-          <button onClick={() => setAdventureActivity('Social')}>Social</button>
-          <button onClick={() => setAdventureActivity('Surfing')}>Surfing</button>
           <ul className="adventure-items">
             {
                 //Iterate over the returned data items from the query
@@ -76,7 +68,7 @@ function AdventureListItem({title, slug, primaryImage, tripLength, price}) {
   }
   return (
         <li className="adventure-item">
-          <Link to={`/adventure:/${slug}`}>
+          <Link to={`/adventure:${slug}`}>
             <img className="adventure-item-image" src={primaryImage._path} 
                  alt={title}/>
           </Link>

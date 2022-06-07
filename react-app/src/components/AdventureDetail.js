@@ -7,7 +7,7 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 import React, { useEffect, useState } from 'react';
-import { withRouter, Link, useLocation} from "react-router-dom";
+import { Link, useNavigate, useParams} from "react-router-dom";
 import backIcon from '../images/icon-close.svg';
 import Error from './Error';
 import Loading from './Loading';
@@ -16,21 +16,22 @@ import './AdventureDetail.scss';
 import { getAdventureBySlug } from '../api/persistedQueries';
 
 
-function AdventureDetail(props) {
+function AdventureDetail() {
 
-    // location hook from React router
-    const location = useLocation();
+    // params hook from React router
+    const { slug } = useParams();
+    const navigate = useNavigate();
     const [response, setResponse] = useState();
 
     useEffect(() => {
         // set response to null on change
         setResponse();
-        //parse the slug from the pathname
-        const slug = location.pathname.substring(location.pathname.indexOf(':/') + 2);
+        //parse the adventure slug from the substring
+        const adventureSlug = slug.substring(1);
         // execute persisted query based on the adventure slug
-        getAdventureBySlug(slug)
+        getAdventureBySlug(adventureSlug)
             .then(response => setResponse(response));
-    }, [location]);
+    }, [slug]);
     
 
     //If query response is null then return a loading icon...
@@ -51,7 +52,13 @@ function AdventureDetail(props) {
       return <NoAdventureFound />;
     }
     
-    return <AdventureDetailRender {...currentAdventure} references={references}/>;
+    
+    return (<div className="adventure-detail">
+        <button className="adventure-detail-close-button" onClick={() => navigate(-1)} >
+            <img className="Backbutton-icon" src={backIcon} alt="Return" />
+        </button>
+        <AdventureDetailRender {...currentAdventure} references={references}/>
+    </div>);
 }
 
 function AdventureDetailRender({title, 
@@ -66,11 +73,7 @@ function AdventureDetailRender({title,
                                 itinerary,
                                 contributor, references}) {
 
-    return (
-        <div className="adventure-detail">
-            <Link className="adventure-detail-close-button" to={"/"}>
-                <img className="Backbutton-icon" src={backIcon} alt="Return" />
-            </Link>
+    return (<>
             <h1 className="adventure-detail-title">{title}</h1>
             <div className="adventure-detail-info">
                 <div className="adventure-detail-info-label">Activity</div>
@@ -97,7 +100,7 @@ function AdventureDetailRender({title,
             <div className="adventure-detail-itinerary">{mapJsonRichText(itinerary.json)}</div>
             <Contributer {...contributor} />
             </div>
-    </div>
+    </>
     );
 
 }
@@ -141,7 +144,7 @@ function customRenderOptions(references) {
         },
         'AdventureModel': (node) => {
             // when __typename === AdventureModel
-            return <Link to={`/adventure:/${node.slug}`}>{`${node.title}: ${node.price}`}</Link>;
+            return <Link to={`/adventure:${node.slug}`}>{`${node.title}: ${node.price}`}</Link>;
         }
     };
 
@@ -190,4 +193,4 @@ function Contributer(props) {
 }
 
 
-export default withRouter(AdventureDetail);
+export default AdventureDetail;

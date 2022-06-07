@@ -7,10 +7,10 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from './utils/scrollToTop';
 import logo from './images/wknd-logo-dk.svg';
-import Adventures from './components/Adventures';
+import Home from './components/Home';
 import AdventureDetail from './components/AdventureDetail';
 import './App.scss';
 
@@ -24,28 +24,12 @@ function App() {
           <img src={logo} className="logo" alt="WKND Logo"/>
           <hr />
         </header>
-      <Switch>
-        <Route path='/adventure:path'>
-          <AdventureDetail />
-        </Route>  
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path='/adventure:slug' element={<AdventureDetail />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
       </div>
     </Router>   
-  );
-}
-
-/***
- * Displays a grid of current adventures
- */
-function Home() {
-  return (
-    <div className="Home">
-      <h2>Current Adventures</h2>
-      <Adventures />
-  </div>
   );
 }
 
