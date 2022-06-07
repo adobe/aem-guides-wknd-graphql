@@ -39,41 +39,41 @@ import { aemHeadlessClient , mapErrors} from "./headlessClient";
 }
 
 /**
- * Queries a list of all Adventures using the persisted path "wknd/adventures-all"
+ * Queries a list of all Adventures using the persisted path "wknd-shared/adventures-all"
  * @returns {data, errors}
  */
 export const getAllAdventures = async function() {
-    return executePersistedQuery('wknd/adventures-all');
+    return executePersistedQuery('wknd-shared/adventures-all');
 }
 /**
  * Filters a list of adventures by activity 
- * using the persisted path 'wknd/adventures-by-activity'
+ * using the persisted path 'wknd-shared/adventures-by-activity'
  * @param {*} activityType 
  * @returns 
  */
 export const getAdventuresByActivity = async function(activityType) {
     const queryVariables = { 'activity': activityType }; // expected query variables
-    return executePersistedQuery('wknd/adventures-by-activity', queryVariables);
+    return executePersistedQuery('wknd-shared/adventures-by-activity', queryVariables);
 }
 
 /**
  * Queries a single adventure based on its slug to a content fragment
- * uses persisted path 'wknd/adventure-by-slug'
+ * uses persisted path 'wknd-shared/adventure-by-slug'
  * @param {*} adventurePath 
  * @returns 
  */
  export const getAdventureBySlug = async function(adventureSlug) {
     const queryVariables = {'slug': adventureSlug};
-    return executePersistedQuery('wknd/adventure-by-slug', queryVariables);
+    return executePersistedQuery('wknd-shared/adventure-by-slug', queryVariables);
 }
 
 /**
  * Queries a single adventure based on a path to a content fragment
- * uses persisted path 'wknd/adventures-by-path'
+ * uses persisted path 'wknd-shared/adventures-by-path'
  * @param {*} adventurePath 
  * @returns 
  */
 export const getAdventureByPath = async function(adventurePath) {
     const queryVariables = {'adventurePath': adventurePath};
-    return executePersistedQuery('wknd/adventures-by-path', queryVariables);
+    return executePersistedQuery('wknd-shared/adventures-by-path', queryVariables);
 }
