@@ -12,8 +12,8 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-// display a single adventure in a row
-struct AdventureRowView: View {
+// Display a single adventure as a list tem
+struct AdventureListItemView: View {
     @EnvironmentObject private var aem: Aem
 
     var adventure: Adventure
@@ -48,7 +48,7 @@ struct AdventureRowImage: View {
 struct AdventureRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AdventureRowView(adventure: TestAdventuresAll.get()[0])
+            AdventureListItemView(adventure: TestAdventuresAll.get()[0])
         }
         .previewLayout(.fixed(width:500, height: 70))
     }

@@ -122,12 +122,14 @@ class Adventure: Identifiable, Decodable {
     }
            
     static func empty() -> Adventure {
-        return Adventure(title: "", slug: "", price: 0, tripLength: "", activity: "", difficulty: "", descriptionMultiLine: nil, itineraryMultiLine: nil, primaryImage: Image(_path: "", mimeType: "", width: 0, height: 0))
+        return Adventure(title: "", slug: "", price: 0, tripLength: "", activity: "", difficulty: "", descriptionMultiLine: nil, itineraryMultiLine: nil, primaryImage: Image(_path: "", _authorUrl: "", _publishUrl: "", mimeType: "", width: 0, height: 0))
     }
 }
 
 struct Image: Decodable {
     let _path: String
+    let _authorUrl: String?
+    let _publishUrl: String?
     let mimeType: String
     let width: Int
     let height: Int

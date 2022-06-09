@@ -111,6 +111,7 @@ struct AdventureDetailBgImage: View {
             .aspectRatio(contentMode: .fill)
             .frame(height:250, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .opacity(0.45)
+            .blur(radius: 1.5)
     }
 }
 

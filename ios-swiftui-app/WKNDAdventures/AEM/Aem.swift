@@ -48,7 +48,7 @@ class Aem: ObservableObject {
     }
     
     /// # Token authentication init
-    ///  Used when authenticating to AEM using token auten (Dev Token or access token generated from Service Credentials)
+    ///  Used when authenticating to AEM using token authentication (Dev Token or access token generated from Service Credentials)
     convenience init(scheme: String, host: String, token: String) {
         self.init(scheme: scheme, host: host)
         
@@ -58,12 +58,12 @@ class Aem: ObservableObject {
         SDWebImageDownloader.shared.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
     }
     
-    /// # getAventures()
+    /// # getAdventures()
     /// Returns all WKND adventures using the `wknd/adventures-all` persisted query.
     /// For this func call to work, the `wknd/adventures-all` query must be deployed to the AEM environment/service specified by the host
     func getAdventures(completion: @escaping ([Adventure]) ->  ()) {
                
-        let request = makeRequest(persistedQueryName: "wknd/adventures-all")
+        let request = makeRequest(persistedQueryName: "wknd-shared/adventures-all")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if ((error) != nil) {
@@ -71,7 +71,7 @@ class Aem: ObservableObject {
                 completion([])
             }
                                     
-            if (data!.isEmpty != true) {
+            if (!data!.isEmpty) {
                 let adventures = try! JSONDecoder().decode(Adventures.self, from: data!)
                 DispatchQueue.main.async {
                     completion(adventures.data.adventureList.items)
@@ -86,7 +86,7 @@ class Aem: ObservableObject {
     /// 'slug`is a unique field, so this `adventureList` should have 0 or 1 results.
     /// For this func call to work, the `wknd/adventure-by-slug` query must be deployed to the AEM environment/service specified by the host
     func getAdventureBySlug(slug: String, completion: @escaping (Adventure) ->  ()) {
-        let request = makeRequest(persistedQueryName: "wknd/adventure-by-slug", params: [ "slug": slug ] )
+        let request = makeRequest(persistedQueryName: "wknd-shared/adventure-by-slug", params: [ "slug": slug ] )
                 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if ((error) != nil) {
@@ -94,7 +94,7 @@ class Aem: ObservableObject {
                 //completion()
             }
                     
-            if (data!.isEmpty != true) {
+            if (!data!.isEmpty) {
                 let adventures = try! JSONDecoder().decode(Adventures.self, from: data!)
                 DispatchQueue.main.async {
                     if (!adventures.data.adventureList.items.isEmpty) {
@@ -111,18 +111,20 @@ class Aem: ObservableObject {
         return URL(string: "\(self.scheme)://\(self.host)\(path)")!
     }
         
-    /// #markRequest(..)
-    ///  Generic method for constructing and executing persisted queries
+    /// #makeRequest(..)
+    /// Generic method for constructing and executing AEM GraphQL persisted queries
     private func makeRequest(persistedQueryName: String, params: [String: String] = [:]) -> URLRequest {
+        // Encode optional parameters as required by AEM
         let persistedQueryParams = params.map { (param) -> String in
             encode(string: ";\(param.key)=\(param.value)")
         }.joined(separator: "")
         
+        // Construct the AEM GraphQL persisted query URL, including optional query params
         let url: String = "\(self.scheme)://\(self.host)/graphql/execute.json/" + persistedQueryName + persistedQueryParams;
 
         var request = URLRequest(url: URL(string: url)!);
 
-        // Add authentication
+        // Add authentication to the AEM GraphQL persisted query requests as defined by the iOS application's configuration
         request = addAuthHeaders(request: request)
         
         return request

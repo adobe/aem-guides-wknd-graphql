@@ -28,7 +28,7 @@ struct AdventureListView: View {
             List(adventures) { adventure in
                 // Define the view list of adventures that link to Adventure Detail views
                 NavigationLink(destination: AdventureDetailView(slug: adventure.slug)) {
-                    AdventureRowView(adventure: adventure)
+                    AdventureListItemView(adventure: adventure)
                 }
             }
             .onAppear {
