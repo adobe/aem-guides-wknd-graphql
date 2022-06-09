@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class AdventuresLoader extends AsyncTaskLoader<AdventureList> {
 
-    public static final String PERSISTED_QUERY_NAME = "/wknd/adventures-all";
+    public static final String PERSISTED_QUERY_NAME = "/wknd-shared/adventures-all";
     public static final String JSON_KEY_ADVENTURE_LIST = "adventureList";
 
     public final Map<String, Adventure> adventuresBySlug = new LinkedHashMap<>();

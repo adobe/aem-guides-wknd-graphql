@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class AdventureLoader extends AsyncTaskLoader<Adventure> {
 
-    public static final String PERSISTED_QUERY_NAME = "/wknd/adventure-by-slug";
+    public static final String PERSISTED_QUERY_NAME = "/wknd-shared/adventure-by-slug";
 
     public static final String JSON_KEY_ADVENTURE_LIST = "adventureList";
     public static final String JSON_KEY_ITEMS = "items";
