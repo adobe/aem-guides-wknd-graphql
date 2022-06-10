@@ -11,12 +11,12 @@ import { aemHeadlessClient, mapErrors } from "./headlessClient";
 
 /**
  * Custom React Hook to perform a GraphQL query using POST
- * Executing a GraphQL query directly using POST should ONLY be done during development
- * for production use cases use Persisted Queries see persistedQueries.js
+ * Executing a GraphQL query directly using POST should ONLY be done during development.
+ * For production always use Persisted Queries see persistedQueries.js
  * 
  * @param query - GraphQL query
  */
- export function useGraphQL(query) {
+ export default function useGraphQL(query) {
     let [data, setData] = useState(null);
     let [errors, setErrors] = useState(null);
   

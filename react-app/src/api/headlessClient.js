@@ -8,32 +8,48 @@ it.
 */
 
 // Use the AEM Headless SDK to make the GraphQL requests
-const {AEMHeadless} = require('@adobe/aem-headless-client-js');
+const { AEMHeadless } = require('@adobe/aem-headless-client-js');
 
-// environment variable REACT_APP_GRAPHQL_ENDPOINT is used to point to endpoint in AEM
+// environment variable for confguring the headless client
 const {
     REACT_APP_HOST_URI,
     REACT_APP_GRAPHQL_ENDPOINT,
-    NODE_ENV
-  } = process.env;
+    REACT_APP_USE_PROXY,
+    REACT_APP_AUTH_METHOD,
+    REACT_APP_DEV_TOKEN,
+    REACT_APP_BASIC_AUTH_USER,
+    REACT_APP_BASIC_AUTH_PASS
+} = process.env;
 
 
 
 // In a production application the serviceURL should be set to the production AEM Publish environment
-// In development the serviceURL is relative proxy is used (see ../authMethods.js) to avoid CORS issues
-const serviceURL = NODE_ENV === 'development' ? '/' : REACT_APP_HOST_URI;
+// In development the serviceURL can be set to '/' which will be a relative proxy is used (see ../authMethods.js) to avoid CORS issues
+const serviceURL = REACT_APP_USE_PROXY === 'true' ? '/' : REACT_APP_HOST_URI;
 
-// In development a relative URL request and proxy (see ../authMethods.js)
-// This avoids CORS issues see https://create-react-app.dev/docs/proxying-api-requests-in-development/
+// Get authorization based on environment variables
+// authorization is not needed when connecting to Publish environments
+const setAuthorization = function () {
+    if (REACT_APP_AUTH_METHOD === 'basic') {
+        return [REACT_APP_BASIC_AUTH_USER, REACT_APP_BASIC_AUTH_PASS];
+    } else if (REACT_APP_AUTH_METHOD === 'dev-token') {
+        return REACT_APP_DEV_TOKEN;
+    } else {
+        // no authentication set
+        return;
+    }
+}
+
 export const aemHeadlessClient = new AEMHeadless({
     serviceURL: serviceURL,
-    endpoint: REACT_APP_GRAPHQL_ENDPOINT
+    endpoint: REACT_APP_GRAPHQL_ENDPOINT,
+    auth: setAuthorization()
 });
 
 /**
  * concatenate error messages into a single string.
  * @param {*} errors
  */
-export const mapErrors = function(errors) {
+export const mapErrors = function (errors) {
     return errors.map((error) => error.message).join(",");
 }
