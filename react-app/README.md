@@ -23,11 +23,13 @@ A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-ma
     $ npm start
     ```
 
+> On local environments it may be easier to simply install the full [WKND Site 2.0+](https://github.com/adobe/aem-guides-wknd/releases/latest) which will include the WKND Shared content and additional CORS configurations.
+
 ## System Requirements
 
  AEM as a Cloud Service | AEM 6.5 | Sample Content | Node   | npm | 
 ------------------------|---------|--------------------|---------|-----|
-Continual               | 6.5.13+ |  [WKND Shared 2.0+](https://github.com/adobe/aem-guides-wknd/releases/latest) | 10+  | 6+
+Continual               | 6.5.13+ |  [WKND Shared 2.0+](https://github.com/adobe/aem-guides-wknd-shared/releases/latest) or [WKND Site 2.0+](https://github.com/adobe/aem-guides-wknd/releases/latest)| 10+  | 6+
 
 ## Notes
 
