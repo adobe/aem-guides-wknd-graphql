@@ -6,8 +6,8 @@ NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-import React from 'react';
-import TestPersistQueries from './components/TestPersistQueries';
+
+// Use the AEM Headless SDK to make the GraphQL requests
 const { AEMHeadless } = require('@adobe/aem-headless-client-js');
 
 // environment variable for confguring the headless client
@@ -21,27 +21,11 @@ const {
     REACT_APP_BASIC_AUTH_PASS
 } = process.env;
 
-function App() {
 
-    // In a production application the serviceURL should be set to the production AEM Publish environment
-    // In development the serviceURL can be set to '/' which will be a relative proxy is used (see ../authMethods.js) to avoid CORS issues
-    const serviceURL = REACT_APP_USE_PROXY === 'true' ? '/' : REACT_APP_HOST_URI;
 
-    const aemHeadlessClient = new AEMHeadless({
-        serviceURL: serviceURL,
-        endpoint: REACT_APP_GRAPHQL_ENDPOINT,
-        auth: setAuthorization()
-    });
-
-    return (
-        <div className="App">
-            <header>
-                <h1>AEM GraphQL React Example</h1>
-            </header>
-            <TestPersistQueries aemHeadlessClient={aemHeadlessClient} />
-        </div>
-    );
-}
+// In a production application the serviceURL should be set to the production AEM Publish environment
+// In development the serviceURL can be set to '/' which will be a relative proxy is used (see ../authMethods.js) to avoid CORS issues
+const serviceURL = REACT_APP_USE_PROXY === 'true' ? '/' : REACT_APP_HOST_URI;
 
 // Get authorization based on environment variables
 // authorization is not needed when connecting to Publish environments
@@ -56,5 +40,16 @@ const setAuthorization = function () {
     }
 }
 
+export const aemHeadlessClient = new AEMHeadless({
+    serviceURL: serviceURL,
+    endpoint: REACT_APP_GRAPHQL_ENDPOINT,
+    auth: setAuthorization()
+});
 
-export default App;
+/**
+ * concatenate error messages into a single string.
+ * @param {*} errors
+ */
+export const mapErrors = function (errors) {
+    return errors.map((error) => error.message).join(",");
+}

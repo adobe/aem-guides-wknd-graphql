@@ -6,6 +6,8 @@ NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
+@use "sass:math";
+
 @import '../styles/variables';
 
 .adventure-detail {
@@ -16,6 +18,8 @@ it.
     width: 24px;
     float: right;
     margin: 1em;
+    background: none;
+    border: none;
   }
   
   .adventure-detail-title {
@@ -46,6 +50,10 @@ it.
   .adventure-detail-content {
     width: 75%;
     float:left;
+
+    img {
+        width: 100%;
+    }
   }
   
   .adventure-detail-content h2 {
@@ -83,7 +91,7 @@ $contributor-image-size: 60px;
   &-image {
     width: $contributor-image-size;
     height: $contributor-image-size;
-    border-radius: $contributor-image-size / 2;
+    border-radius: math.div($contributor-image-size, 2);
     object-fit: cover;
     float: left;
   }

@@ -6,35 +6,51 @@ NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import useGraphQL from '../api/useGraphQL';
+//import {useGraphQLPersisted} from '../api/useGraphQL';
+import {getAllAdventures, getAdventuresByActivity} from '../api/persistedQueries';
 import Error from './Error';
 import Loading from './Loading';
 import './Adventures.scss';
 
 
-function Adventures() {
+function Adventures({adventureActivity}) {
     
-    //Use React Hooks to set the initial GraphQL query to a variable named `query`
-    const [query, setQuery] = useState(allAdventuresQuery);
-    //Use a custom React Hook to execute the GraphQL query
-    const { data, errorMessage } = useGraphQL(query);
+    const [response, setResponse] = useState();
+
+    useEffect(() => {
+
+        // set response to null while fetching the new data (prompts loading icon)
+        setResponse();
+
+        // if an activity is set (i.e "Camping", "Hiking"...)
+        if(adventureActivity && adventureActivity !== '') {
+            // run a filter query to get adventures based on the activity
+            getAdventuresByActivity(adventureActivity)
+                .then(response => setResponse(response));
+        }
+        else {
+            // Otherwise get all the adventures data (unfiltered)
+            getAllAdventures()
+                .then(response => setResponse(response));
+        }
+      }, [adventureActivity])
+
+    //If response is null then return a loading state...
+    if(!response) return <Loading />;
 
     //If there is an error with the GraphQL query
-    if(errorMessage) return <Error errorMessage={errorMessage} />;
-
-    //If data is null then return a loading state...
-    if(!data) return <Loading />;
+    if(response && response.errors) return <Error errorMessage={response.errors} />;
     
     return (
         <div className="adventures">
           <ul className="adventure-items">
             {
                 //Iterate over the returned data items from the query
-                data.adventureList.items.map((adventure, index) => {
+                response.data.adventureList.items.map((adventure) => {
                     return (
-                        <AdventureItem key={index} {...adventure} />
+                        <AdventureListItem key={adventure.slug} {...adventure} />
                     );
                 })
             }
@@ -44,83 +60,25 @@ function Adventures() {
 }
 
 // Render individual Adventure item
-function AdventureItem(props) {
+function AdventureListItem({title, slug, primaryImage, tripLength, price}) {
 
   //Must have title, path, and image
-  if(!props || !props._path || !props.adventureTitle || !props.adventurePrimaryImage ) {
+  if(!title || !title || !primaryImage ) {
     return null;
   }
   return (
         <li className="adventure-item">
-          <Link to={`/adventure:${props._path}`}>
-            <img className="adventure-item-image" src={props.adventurePrimaryImage._path} 
-                 alt={props.adventureTitle}/>
+          <Link to={`/adventure:${slug}`}>
+            <img className="adventure-item-image" src={primaryImage._path} 
+                 alt={title}/>
           </Link>
           <div className="adventure-item-length-price">
-            <div className="adventure-item-length">{props.adventureTripLength}</div>
-            <div className="adventure-item-price">{props.adventurePrice}</div>
+            <div className="adventure-item-length">{tripLength}</div>
+            <div className="adventure-item-price">{price}</div>
           </div>
-          <div className="adventure-item-title">{props.adventureTitle}</div>
+          <div className="adventure-item-title">{title}</div>
       </li>
       );
-}
-
-/**
- * Query for all Adventures
- */
-const allAdventuresQuery = `
-  {
-    adventureList {
-      items {
-        _path
-        adventureTitle
-        adventurePrice
-        adventureTripLength
-        adventurePrimaryImage {
-          ... on ImageRef {
-            _path
-            mimeType
-            width
-            height
-          }
-        }
-      }
-    }
-  }
-`;
-
-/**
- * Returns a query for Adventures filtered by activity
- */
-function filterQuery(activity) {
-  return `
-    {
-      adventureList (filter: {
-        adventureActivity: {
-          _expressions: [
-            {
-              value: "${activity}"
-            }
-          ]
-        }
-      }){
-        items {
-          _path
-        adventureTitle
-        adventurePrice
-        adventureTripLength
-        adventurePrimaryImage {
-          ... on ImageRef {
-            _path
-            mimeType
-            width
-            height
-          }
-        }
-      }
-    }
-  }
-  `;
 }
 
 
