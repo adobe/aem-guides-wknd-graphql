@@ -16,15 +16,19 @@ function TestPersistQueries({ aemHeadlessClient }) {
     const [data, setData] = useState();
     const [errors, setErrors] = useState();
     const [isLoading, setIsLoading] = useState(false);
-    const [persistedQueryPath, setPersistedQueryPath] = useState('wknd-shared/adventures-all');
+    const [persistedQueryPath, setPersistedQueryPath] = useState('wknd-shared/adventure-by-slug');
+    const [queryVariableString, setQueryVariableString] = useState('{"slug": "bali-surf-camp"}');
 
     // handle execution of test query
     const handleSubmit = async (evt) => {
 
         try {
             setIsLoading(true);
+            console.log(queryVariableString);
+            // Pass query variables as JSON object to the AEM Headless client
+            const queryVariables = queryVariableString && queryVariableString !== '' ? JSON.parse(queryVariableString) : undefined;
             // AEM GraphQL queries are asynchronous, either await their return or use Promise-based .then(..) { ... } syntax
-            const response = await aemHeadlessClient.runPersistedQuery(persistedQueryPath);
+            const response = await aemHeadlessClient.runPersistedQuery(persistedQueryPath, queryVariables);
 
             setIsLoading(false);
 
@@ -42,7 +46,7 @@ function TestPersistQueries({ aemHeadlessClient }) {
     return (
         <div className="testquery">
             <div className="testquery__input">
-                <label for="persistentQuery">Choose a query:</label>
+                <label htmlFor="persistentQuery">Choose a query:</label>
                 <select name="persistentQuery" id="persistentQuery"
                     value={persistedQueryPath}
                     onChange={e => setPersistedQueryPath(e.target.value)} >
@@ -50,7 +54,11 @@ function TestPersistQueries({ aemHeadlessClient }) {
                     <option value="wknd-shared/adventures-by-activity">wknd-shared/adventures-by-activity</option>
                     <option value="wknd-shared/adventure-by-slug">wknd-shared/adventure-by-slug</option>
                 </select>
-                <input type="text"></input>
+                <br />
+                <label htmlFor="queryVariable">Enter query variables in JSON format</label>
+                <input type="text" name="queryVariable" value={queryVariableString}
+                    onChange={e => setQueryVariableString(e.target.value)}></input>
+                <br />
                 <button onClick={e => handleSubmit(e)} >Test Query</button>
             </div>
             <RenderResponse data={data} errors={errors} isLoading={isLoading} />
@@ -71,7 +79,7 @@ function RenderResponse({ data, errors, isLoading }) {
     //If there is an error with the GraphQL query
     if (errors) return <Error errorMessage={errors} />;
 
-    if (!data) return <p>Test a query by filling out the form above</p>;
+    if (!data) return <h3>Test a query by filling out the form above</h3>;
 
     return (
         <div className="testquery__result">

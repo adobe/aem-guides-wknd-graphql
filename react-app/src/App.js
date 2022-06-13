@@ -8,6 +8,7 @@ it.
 */
 import React from 'react';
 import TestPersistQueries from './components/TestPersistQueries';
+import './App.scss';
 const { AEMHeadless } = require('@adobe/aem-headless-client-js');
 
 // environment variable for confguring the headless client
@@ -36,7 +37,7 @@ function App() {
     return (
         <div className="App">
             <header>
-                <h1>AEM GraphQL React Example</h1>
+                <h1>AEM GraphQL React Test Harness</h1>
             </header>
             <TestPersistQueries aemHeadlessClient={aemHeadlessClient} />
         </div>
