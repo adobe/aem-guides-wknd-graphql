@@ -7,44 +7,54 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import logo from './images/wknd-logo-dk.svg';
-import Adventures from './components/Adventures';
-import AdventureDetail from './components/AdventureDetail';
+import TestPersistQueries from './components/TestPersistQueries';
 import './App.scss';
+const { AEMHeadless } = require('@adobe/aem-headless-client-js');
+
+// environment variable for confguring the headless client
+const {
+    REACT_APP_HOST_URI,
+    REACT_APP_GRAPHQL_ENDPOINT,
+    REACT_APP_USE_PROXY,
+    REACT_APP_AUTH_METHOD,
+    REACT_APP_DEV_TOKEN,
+    REACT_APP_BASIC_AUTH_USER,
+    REACT_APP_BASIC_AUTH_PASS
+} = process.env;
 
 function App() {
 
-  return (
-    <Router>
-      <div className="App">
-        <header>
-          <img src={logo} className="logo" alt="WKND Logo"/>
-          <hr />
-        </header>
-      <Switch>
-        <Route path='/adventure:path'>
-          <AdventureDetail />
-        </Route>  
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-      </div>
-    </Router>   
-  );
+    // In a production application the serviceURL should be set to the production AEM Publish environment
+    // In development the serviceURL can be set to '/' which will be a relative proxy is used (see ../authMethods.js) to avoid CORS issues
+    const serviceURL = REACT_APP_USE_PROXY === 'true' ? '/' : REACT_APP_HOST_URI;
+
+    const aemHeadlessClient = new AEMHeadless({
+        serviceURL: serviceURL,
+        endpoint: REACT_APP_GRAPHQL_ENDPOINT,
+        auth: setAuthorization()
+    });
+
+    return (
+        <div className="App">
+            <header>
+                <h1>AEM GraphQL React Test Harness</h1>
+            </header>
+            <TestPersistQueries aemHeadlessClient={aemHeadlessClient} />
+        </div>
+    );
 }
 
-/***
- * Displays a grid of current adventures
- */
-function Home() {
-  return (
-    <div className="Home">
-      <h2>Current Adventures</h2>
-      <Adventures />
-  </div>
-  );
+// Get authorization based on environment variables
+// authorization is not needed when connecting to Publish environments
+const setAuthorization = function () {
+    if (REACT_APP_AUTH_METHOD === 'basic') {
+        return [REACT_APP_BASIC_AUTH_USER, REACT_APP_BASIC_AUTH_PASS];
+    } else if (REACT_APP_AUTH_METHOD === 'dev-token') {
+        return REACT_APP_DEV_TOKEN;
+    } else {
+        // no authentication set
+        return;
+    }
 }
 
 
