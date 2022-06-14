@@ -26,7 +26,10 @@ import com.adobe.wknd.androidapp.loader.AdventuresLoader;
 import com.adobe.wknd.androidapp.loader.RemoteImagesCache;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 
 public class AdventureListFragment extends Fragment implements LoaderManager.LoaderCallbacks<AdventureList> {
 
@@ -36,13 +39,11 @@ public class AdventureListFragment extends Fragment implements LoaderManager.Loa
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         adventureListLoader = LoaderManager.getInstance(this).initLoader(0, null, (LoaderManager.LoaderCallbacks<AdventureList>) this);
         adventureListLoader.forceLoad();
 
         binding = FragmentAdventureListBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
     }
 
     @Override
@@ -57,7 +58,7 @@ public class AdventureListFragment extends Fragment implements LoaderManager.Loa
         View.OnClickListener onClickListener = itemView -> {
             Adventure item = (Adventure) itemView.getTag();
             Bundle arguments = new Bundle();
-            arguments.putString(AdventureDetailFragment.ARG_ITEM_ID, item.getPath());
+            arguments.putString(AdventureDetailFragment.ARG_ITEM_ID, item.getSlug());
             Navigation.findNavController(itemView).navigate(R.id.show_item_detail, arguments);
         };
 
@@ -127,12 +128,27 @@ public class AdventureListFragment extends Fragment implements LoaderManager.Loa
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
+            final Locale usa = new Locale("en", "US");
+            final Currency dollars = Currency.getInstance(usa);
+            final NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(usa);
+            dollarFormat.setMaximumFractionDigits(2);
+
             Adventure adventure = mValues.get(position);
+
+            String price = "FREE";
+            if (adventure.getPrice() != null) {
+                try {
+                    Double priceAmount = Double.parseDouble(adventure.getPrice());
+                    price = dollarFormat.format(priceAmount);
+                } catch (NumberFormatException ex) {
+                    price = "Contact the WKND sales team for pricing";
+                }
+            }
 
             holder.itemThumbnail.setImageDrawable(RemoteImagesCache.getInstance().getDrawable(adventure.getPrimaryImagePath()));
             Spanned s = Html.fromHtml(
                     "<p><h4>" + adventure.getTitle() + "</h4></p><br/>" +
-                            "<p>" + adventure.getTripLength() + " / " + adventure.getPrice() + "</p>",
+                            "<p>" + adventure.getTripLength() + " / " + price + "</p>",
                     Html.FROM_HTML_MODE_COMPACT);
             holder.itemTextView.setText(s);
             holder.itemView.setTag(mValues.get(position));

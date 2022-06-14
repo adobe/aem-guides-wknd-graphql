@@ -19,10 +19,10 @@ import java.util.Map;
 
 public class AdventuresLoader extends AsyncTaskLoader<AdventureList> {
 
-    public static final String PERSISTED_QUERY_NAME = "/wknd/adventures-all";
+    public static final String PERSISTED_QUERY_NAME = "/wknd-shared/adventures-all";
     public static final String JSON_KEY_ADVENTURE_LIST = "adventureList";
 
-    public final Map<String, Adventure> adventuresById = new LinkedHashMap<>();
+    public final Map<String, Adventure> adventuresBySlug = new LinkedHashMap<>();
 
     public AdventuresLoader(Context context) {
         super(context);
@@ -51,7 +51,7 @@ public class AdventuresLoader extends AsyncTaskLoader<AdventureList> {
             AdventureList adventureList = mapper.treeToValue(data.get(JSON_KEY_ADVENTURE_LIST), AdventureList.class);
 
             for (Adventure adventure : adventureList) {
-                adventuresById.put(adventure.path, adventure);
+                adventuresBySlug.put(adventure.slug, adventure);
                 Log.d("AdventuresLoader", "Loaded: " + adventure);
                 RemoteImagesCache.getInstance().prepareDrawableFor(config, adventure.getPrimaryImagePath());
             }
@@ -67,11 +67,11 @@ public class AdventuresLoader extends AsyncTaskLoader<AdventureList> {
     }
 
 
-    public Map<String, Adventure> getAdventuresByPath() {
-        return adventuresById;
+    public Map<String, Adventure> getAdventuresBySlug() {
+        return adventuresBySlug;
     }
 
     public List<Adventure> getAdventures() {
-        return new ArrayList<>(adventuresById.values());
+        return new ArrayList<>(adventuresBySlug.values());
     }
 }

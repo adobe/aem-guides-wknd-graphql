@@ -22,6 +22,10 @@ import com.adobe.wknd.androidapp.loader.RemoteImagesCache;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.NumberFormat;
+import java.util.Currency;
+import java.util.Locale;
+
 public class AdventureDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Adventure> {
 
     /**
@@ -79,6 +83,20 @@ public class AdventureDetailFragment extends Fragment implements LoaderManager.L
 
     private void updateContent() {
         if (adventure != null) {
+            final Locale usa = new Locale("en", "US");
+            final Currency dollars = Currency.getInstance(usa);
+            final NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(usa);
+            dollarFormat.setMaximumFractionDigits(2);
+
+            String price = "FREE";
+            if (adventure.getPrice() != null) {
+                try {
+                    Double priceAmount = Double.parseDouble(adventure.getPrice());
+                    price = dollarFormat.format(priceAmount);
+                } catch (NumberFormatException ex) {
+                    price = "Contact the WKND sales team for pricing";
+                }
+            }
 
             adventureDetailImage.setImageDrawable(RemoteImagesCache.getInstance().getDrawable(adventure.getPrimaryImagePath()));
 
@@ -89,9 +107,9 @@ public class AdventureDetailFragment extends Fragment implements LoaderManager.L
                                     + "<p><strong>Trip Length:</strong> " + adventure.getTripLength() + "</p>"
                                     + "<p><strong>Group Size:</strong> " + adventure.getGroupSize() + "</p>"
                                     + "<p><strong>Difficulty:</strong> " + adventure.getDifficulty() + "</p>"
-                                    + "<p><strong>Price:</strong> " + adventure.getPrice() + "</p>"
-                                    + "<br/><p>" + adventure.getAdventureDescription() + "</p>" +
-                                    "<br/><h3>Itinerary<h3><br/><p>" + adventure.getAdventureItinerary() + "</p>", Html.FROM_HTML_MODE_COMPACT));
+                                    + "<p><strong>Price:</strong> " + price + "</p>"
+                                    + "<br/><p>" + adventure.getDescription() + "</p>" +
+                                    "<br/><h3>Itinerary<h3><br/><p>" + adventure.getItinerary() + "</p>", Html.FROM_HTML_MODE_COMPACT));
             if (adventureDetailToolbar != null) {
                 adventureDetailToolbar.setTitle(adventure.getTitle());
             }
