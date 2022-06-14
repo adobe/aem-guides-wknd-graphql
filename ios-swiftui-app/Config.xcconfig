@@ -12,17 +12,17 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-// The scheme AEM runs on (http or https)
+// The http/https protocol scheme used to access the AEM_HOST
 AEM_SCHEME = http
 
 // Target hostname for AEM environment, do not include http:// or https://
-AEM_HOST = localhost:4502
+AEM_HOST = localhost:4503
 
 // If connecting to an AEM Publish environment, no need to set an AUTH_METHOD
 // Support for Basic Authentication - Set AUTH_METHOD to basic and set BASIC_AUTH_CREDENTIALS
-AEM_AUTH_TYPE = basic
-AEM_USERNAME = admin
-AEM_PASSWORD = admin
+// AEM_AUTH_TYPE = basic
+// AEM_USERNAME = admin
+// AEM_PASSWORD = admin
 
 // Support for Token Authentication - set AUTH_METHOD to token
 // AEM_AUTH_TYPE = token

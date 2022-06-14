@@ -59,8 +59,8 @@ class Aem: ObservableObject {
     }
     
     /// # getAdventures()
-    /// Returns all WKND adventures using the `wknd/adventures-all` persisted query.
-    /// For this func call to work, the `wknd/adventures-all` query must be deployed to the AEM environment/service specified by the host
+    /// Returns all WKND adventures using the `wknd-shared/adventures-all` persisted query.
+    /// For this func call to work, the `wknd-shared/adventures-all` query must be deployed to the AEM environment/service specified by the host
     func getAdventures(completion: @escaping ([Adventure]) ->  ()) {
                
         let request = makeRequest(persistedQueryName: "wknd-shared/adventures-all")
@@ -82,7 +82,7 @@ class Aem: ObservableObject {
     
     
     /// # getAdventureBySlug()
-    /// Return a single WKND adventure using the `wknd/adventure-by-slug` persisted query.
+    /// Return a single WKND adventure using the `wknd-shared/adventure-by-slug` persisted query.
     /// 'slug`is a unique field, so this `adventureList` should have 0 or 1 results.
     /// For this func call to work, the `wknd/adventure-by-slug` query must be deployed to the AEM environment/service specified by the host
     func getAdventureBySlug(slug: String, completion: @escaping (Adventure) ->  ()) {
