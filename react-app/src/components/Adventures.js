@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Adobe
+Copyright 2022 Adobe
 All Rights Reserved.
 
 NOTICE: Adobe permits you to use, modify, and distribute this file in
@@ -8,12 +8,11 @@ it.
 */
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-//import {useGraphQLPersisted} from '../api/useGraphQL';
+import CurrencyFormat from 'react-currency-format';
 import {getAllAdventures, getAdventuresByActivity} from '../api/persistedQueries';
 import Error from './Error';
 import Loading from './Loading';
 import './Adventures.scss';
-
 
 function Adventures({adventureActivity}) {
     
@@ -74,12 +73,13 @@ function AdventureListItem({title, slug, primaryImage, tripLength, price}) {
           </Link>
           <div className="adventure-item-length-price">
             <div className="adventure-item-length">{tripLength}</div>
-            <div className="adventure-item-price">{price}</div>
+            <div className="adventure-item-price">
+                <CurrencyFormat value={price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+            </div>
           </div>
           <div className="adventure-item-title">{title}</div>
       </li>
       );
 }
-
 
 export default Adventures;
