@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Adobe
+Copyright 2022 Adobe
 All Rights Reserved.
 
 NOTICE: Adobe permits you to use, modify, and distribute this file in
@@ -15,7 +15,6 @@ const { REACT_APP_HOST_URI, REACT_APP_SERVICE_TOKEN } = process.env;
     Set up a proxy with AEM for local development
     In a production environment this proxy should be set up at the webserver level or absolute URLs should be used.
 */
-
 module.exports = function(app) {
     // Setup session
     app.use(session({

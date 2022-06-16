@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Adobe
+Copyright 2022 Adobe
 All Rights Reserved.
 
 NOTICE: Adobe permits you to use, modify, and distribute this file in
@@ -8,13 +8,13 @@ it.
 */
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams} from "react-router-dom";
+import CurrencyFormat from 'react-currency-format';
 import backIcon from '../images/icon-close.svg';
 import Error from './Error';
 import Loading from './Loading';
 import { mapJsonRichText } from '../utils/renderRichText';
 import './AdventureDetail.scss';
 import { getAdventureBySlug } from '../api/persistedQueries';
-
 
 function AdventureDetail() {
 
@@ -52,7 +52,6 @@ function AdventureDetail() {
       return <NoAdventureFound />;
     }
     
-    
     return (<div className="adventure-detail">
         <button className="adventure-detail-close-button" onClick={() => navigate(-1)} >
             <img className="Backbutton-icon" src={backIcon} alt="Return" />
@@ -87,7 +86,9 @@ function AdventureDetailRender({title,
                 <div className="adventure-detail-info-label">Difficulty</div>
                 <div className="adventure-detail-info-description">{difficulty}</div>
                 <div className="adventure-detail-info-label">Price</div>
-                <div className="adventure-detail-info-description">{price}</div>
+                <div className="adventure-detail-info-description">
+                    <CurrencyFormat value={price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                </div>
             </div>
             <div className="adventure-detail-content">
                 <img className="adventure-detail-primaryimage"

@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Adobe
+Copyright 2022 Adobe
 All Rights Reserved.
 
 NOTICE: Adobe permits you to use, modify, and distribute this file in
@@ -10,7 +10,7 @@ it.
 // Use the AEM Headless SDK to make the GraphQL requests
 const { AEMHeadless } = require('@adobe/aem-headless-client-js');
 
-// environment variable for confguring the headless client
+// environment variable for configuring the headless client
 const {
     REACT_APP_HOST_URI,
     REACT_APP_GRAPHQL_ENDPOINT,
@@ -20,8 +20,6 @@ const {
     REACT_APP_BASIC_AUTH_USER,
     REACT_APP_BASIC_AUTH_PASS
 } = process.env;
-
-
 
 // In a production application the serviceURL should be set to the production AEM Publish environment
 // In development the serviceURL can be set to '/' which will be a relative proxy is used (see ../authMethods.js) to avoid CORS issues
@@ -39,7 +37,6 @@ const setAuthorization = function () {
         return;
     }
 }
-
 export const aemHeadlessClient = new AEMHeadless({
     serviceURL: serviceURL,
     endpoint: REACT_APP_GRAPHQL_ENDPOINT,
