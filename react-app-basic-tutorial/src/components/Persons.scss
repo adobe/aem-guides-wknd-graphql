@@ -29,7 +29,7 @@ $personItemHeightMobile: 250px;
   margin: 0 0 2rem;
   padding-right: 14px;
 }
-  
+
 .person-item-image {
   width: 100%;
   height: $personItemHeight;
@@ -38,41 +38,43 @@ $personItemHeightMobile: 250px;
   overflow: hidden;
   margin-bottom: 7px;
 }
-  
-  .person-item-title {
-    font-weight: bold;
-    font-size: $font-size-medium;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-  }
-  
-  .person-item-length-price {
-    width: 100%;
-    height: 20px;
-  }
-  
-  .person-item-length {
-    float: left;
-  }
-  
-  .person-item-price {
-    float: right;
+
+.person-item-title {
+  font-weight: bold;
+  font-size: $font-size-medium;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.person-item-length-price {
+  width: 100%;
+  height: 20px;
+}
+
+.person-item-length {
+  float: left;
+}
+
+.person-item-price {
+  float: right;
+}
+
+@media only screen and (max-width: $tablet-breakpoint) {
+  .person-items {
+    justify-content: normal;
   }
 
-  @media only screen and (max-width: $tablet-breakpoint) {
-    .person-items {
-      justify-content: normal;
-    }
-    .person-item {
-      flex-basis: $personItemWidthMobile;
-    }
-    .person-item-image {
-      height: $personItemHeightMobile;
-    }
+  .person-item {
+    flex-basis: $personItemWidthMobile;
   }
 
-  @media only screen and (max-width: $mobile-breakpoint) {
-    .person-items {
-      justify-content: center;
-    }
+  .person-item-image {
+    height: $personItemHeightMobile;
   }
+}
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .person-items {
+    justify-content: center;
+  }
+}

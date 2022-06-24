@@ -9,9 +9,10 @@ it.
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPersonByName } from "../api/persistedQueries";
-import Error from './Error';
-import Loading from './Loading';
-
+import { mapJsonRichText } from '../utils/renderRichText';
+import Error from "./Error";
+import Loading from "./Loading";
+import "./Persons.scss";
 
 function PersonDetail() {
   // params hook from React router
@@ -43,21 +44,39 @@ function PersonDetail() {
   return (
     <div>
       <h2>Person Details</h2>
-      <h2>{currentPerson.fullName} | {currentPerson.occupation.toString()}</h2>
+      <h3>
+          {currentPerson.fullName} | {currentPerson.occupation.toString()}
+      </h3>
+      <div>
+        <img
+          className="person-item-image"
+          src={currentPerson.profilePicture._path}
+          alt={currentPerson.fullName}
+        />
+        <div>
+          {mapJsonRichText(currentPerson.biographyText.json)}
+        </div>
+
+      </div>
     </div>
   );
 }
 
-function getPersonDetails(response){
-    let currentPerson = undefined;
-    if(response && response.data && response.data.personList && response.data.personList.items){
-        if(response.data.personList.items.length === 1) {
-            currentPerson = response.data.personList.items[0];
-        }
+function getPersonDetails(response) {
+  let currentPerson = undefined;
+  if (
+    response &&
+    response.data &&
+    response.data.personList &&
+    response.data.personList.items
+  ) {
+    if (response.data.personList.items.length === 1) {
+      currentPerson = response.data.personList.items[0];
     }
-    console.log(`CurrentPerson${currentPerson}`);
+  }
+  console.log(`CurrentPerson${currentPerson}`);
 
-    return currentPerson;
+  return currentPerson;
 }
 
 export default PersonDetail;
