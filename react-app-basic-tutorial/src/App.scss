@@ -135,10 +135,9 @@ button {
   width: 100%;
   text-align: left;
 
-  &-message {
+  .error__message {
     color: $red;
   }
-
 }
 
 // Loading

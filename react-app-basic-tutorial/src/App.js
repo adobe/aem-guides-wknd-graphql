@@ -11,9 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import logo from "./images/wknd-icon.svg";
 import Home from "./components/Home";
-import Teams from "./components/Teams";
-import Persons from "./components/Persons";
-import PersonDetail from "./components/PersonDetail";
+import Person from "./components/Person";
 import "./App.scss";
 
 function App() {
@@ -28,9 +26,7 @@ function App() {
         </header>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/teams" element={<Teams />} />
-          <Route path="/persons" element={<Persons />} />
-          <Route path="/person:fullName" element={<PersonDetail />} />
+          <Route path="/person/:fullName" element={<Person />} />
         </Routes>
       </div>
     </Router>

@@ -1,17 +1,23 @@
+/*
+Copyright 2022 Adobe
+All Rights Reserved.
+
+NOTICE: Adobe permits you to use, modify, and distribute this file in
+accordance with the terms of the Adobe license agreement accompanying
+it.
+*/
 import React from "react";
-import { Link } from "react-router-dom";
+import Teams from "./Teams";
+import "./Home.scss";
 
 /***
- * Displays a grid of Team & Persons Link to find more details
+ * Displays a grid of Team & People Link to find more details
  */
 function Home() {
   return (
-    <div className="Home">
-      <Link to={"/teams"}>Teams</Link>
-
-      <hr />
-
-      <Link to={"/persons"}>Persons</Link>
+    <div className="home">
+      <h2 className="home__title">WKND Teams</h2>
+      <Teams />
     </div>
   );
 }
