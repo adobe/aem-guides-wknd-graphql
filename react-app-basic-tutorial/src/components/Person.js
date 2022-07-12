@@ -33,7 +33,7 @@ function Person() {
     <div className="person">
       <img
         className="person__image"
-        src={person.profilePicture._path}
+        src={process.env.REACT_APP_HOST_URI+person.profilePicture._path}
         alt={person.fullName}
       />
       <div className="person__occupations">
