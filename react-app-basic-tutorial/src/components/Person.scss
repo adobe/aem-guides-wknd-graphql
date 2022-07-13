@@ -33,21 +33,20 @@ it.
     margin: 1rem 1rem 0 0;
     text-transform: uppercase;
     font-weight: bold;
-    
+
   }
 
   .person__content {
     margin: -9rem 10% 0 10%;
     background-color: white;
-    position:relative;
+    position: relative;
     padding: 1rem 2rem;
 
     .person__full-name {
-        margin-bottom: 2rem;
+      margin-bottom: 2rem;
 
     }
 
-    .person__biography {
-    }
+    .person__biography {}
   }
 }

@@ -73,9 +73,9 @@ Several CORS configurations must be set on the target AEM environment:
     * [Example cached headers](https://github.com/adobe/aem-guides-wknd/blob/main/dispatcher/src/conf.dispatcher.d/available_farms/wknd.farm#L102)
     * [Example client headers](https://github.com/adobe/aem-guides-wknd/blob/main/dispatcher/src/conf.dispatcher.d/clientheaders/clientheaders.any)
 
-![CORS Configuration](docs/cross-origin-resource-sharing-configuration.jpg)
+![CORS Configuration](../react-app-basic-tutorial/docs/cross-origin-resource-sharing-configuration.png)
 
-*Sample CORS config for Author environment*
+*This is a sample CORS config for Author environment if Proxy is set to False*
 
 ## Documentation
 
