@@ -1,10 +1,10 @@
 # React App - Basic Tutorial - Team+Persons
 
-An example React application that highlights Adobe Experience Manager's GraphQL APIs and the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js).
+A basic React application that highlights Adobe Experience Manager's GraphQL APIs and the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![React App Screenshot](./docs/react-teamapp-screenshot.png)
+![React App Screenshot](./docs/reac-basic-tutorial-screenshot.png)
 
 ## Tutorial
 
@@ -12,7 +12,7 @@ A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-ma
 
 ## How to use
 
-1. On the target AEM environment install the `tutorial-solution-content.zip` from the [Solution Files](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/advanced-tutorial/explore-graphql-api.html?lang=en) using [Package Manager](http://localhost:4502/crx/packmgr/index.jsp).
+1. On the target AEM environment install the `tutorial-solution-content.zip` from the [Solution Files](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/explore-graphql-api.html?lang=en#solution-files) using [Package Manager](http://localhost:4502/crx/packmgr/index.jsp).
 1. Update the [environment variables](#update-environment-variables) to point to your target AEM instance and add authentication (if needed)
 1. Download and install [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/)
 1. Start the app from the command line:
@@ -27,7 +27,7 @@ A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-ma
 
  AEM as a Cloud Service | AEM 6.5 | Sample Content | Node   | npm | 
 ------------------------|---------|--------------------|---------|-----|
-Continual               | 6.5.13+ |  [Solution Files](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/advanced-tutorial/explore-graphql-api.html?lang=en) | 10+  | 6+
+Continual               | 6.5.13+ |  [Solution Files](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/explore-graphql-api.html?lang=en#solution-files) | 10+  | 6+
 
 ## Notes
 
@@ -55,11 +55,11 @@ If connecting to an AEM author environment, the corresponding authentication met
 
 ### CORS - Cross Origin Resource Sharing
 
-The proxy method for local development avoids any CORS issues since all of the requests in the browser appear to be from the same origin. When running a production version of the app this will not be the case. Pre-built CORS configurations are deployed automatically if installing the full WKND code base: https://github.com/adobe/aem-guides-wknd. The full WKND code base includes wknd-shared content (images and content fragments).
+The proxy method for local development avoids any CORS issues since all of the requests in the browser appear to be from the same origin. When running a production version of the app this will not be the case.
 
 Several CORS configurations must be set on the target AEM environment:
 
-* OSGi CORS Configuration - A configuration that is deployed as part of an AEM project. [Example OSGi Config](https://github.com/adobe/aem-guides-wknd/blob/main/ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.publish/com.adobe.granite.cors.impl.CORSPolicyImpl~wknd-graphql.cfg.json#L21)
+* OSGi CORS Configuration - A configuration can be deployed as part of an AEM project. [Example OSGi Config](https://github.com/adobe/aem-guides-wknd/blob/main/ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.publish/com.adobe.granite.cors.impl.CORSPolicyImpl~wknd-graphql.cfg.json#L21)
 * Dispatcher headers - The AEM dispatcher must also be enabled to pass through the following client headers:
 
     ```
@@ -68,12 +68,12 @@ Several CORS configurations must be set on the target AEM environment:
     "Access-Control-Request-Headers"
     ```
 
-    * [Example cached headers](https://github.com/adobe/aem-guides-wknd/blob/main/dispatcher/src/conf.dispatcher.d/available_farms/wknd.farm#L102)
-    * [Example client headers](https://github.com/adobe/aem-guides-wknd/blob/main/dispatcher/src/conf.dispatcher.d/clientheaders/clientheaders.any)
+  * [Example cached headers](https://github.com/adobe/aem-guides-wknd/blob/main/dispatcher/src/conf.dispatcher.d/available_farms/wknd.farm#L102)
+  * [Example client headers](https://github.com/adobe/aem-guides-wknd/blob/main/dispatcher/src/conf.dispatcher.d/clientheaders/clientheaders.any)
 
-![CORS Configuration](docs/cross-origin-resource-sharing-configuration.jpg)
+![CORS Configuration](docs/cross-origin-resource-sharing-configuration.png)
 
-*Sample CORS config for Author environment*
+*This is a sample CORS config for Author environment if Proxy is set to False*
 
 ## Documentation
 
