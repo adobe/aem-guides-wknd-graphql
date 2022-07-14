@@ -19,9 +19,7 @@ This application is designed to connect to an AEM Author or Publish environment.
     ```plain
     // Target hostname for AEM environment, do not include http:// or https://
     AEM_HOST = localhost:4503
-
-    // GraphQL Endpoint
-    AEM_GRAPHQL_ENDPOINT = /content/cq:graphql/wknd-shared/endpoint.json
+    
     ```
 
 1. Set the authentication method in the file `Config.xcconfig` based on your use case. `basic` and `token` based authentication is supported. If connecting to an **AEM Publish** environment no authentication is needed and the auth methods can be commented out.
