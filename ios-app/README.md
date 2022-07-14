@@ -13,7 +13,7 @@ A corresponding [tutorial is available](https://experienceleague.adobe.com/docs/
 This application is designed to connect to an AEM Author or Publish environment.
 
 1. On the target **AEM** environment install the [latest release of the WKND Reference site](https://github.com/adobe/aem-guides-wknd/releases/latest) using [Package Manager](http://localhost:4503/crx/packmgr/index.jsp) for local environments or using Cloud Manager's [CI/CD Pipeline](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/implementing/using-cloud-manager/configure-pipeline.html) for cloud environments.
-1. Download and install [Xcode](https://developer.apple.com/xcode/) and open the folder `ios-swiftui-app`
+1. Download and install [Xcode](https://developer.apple.com/xcode/) and open the folder `ios-app`
 1. Modify the file `Config.xcconfig` file and update `AEM_HOST` to match your target AEM environment
 
     ```plain
