@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Adobe
+Copyright 2022 Adobe
 All Rights Reserved.
 
 NOTICE: Adobe permits you to use, modify, and distribute this file in
@@ -30,7 +30,7 @@ $adventureItemHeightMobile: 250px;
   margin: 0 0 2rem;
   padding-right: 14px;
 }
-  
+
 .adventure-item-image {
   width: 100%;
   height: $adventureItemHeight;
@@ -39,41 +39,43 @@ $adventureItemHeightMobile: 250px;
   overflow: hidden;
   margin-bottom: 7px;
 }
-  
-  .adventure-item-title {
-    font-weight: bold;
-    font-size: $font-size-medium;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-  }
-  
-  .adventure-item-length-price {
-    width: 100%;
-    height: 20px;
-  }
-  
-  .adventure-item-length {
-    float: left;
-  }
-  
-  .adventure-item-price {
-    float: right;
+
+.adventure-item-title {
+  font-weight: bold;
+  font-size: $font-size-medium;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.adventure-item-length-price {
+  width: 100%;
+  height: 20px;
+}
+
+.adventure-item-length {
+  float: left;
+}
+
+.adventure-item-price {
+  float: right;
+}
+
+@media only screen and (max-width: $tablet-breakpoint) {
+  .adventure-items {
+    justify-content: normal;
   }
 
-  @media only screen and (max-width: $tablet-breakpoint) {
-    .adventure-items {
-      justify-content: normal;
-    }
-    .adventure-item {
-      flex-basis: $adventureItemWidthMobile;
-    }
-    .adventure-item-image {
-      height: $adventureItemHeightMobile;
-    }
+  .adventure-item {
+    flex-basis: $adventureItemWidthMobile;
   }
 
-  @media only screen and (max-width: $mobile-breakpoint) {
-    .adventure-items {
-      justify-content: center;
-    }
+  .adventure-item-image {
+    height: $adventureItemHeightMobile;
   }
+}
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .adventure-items {
+    justify-content: center;
+  }
+}

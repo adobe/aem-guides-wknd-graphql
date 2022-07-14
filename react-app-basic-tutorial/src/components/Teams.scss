@@ -1,0 +1,44 @@
+/*
+Copyright 2022 Adobe
+All Rights Reserved.
+
+NOTICE: Adobe permits you to use, modify, and distribute this file in
+accordance with the terms of the Adobe license agreement accompanying
+it.
+*/
+
+@import "../styles/variables";
+
+.teams {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.team {
+  position: relative;
+  background-color: $gray-lighter;
+  padding: 2rem;
+  width: 400px;
+  min-height: 300px;
+  border-bottom: 2px solid $gray-light;
+}
+
+.team__title {
+  margin-bottom: 1.5rem;
+}
+
+.team__members-title {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: solid 1px $gray-light;
+}
+
+.team__members {
+  clear: both;
+}
+
+.team__member {
+  margin-bottom: 0.5rem;
+}

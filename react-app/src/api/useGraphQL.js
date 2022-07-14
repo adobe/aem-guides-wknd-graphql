@@ -1,56 +1,42 @@
 /*
-Copyright 2020 Adobe
+Copyright 2022 Adobe
 All Rights Reserved.
 
 NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-import {useState, useEffect} from 'react';
-const {AEMHeadless} = require('@adobe/aem-headless-client-js')
-
-
-// environment variable REACT_APP_GRAPHQL_ENDPOINT is used to point to endpoint in AEM
-const { REACT_APP_GRAPHQL_ENDPOINT } = process.env;
+import { useState, useEffect } from "react";
+import { aemHeadlessClient, mapErrors } from "./headlessClient";
 
 /**
- * Custom React Hook to perform a GraphQL query
+ * Custom React Hook to perform a GraphQL query using POST
+ * Executing a GraphQL query directly using POST should ONLY be done during development.
+ * For production always use Persisted Queries see persistedQueries.js
+ *
  * @param query - GraphQL query
- * @param path - Persistent query path
  */
-function useGraphQL(query, path) {
-    let [data, setData] = useState(null);
-    let [errorMessage, setErrors] = useState(null);
+export default function useGraphQL(query) {
+  let [data, setData] = useState(null);
+  let [errors, setErrors] = useState(null);
 
-    useEffect(() => {
-      const sdk = new AEMHeadless({ endpoint: REACT_APP_GRAPHQL_ENDPOINT })
-      const request = query ? sdk.runQuery.bind(sdk) : sdk.runPersistedQuery.bind(sdk);
+  useEffect(() => {
+    async function runGraphQLQuery() {
+      try {
+        const response = await aemHeadlessClient.runQuery(query);
 
-      request(query || path)
-        .then(({ data, errors }) => {
-          //If there are errors in the response set the error message
-          if(errors) {
-            setErrors(mapErrors(errors));
-          }
-          //If data in the response set the data as the results
-          if(data) {
-            setData(data);
-          }
-        })
-        .catch((error) => {
-          setErrors(error);
-        });
-    }, [query, path]);
+        if (response.errors) setErrors(mapErrors(response.errors));
+        if (response.data) setData(response.data);
+      } catch (e) {
+        console.error(e.toJSON());
+        setErrors(e);
+      }
+    }
 
-    return {data, errorMessage}
+    if (query && query !== "") {
+      runGraphQLQuery();
+    }
+  }, [query]);
+
+  return { data, errors };
 }
-
-/**
- * concatenate error messages into a single string.
- * @param {*} errors
- */
-function mapErrors(errors) {
-    return errors.map((error) => error.message).join(",");
-}
-
-export default useGraphQL
