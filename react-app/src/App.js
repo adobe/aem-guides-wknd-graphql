@@ -12,6 +12,7 @@ import ScrollToTop from "./utils/scrollToTop";
 import logo from "./images/wknd-logo-dk.svg";
 import Home from "./components/Home";
 import AdventureDetail from "./components/AdventureDetail";
+import { Link } from "react-router-dom";
 import "./App.scss";
 
 function App() {
@@ -20,7 +21,9 @@ function App() {
       <ScrollToTop />
       <div className="App">
         <header>
+        <Link to={"/"}>
           <img src={logo} className="logo" alt="WKND Logo" />
+        </Link>
           <hr />
         </header>
         <Routes>
