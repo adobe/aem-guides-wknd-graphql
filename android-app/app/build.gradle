@@ -28,6 +28,20 @@ android {
     buildFeatures {
         viewBinding true
     }
+    flavorDimensions 'env'
+    productFlavors {
+        dev {
+            dimension 'env'
+            applicationIdSuffix '.dev'
+            buildConfigField "String", "AEM_HOST", '"http://10.0.2.2:4502"'
+            buildConfigField "String", "AEM_USER", '"admin"'
+            buildConfigField "String", "AEM_PASSWORD", '"admin"'
+        }
+        prod {
+            dimension 'env'
+            buildConfigField "String", "AEM_HOST", '"https://publish-p123-e789.adobeaemcloud.com"'
+        }
+    }
 }
 
 dependencies {

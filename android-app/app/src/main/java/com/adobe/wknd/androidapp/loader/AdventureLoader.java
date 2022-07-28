@@ -8,11 +8,10 @@ import androidx.loader.content.AsyncTaskLoader;
 import com.adobe.aem.graphql.client.AEMHeadlessClient;
 import com.adobe.aem.graphql.client.AEMHeadlessClientBuilder;
 import com.adobe.aem.graphql.client.GraphQlResponse;
-import com.adobe.wknd.androidapp.config.Config;
+import com.adobe.wknd.androidapp.BuildConfig;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,13 +34,11 @@ public class AdventureLoader extends AsyncTaskLoader<Adventure> {
     @Override
     public Adventure loadInBackground() {
 
-        Config config = new Config(getContext());
-
         try {
-            Log.i("AdventureLoader", "Loading adventure for slug " + this.slug + " from " + config.getContentApiEndpoint());
-            AEMHeadlessClientBuilder builder = AEMHeadlessClient.builder().endpoint(config.getContentApiEndpoint());
-            String user = config.getContentApiUser();
-            String password = config.getContentApiPassword();
+            Log.i("AdventureLoader", "Loading adventure for slug " + this.slug + " from " + BuildConfig.AEM_HOST);
+            AEMHeadlessClientBuilder builder = AEMHeadlessClient.builder().endpoint(BuildConfig.AEM_HOST);
+            String user = BuildConfig.AEM_USER;
+            String password = BuildConfig.AEM_PASSWORD;
             if (user != null && password != null) {
                 builder.basicAuth(user, password);
             }
@@ -63,7 +60,7 @@ public class AdventureLoader extends AsyncTaskLoader<Adventure> {
             return this.adventure;
 
         } catch (Exception e) {
-            Log.e("MainActivity", "Error while loading adventure " + this.slug + " from " + config.getContentApiEndpoint(), e);
+            Log.e("MainActivity", "Error while loading adventure " + this.slug + " from " + BuildConfig.AEM_HOST, e);
             return null;
         }
     }
