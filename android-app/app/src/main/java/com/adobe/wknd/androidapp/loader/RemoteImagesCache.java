@@ -1,10 +1,11 @@
 package com.adobe.wknd.androidapp.loader;
 
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Html;
 import android.util.Log;
 
-import com.adobe.wknd.androidapp.config.Config;
+import com.adobe.wknd.androidapp.BuildConfig;
 
 import java.io.File;
 import java.io.InputStream;
@@ -33,16 +34,16 @@ public class RemoteImagesCache implements Html.ImageGetter {
         return drawable;
     }
 
-    public void prepareDrawableFor(Config config, String path) {
+    public void prepareDrawableFor(String path) {
         if (drawablesByPath.containsKey(path)) {
             return;
         }
-        String urlStr = config.getContentApiEndpoint() + path;
+        String urlStr = BuildConfig.AEM_HOST + path;
         try {
             URL url = new URL(urlStr);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            if (config.getContentApiUser() != null) {
-                String auth = config.getContentApiUser() + ":" + config.getContentApiPassword();
+            if (BuildConfig.AEM_HOST != null && BuildConfig.AEM_USER != null && BuildConfig.AEM_PASSWORD != null) {
+                String auth = BuildConfig.AEM_USER + ":" + BuildConfig.AEM_PASSWORD;
                 byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
                 connection.setRequestProperty("Authorization", "Basic " + new String(encodedAuth));
             }
@@ -56,5 +57,4 @@ public class RemoteImagesCache implements Html.ImageGetter {
             Log.e("RemoteImagesCache", "Exception while loading " + urlStr + ": " + e, e);
         }
     }
-
 }

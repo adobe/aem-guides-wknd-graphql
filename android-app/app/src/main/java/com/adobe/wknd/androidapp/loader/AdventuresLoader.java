@@ -8,7 +8,7 @@ import androidx.loader.content.AsyncTaskLoader;
 import com.adobe.aem.graphql.client.AEMHeadlessClient;
 import com.adobe.aem.graphql.client.AEMHeadlessClientBuilder;
 import com.adobe.aem.graphql.client.GraphQlResponse;
-import com.adobe.wknd.androidapp.config.Config;
+import com.adobe.wknd.androidapp.BuildConfig;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -33,11 +33,10 @@ public class AdventuresLoader extends AsyncTaskLoader<AdventureList> {
     public AdventureList loadInBackground() {
 
         try {
-            Config config = new Config(getContext());
-            Log.i("AdventuresLoader", "Loading adventures from   " + config.getContentApiEndpoint());
-            AEMHeadlessClientBuilder builder = AEMHeadlessClient.builder().endpoint(config.getContentApiEndpoint());
-            String user = config.getContentApiUser();
-            String password = config.getContentApiPassword();
+            Log.i("AdventuresLoader", "Loading adventures from   " + BuildConfig.AEM_HOST);
+            AEMHeadlessClientBuilder builder = AEMHeadlessClient.builder().endpoint(BuildConfig.AEM_HOST);
+            String user = BuildConfig.AEM_USER;
+            String password = BuildConfig.AEM_PASSWORD;
             if (user != null && password != null) {
                 builder.basicAuth(user, password);
             }
@@ -53,7 +52,7 @@ public class AdventuresLoader extends AsyncTaskLoader<AdventureList> {
             for (Adventure adventure : adventureList) {
                 adventuresBySlug.put(adventure.slug, adventure);
                 Log.d("AdventuresLoader", "Loaded: " + adventure);
-                RemoteImagesCache.getInstance().prepareDrawableFor(config, adventure.getPrimaryImagePath());
+                RemoteImagesCache.getInstance().prepareDrawableFor(adventure.getPrimaryImagePath());
             }
 
             Log.i("AdventuresLoader", "Loaded  " + adventureList.items.size() + " adventures");
