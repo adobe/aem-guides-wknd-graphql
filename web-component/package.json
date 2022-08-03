@@ -1,7 +1,7 @@
 {
   "name": "aem-headless-web-component",
   "version": "1.0.0",
-  "description": "A demo project show casing AEM Headless via a Web Component using Basic GraphQL Tutorial",
+  "description": "An example Web Component that highlights Adobe Experience Manager's GraphQL APIs usage",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
