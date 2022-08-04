@@ -38,7 +38,6 @@ Continual               | 6.5.13+ |  [WKND Shared 2.0+](https://github.com/adobe
 Several [environment variables](https://create-react-app.dev/docs/adding-custom-environment-variables) are used by this project to connect to an AEM environment. Default connects to an AEM author environment running at http://localhost:4502. If you wish to change this behavior update the `.env.development` file accordingly:
 
 * `REACT_APP_HOST_URI=http://localhost:4502` - Set to AEM target host
-* `REACT_APP_GRAPHQL_ENDPOINT=/content/_cq_graphql/wknd-shared/endpoint.json` - Set the GraphQL endpoint path
 * `REACT_APP_AUTH_METHOD=` - The preferred authentication method.
   * `service-token` - use Service token exchange for Cloud Env PROD
   * `dev-token` - use Dev token for local development with Cloud Env
