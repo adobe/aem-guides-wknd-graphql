@@ -10,6 +10,7 @@ This project includes example applications that highlight Adobe Experience Manag
 | [React](./react-app) | [`/react-app`](./react-app) | A React application using the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js) |
 | [Android](./android-app) | [`/android-app`](./android-app) | An Android application using the [AEM Headless Client for Java](https://github.com/adobe/aem-headless-client-java)
 | [iOS](./ios-app) | [`/ios-app`](./ios-app) | A iOS application built with SwiftUI
+| Node.js (server-side)  | [`/server-to-server`](./server-to-server/) | Node.js server-side app using [AEM Headless Client for Node.js](https://github.com/adobe/aem-headless-client-nodejs) |
 
 ## System Requirements
 

@@ -6,7 +6,7 @@ An example server-to-server Node.js application that highlights Adobe Experience
 
 ## Tutorial
 
-A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/setup.html) is available where you can learn how to setup and run the application to query data from an AEM environment using GraphQL.
+A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/example-apps/server-to-server-app.html) is available where you can learn how to setup and run the application to query data from an AEM environment using GraphQL.
 
 ## How to use
 
@@ -24,11 +24,9 @@ A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-ma
 
 ## System Requirements
 
- AEM as a Cloud Service | Sample Content | Node   | npm | 
-------------------------|---------|--------------------|---------|-----|
-Continual               |  [WKND Shared 2.0+](https://github.com/adobe/aem-guides-wknd-shared/releases/latest) or [WKND Site 2.0+](https://github.com/adobe/aem-guides-wknd/releases/latest)| 10+  | 6+
-
-## Notes
+| AEM as a Cloud Service | Sample Content | Node   | npm | 
+|------------------------|---------|--------------------|---------|
+| Continual               |  [WKND Shared 2.0+](https://github.com/adobe/aem-guides-wknd-shared/releases/latest) or [WKND Site 2.0+](https://github.com/adobe/aem-guides-wknd/releases/latest)| 10+  | 6+
 
 ## Documentation
 
