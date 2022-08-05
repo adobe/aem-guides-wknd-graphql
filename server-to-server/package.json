@@ -1,0 +1,14 @@
+{
+  "name": "server-to-server",
+  "version": "1.0.0",
+  "description": "Example app showing server-to-server AEM Headless use case.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Adobe",
+  "license": "ISC",
+  "dependencies": {
+    "@adobe/aem-headless-client-nodejs": "^1.1.0"
+  }
+}
