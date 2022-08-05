@@ -1,0 +1,29 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #FFFFFF;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: auto;
+    padding: 0;
+    padding-top: 10px;
+    font-size: 18px;
+    text-align: left;
+    color: #202020;
+    line-height: 1.1;
+    -webkit-font-smoothing: antialiased;
+    max-width: 1024px;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 10px;
+}
+
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: 10px 0px 0px 0px;
+}
