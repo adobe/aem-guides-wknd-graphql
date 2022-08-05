@@ -17,13 +17,31 @@ body {
 }
 
 h1 {
-    text-align: center;
+    text-align: left;
     padding-top: 10px;
 }
 
+p {
+    line-height: 2rem;
+}
 
 .logo {
     width: 100px;
     height: 100px;
     margin: 10px 0px 0px 0px;
+}
+
+
+.columns {
+    display: flex;
+    gap: 10%;
+}
+
+.content {
+    flex-basis: 100%;
+}
+
+footer {
+    text-align: right;
+
 }
