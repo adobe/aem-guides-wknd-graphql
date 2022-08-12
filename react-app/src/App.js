@@ -7,18 +7,14 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import logo from './images/wknd-logo-dk.svg';
-import Adventures from './components/Adventures';
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import AdventureDetail from './components/AdventureDetail';
-import AEMResponsiveGrid from './components/aem/AEMResponsiveGrid';
-import AEMTitle from './components/aem/AEMTitle';
-import AEMText from './components/aem/AEMText';
-import AEMImage from './components/aem/AEMImage';
+import Home from './components/Home';
+import logo from './images/wknd-logo-dk.svg';
 
 import './App.scss';
 
-const {  REACT_APP_PUBLIC_URI } = process.env;
+const { REACT_APP_PUBLIC_URI } = process.env;
 
 function App() {
 
@@ -26,37 +22,21 @@ function App() {
     <Router>
       <div className="App">
         <header>
-          <img src={REACT_APP_PUBLIC_URI + '/' + logo} className="logo" alt="WKND Logo"/>
+          <Link to={"/"}>
+            <img src={REACT_APP_PUBLIC_URI + '/' + logo} className="logo" alt="WKND Logo" />
+          </Link>
           <hr />
         </header>
-      <Switch>
-        <Route path='/adventure:path'>
-          <AdventureDetail />
-        </Route>  
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+        <Switch>
+          <Route path='/adventure:path'>
+            <AdventureDetail />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
       </div>
-    </Router>   
-  );
-}
-
-/***
- * Displays a grid of current adventures
- */
-function Home() {
-  return (
-    <div className="Home">
-        <AEMResponsiveGrid
-            pagePath='/content/wknd-app/us/en/home' 
-            itemPath='root/responsivegrid'/>
-
-        <AEMTitle
-            pagePath='/content/wknd-app/us/en/home' 
-            itemPath='root/title'/>
-      <Adventures />
-  </div>
+    </Router>
   );
 }
 

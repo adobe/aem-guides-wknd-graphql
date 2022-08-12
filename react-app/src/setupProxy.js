@@ -1,21 +1,29 @@
 /*
-Copyright 2020 Adobe
+Copyright 2022 Adobe
 All Rights Reserved.
 
 NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-// Use Service token exchange for Cloud Env PROD
-// const proxy = require('./proxy/setupProxy.auth.service-token')
-// Use Dev token for local development with Cloud Env
-// const proxy = require('./proxy/setupProxy.auth.dev-token')
-// Use user/pass for local development with Local Author Env
-// const proxy = require('./proxy/setupProxy.auth.basic')
-// Auth not needed for local development with Local Publisher Env
-// const proxy = require('./proxy/setupProxy.auth.none')
-// Proxy configuration for SPA Editor (and GraphQL) using Basic Auth
-const proxy = require('./proxy/setupProxy.spa-editor.auth.basic')
+const { SERVICE_TOKEN, DEV_TOKEN, BASIC } = require('./proxy/authMethods');
+
+const proxy = (() => {
+    switch (process.env.REACT_APP_AUTH_METHOD) {
+      case SERVICE_TOKEN:
+        // Use Service token exchange for Cloud Env PROD
+        return require('./proxy/setupProxy.auth.service-token');
+      case DEV_TOKEN:
+        // Use Dev token for local development with Cloud Env
+        return require('./proxy/setupProxy.auth.dev-token');
+      case BASIC:
+        // Use user/pass for local development with Local Author Env
+        return require('./proxy/setupProxy.spa-editor.auth.basic');
+      default:
+        // Auth not needed for local development with Local Publisher Env
+        return require('./proxy/setupProxy.auth.none');
+    }
+})();
 
 /*
     Set up a proxy with AEM for local development
