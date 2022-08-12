@@ -1,5 +1,5 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
-const {REACT_APP_HOST_URI, REACT_APP_AUTHORIZATION } = process.env;
+const {REACT_APP_HOST_URI, REACT_APP_BASIC_AUTH_USER, REACT_APP_BASIC_AUTH_PASS } = process.env;
 
 /*
     Set up a proxy with AEM for local development
@@ -19,7 +19,7 @@ module.exports = function(app) {
     */
     const toAEM = function(path, req) {
         return path.startsWith('/content') || 
-            path.startsWith('/graphq') ||
+            path.startsWith('/graphql') ||
             path.endsWith('.model.json')
     }
 
@@ -50,7 +50,7 @@ module.exports = function(app) {
                 target: REACT_APP_HOST_URI,
                 changeOrigin: true,
                 // Pass in credentials when developing against an Author environment
-                auth: REACT_APP_AUTHORIZATION,
+                auth: `${REACT_APP_BASIC_AUTH_USER}:${REACT_APP_BASIC_AUTH_PASS}`,
                 pathRewrite: pathRewriteToAEM // Rewrite SPA paths being sent to AEM
             }
         )
