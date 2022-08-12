@@ -27,7 +27,7 @@ More details about the React app can be found [here](./react-app).
 
 ## Tutorial
 
-[Getting started with SPA Editor and Remote SPA - Overview | Adobe Experience Manager](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/spa-editor/remote-spa/overview.html?lang=en) tutorial illustrates how to integrate SPA Editor with this WKND App.
+[Getting started with SPA Editor and Remote SPA - Overview | Adobe Experience Manager](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/spa-editor/remote-spa/overview.html) tutorial illustrates how to integrate SPA Editor with this WKND App.
 
 ## Contributing
 
