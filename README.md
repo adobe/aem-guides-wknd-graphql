@@ -2,10 +2,10 @@
 
 This branch is an augmentation of the base WKND GraphQL App to support SPA Editor (controlled, authorable zones in the SPA).
 
-The branch's contents will act as the "end state" of the AEM Headless SPA Editor tutorial when that is created/published. If this is run as-is without the supporting AEM packages from the tutorial, the authorable zones in the SPA will not render. **Don't be alarmed!**
+The branch's contents act as the "end state" of the AEM Headless SPA Editor tutorial when that is created/published. If this is run as-is without the supporting AEM packages from the tutorial, the authorable zones in the SPA will not render. **Don't be alarmed!**
 
 
-This project includes example application(s) that highlights Adobe Experience Manager's GraphQL APIs and SPA Editor.
+This project includes example applications that highlights Adobe Experience Manager's GraphQL APIs and SPA Editor.
 
 ## React app
 
@@ -25,9 +25,9 @@ $ npm start
 
 More details about the React app can be found [here](./react-app).
 
-## Tutorial (TBD)
+## Tutorial
 
-A tutorial illustrating how to integrate SPA Editor with this WKND App, also see [Getting started with SPA Editor and Remote SPA - Overview | Adobe Experience Manager](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/spa-editor/remote-spa/overview.html?lang=en).
+[Getting started with SPA Editor and Remote SPA - Overview | Adobe Experience Manager](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/spa-editor/remote-spa/overview.html?lang=en) tutorial illustrates how to integrate SPA Editor with this WKND App.
 
 ## Contributing
 
