@@ -75,10 +75,6 @@ function AdventureDetailRender({ _path,
 
     // Get the last segment of the Adventure Content Fragment path to used to generate the pagePath for the AEMResponsiveGrid
     const adventureName = _path.split('/').pop();
-
-    console.log(`......> ${adventureName}`);
-
-
     return (<div className="adventure-detail">
         <button className="adventure-detail-close-button" onClick={() => history.goBack()}>
             <img className="Backbutton-icon" src={REACT_APP_PUBLIC_URI + '/' + backIcon} alt="Return" />
