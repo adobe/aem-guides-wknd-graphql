@@ -13,8 +13,11 @@ module.exports = function override(config, env) {
         loader: 'babel-loader',
         // if you include your babel config here,
         // you don’t need the `babel.config.json` file
-        options: { presets: ['@babel/preset-env'] }
-      }
+        options: {
+          presets: ['@babel/preset-env'],
+          plugins: ['@babel/plugin-proposal-optional-chaining']
+        },
+      },
     },
     ...config.module.rules
   ]
