@@ -8,6 +8,7 @@ This project includes example applications that highlight Adobe Experience Manag
 |--------|-----------|-------------|
 | [Basic tutorial](./basic-tutorial) | [`/basic-tutorial`](./basic-tutorial) | A React application used with the [AEM Headless basic tutorial](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/overview.html) |
 | [React](./react-app) | [`/react-app`](./react-app) | A React application using the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js) |
+| [Next.js](./next-js) | [`/next-js`](./next-js) | A Next,js application using the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js) |
 | [Android](./android-app) | [`/android-app`](./android-app) | An Android application using the [AEM Headless Client for Java](https://github.com/adobe/aem-headless-client-java)
 | [iOS](./ios-app) | [`/ios-app`](./ios-app) | A iOS application built with SwiftUI
 | [Web Component/pure JS](./web-component) | [`/web-component`](./web-component) | A Web Component built using pure JavaScript
@@ -19,7 +20,7 @@ The sample applications in this repository are designed to connect to AEM enviro
 
  AEM as a Cloud Service | AEM 6.5 | Sample Content |
 ------------------------|---------|--------------------|
-Continual               | 6.5.10+ |  [WKND Site 1.0+](https://github.com/adobe/aem-guides-wknd/releases/latest) |
+Continual               | 6.5.10+ |  [WKND Site 2.1.0+](https://github.com/adobe/aem-guides-wknd/releases/latest) |
 
 ## Tutorial
 

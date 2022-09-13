@@ -31,7 +31,7 @@ class AemHeadlessClient {
     this.aemHeadlessClient = new AEMHeadless({
       serviceURL: serviceURL,
       endpoint: 'The endpoint is not used as it only applies to client-side GraphQL queries which are not Adobe best practices.',
-      auth: this.makeAuth(),
+      auth: this._getAuth(),
       fetch: fetch
     });
   }
@@ -40,7 +40,7 @@ class AemHeadlessClient {
    * Convenience method for turning auth schemes specified in the .env.* files into auth signatures recognized by the AEM Headless client for JS.
    * @returns a valid auth object based on env variables
    */
-  makeAuth() {
+  _getAuth() {
     let auth;
 
     if (process.env.AEM_AUTH_METHOD === 'basic') {
@@ -70,14 +70,11 @@ class AemHeadlessClient {
   async getAllAdventures() {
     const queryAdventuresAll = process.env.NEXT_PUBLIC_AEM_GRAPHQL_ENDPOINT + '/adventures-all';
       
-    let result;
     try {
-      result = await this.aemHeadlessClient.runPersistedQuery(queryAdventuresAll);
+      return await this.aemHeadlessClient.runPersistedQuery(queryAdventuresAll);
     } catch(e) {
       console.error(e)
-    }
-    
-    return result;
+    }    
   }
 
   /**
