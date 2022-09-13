@@ -14,9 +14,8 @@
     "express-session": "^1.17.3",
     "http-proxy-middleware": "^2.0.6",
     "normalize-scss": "^7.0.1",
-    "react": "^16.13.1",
-    "react-currency-format": "^1.1.0",
-    "react-dom": "^16.13.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "sass": "^1.42.1"
