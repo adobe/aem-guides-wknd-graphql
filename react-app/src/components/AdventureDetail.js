@@ -12,10 +12,9 @@ import CurrencyFormat from 'react-currency-format';
 import backIcon from '../images/icon-close.svg';
 import Error from './Error';
 import Loading from './Loading';
-import { mapJsonRichText } from '../utils/renderRichText';
 import './AdventureDetail.scss';
 import { getAdventureByPath } from '../api/persistedQueries';
-import AEMResponsiveGrid from './aem/AEMResponsiveGrid';
+import { ResponsiveGrid } from '@adobe/aem-react-editable-components';
 
 const { REACT_APP_PUBLIC_URI } = process.env;
 
@@ -101,7 +100,7 @@ function AdventureDetailRender({ _path,
                 src={primaryImage._path} alt={title} />
             <div dangerouslySetInnerHTML={{ __html: description.html }}></div>
 
-            <AEMResponsiveGrid
+            <ResponsiveGrid
                 pagePath={`/content/wknd-app/us/en/home/adventure/${adventureName}`}
                 itemPath="root/responsivegrid" />
 
@@ -129,7 +128,7 @@ function NoAdventureFound() {
 
 /**
  * Helper function to get the first adventure from the response
- * @param {*} response 
+ * @param {*} response
  */
 function getAdventure(response) {
 
