@@ -15,9 +15,9 @@ import React from 'react'
      resourceType: RESOURCE_TYPE // The sling:resourceType this component is mapped to
  };
 
- const EditableTitle = (props) => <EditableComponent config={EditConfig} {...props}><Title /></EditableComponent>
+const EditableTitle = (props) => <EditableComponent config={EditConfig} {...props}><Title /></EditableComponent>
 
  // MapTo allows the AEM SPA Editor JS SDK to dynamically render components added to SPA Editor Containers
- MapTo(RESOURCE_TYPE)(EditableTitle);
+MapTo(RESOURCE_TYPE)(EditableTitle);
 
 export default EditableTitle;

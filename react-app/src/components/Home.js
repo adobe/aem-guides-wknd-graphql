@@ -11,6 +11,9 @@ import React, {useState} from 'react';
 import Adventures from './Adventures';
 import { ResponsiveGrid } from '@adobe/aem-react-editable-components';
 import EditableTitle from './editable/EditableTitle';
+// The following need to be imported, so that MapTo is run for the components
+import EditableText from './editable/EditableText';
+import EditableImage from './editable/EditableImage';
 
 /***
  * Displays a grid of current adventures
