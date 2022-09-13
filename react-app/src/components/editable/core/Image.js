@@ -1,6 +1,4 @@
 import React from 'react'
-import {withConditionalPlaceHolder} from "./util/withConditionalPlaceholder";
-import {withStandardBaseCssClass} from "./util/withStandardBaseCssClass";
 import {RoutedLink} from "./RoutedLink";
 
 export const imageIsEmpty = (props) => (!props.src) || props.src.trim().length === 0
@@ -32,7 +30,7 @@ const ImageContents = (props) => {
   return <ImageInnerContents {...props}/>
 };
 
-const ImageImpl = (props) => {
+export const Image = (props) => {
   if (!props.baseCssClass) {
     props.baseCssClass = 'cmp-image'
   }
@@ -47,8 +45,3 @@ const ImageImpl = (props) => {
   )
 
 };
-
-export const Image = (props) => {
-  const Wrapped = withConditionalPlaceHolder(withStandardBaseCssClass(ImageImpl, "cmp-image"), imageIsEmpty, "Image V2");
-  return <Wrapped {...props}/>
-}

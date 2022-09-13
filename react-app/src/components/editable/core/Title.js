@@ -1,9 +1,7 @@
 import React from 'react'
 import {RoutedLink} from "./RoutedLink";
-import {withConditionalPlaceHolder} from "./util/withConditionalPlaceholder";
-import {withStandardBaseCssClass} from "./util/withStandardBaseCssClass";
 
-const TitleV2Link = (props) => {
+const TitleLink = (props) => {
   return (
     <RoutedLink className={props.baseCssClass + (props.nested ? '-' : '__') +  'link'} isRouted={props.routed} to={props.linkURL}>
       {props.text}
@@ -13,13 +11,13 @@ const TitleV2Link = (props) => {
 
 const TitleV2Contents = (props) => {
   if( !props.linkDisabled){
-    return <TitleV2Link {...props}/>
+    return <TitleLink {...props}/>
   }
 
   return <>{props.text}</>
 };
 
-const TitleImpl = (props) => {
+export const Title = (props) => {
   if (!props.baseCssClass) {
     props.baseCssClass = 'cmp-title'
   }
@@ -41,8 +39,3 @@ const TitleImpl = (props) => {
 }
 
 export const titleIsEmpty = (props) => props.text == null || props.text.trim().length === 0
-
-export const Title = (props) => {
-  const Wrapped = withConditionalPlaceHolder(withStandardBaseCssClass(TitleImpl, "cmp-title"), titleIsEmpty, "TitleV2")
-  return <Wrapped {...props} />
-}

@@ -3,6 +3,8 @@ import { Image, imageIsEmpty } from "./core/Image";
 import React from 'react'
 
 import './EditableImage.scss';
+import { withConditionalPlaceHolder } from "./core/util/withConditionalPlaceholder";
+import { withStandardBaseCssClass } from "./core/util/withStandardBaseCssClass";
 
 const RESOURCE_TYPE = "wknd-app/components/image";
 
@@ -12,7 +14,12 @@ const EditConfig = {
     resourceType: RESOURCE_TYPE
 };
 
-const EditableImage = (props) => <EditableComponent config={EditConfig} {...props}><Image /></EditableComponent>
+const WrappedImage = (props) => {
+    const Wrapped = withConditionalPlaceHolder(withStandardBaseCssClass(Image, "cmp-image"), imageIsEmpty, "Image V2");
+    return <Wrapped {...props}/>
+}
+
+const EditableImage = (props) => <EditableComponent config={EditConfig} {...props}><WrappedImage /></EditableComponent>
 
 MapTo(RESOURCE_TYPE)(EditableImage);
 
