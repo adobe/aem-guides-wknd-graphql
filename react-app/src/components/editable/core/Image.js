@@ -3,7 +3,7 @@ import {withConditionalPlaceHolder} from "./util/withConditionalPlaceholder";
 import {withStandardBaseCssClass} from "./util/withStandardBaseCssClass";
 import {RoutedLink} from "./RoutedLink";
 
-const imageIsEmpty = (props) => (!props.src) || props.src.trim().length === 0
+export const imageIsEmpty = (props) => (!props.src) || props.src.trim().length === 0
 
 const ImageInnerContents = (props) => {
   return (
