@@ -34,8 +34,8 @@ import { useEffect, useState } from "react";
  */
 async function fetchPersistedQuery(persistedQueryName, queryParameters) {
   //*********************************
-  // TODO :: Implement this by following the steps from AEM Headless Tutorial ==> Connect to AEM GraphQL endpoints
-  // https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/graphql-and-react-app.html#connect-to-aem-graphql-endpoints
+  // TODO :: Implement this by following the steps from AEM Headless Tutorial ==> Implement to run AEM GraphQL persisted queries
+  // https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/graphql-and-react-app.html#implement-to-run-aem-graphql-persisted-queries
   //*********************************
 }
 

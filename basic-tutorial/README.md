@@ -25,7 +25,7 @@ A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-ma
   
 1. Complete the implementation steps:
 
-    - [Connect to AEM GraphQL endpoints](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/graphql-and-react-app.html#connect-to-aem-graphql-endpoints)
+    - [Implement to run AEM GraphQL persisted queries](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/graphql-and-react-app.html#implement-to-run-aem-graphql-persisted-queries)
     - [Implement Teams functionality](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/graphql-and-react-app.html#implement-teams-functionality)
     - [Implement Person functionality](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/graphql-and-react-app.html#implement-person-functionality)
 
