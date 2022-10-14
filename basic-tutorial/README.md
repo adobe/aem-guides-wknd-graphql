@@ -14,7 +14,7 @@ A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-ma
 
 1. On the target AEM environment install the `tutorial-solution-content.zip` from the [Solution Files](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/explore-graphql-api.html?lang=en#solution-files) using [Package Manager](http://localhost:4502/crx/packmgr/index.jsp).
 1. Update the [environment variables](#update-environment-variables) to point to your target AEM instance and add authentication (if needed)
-1. Download and install [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/)
+1. Download and install [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). This has been tested with *v14.7.0*
 1. Start the app from the command line:
 
     ```shell
@@ -22,6 +22,13 @@ A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-ma
     $ npm install
     $ npm start
     ```
+  
+1. Complete the implementation steps:
+
+    - [Implement to run AEM GraphQL persisted queries](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/graphql-and-react-app.html#implement-to-run-aem-graphql-persisted-queries)
+    - [Implement Teams functionality](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/graphql-and-react-app.html#implement-teams-functionality)
+    - [Implement Person functionality](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/graphql-and-react-app.html#implement-person-functionality)
+
 
 ## System Requirements
 
