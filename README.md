@@ -1,30 +1,34 @@
 # AEM Guides WKND - GraphQL
 
-This project includes example application(s) that highlights Adobe Experience Manager's GraphQL APIs.
+This project includes example applications that highlight Adobe Experience Manager's GraphQL APIs.
 
-> Interested in accessing the GraphQL feature? Contact your Adobe representative.
+## Examples applications
 
-## React app
+| Framework | Location | Description |
+|--------|-----------|-------------|
+| [Basic tutorial](./basic-tutorial) | [`/basic-tutorial`](./basic-tutorial) | A React application used with the [AEM Headless basic tutorial](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/overview.html) |
+| [React](./react-app) | [`/react-app`](./react-app) | A React application using the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js) |
+| [Next.js](./next-js) | [`/next-js`](./next-js) | A Next.js application using the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js) |
+| [Android](./android-app) | [`/android-app`](./android-app) | An Android application using the [AEM Headless Client for Java](https://github.com/adobe/aem-headless-client-java)
+| [iOS](./ios-app) | [`/ios-app`](./ios-app) | A iOS application built with SwiftUI
+| [Web Component/pure JS](./web-component) | [`/web-component`](./web-component) | A Web Component built using pure JavaScript
+| [Node.js (server-side)](./server-to-server)  | [`/server-to-server`](./server-to-server/) | Node.js server-side app using [AEM Headless Client for Node.js](https://github.com/adobe/aem-headless-client-nodejs) |
 
-A sample React application that displays a list of Adventures from AEM.
+## System Requirements
 
-![React App screenshot](react-app/docs/react-screenshot.png)
+The sample applications in this repository are designed to connect to AEM environments with the GraphQL feature enabled.
 
-### React quickstart
-
-Run the commands:
-
-```
-$ cd aem-guides-wknd-graphql/react-app
-$ npm install
-$ npm start
-```
-
-More details about the React app can be found [here](./react-app).
+ AEM as a Cloud Service | AEM 6.5 | Sample Content |
+------------------------|---------|--------------------|
+Continual               | 6.5.10+ |  [WKND Site 2.1.0+](https://github.com/adobe/aem-guides-wknd/releases/latest) |
 
 ## Tutorial
 
-Looking for a hands on guide? Checkout [Getting Started with AEM Headless - GraphQL](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/overview.html). An end-to-end tutorial illustrating how to build-out and expose content using AEM’s GraphQL APIs and consumed by an external app, in a headless CMS scenario. The React App in this repository is used as part of the tutorial.
+Looking for a hands on guide? Checkout [Getting Started with AEM Headless - GraphQL](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/overview.html). An end-to-end tutorial illustrating how to build-out and expose content using AEM's GraphQL APIs and consumed by an external app, in a headless CMS scenario. The React App in this repository is used as part of the tutorial. Additional resources can be found on the  [AEM Headless Developer Portal](https://experienceleague.adobe.com/landing/experience-manager/headless/developer.html).
+
+## Documentation
+
+* [AEM Headless Developer Portal](https://experienceleague.adobe.com/landing/experience-manager/headless/developer.html)
 
 ## Contributing
 

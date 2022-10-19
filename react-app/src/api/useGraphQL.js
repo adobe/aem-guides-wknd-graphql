@@ -1,87 +1,42 @@
 /*
-Copyright 2020 Adobe
+Copyright 2022 Adobe
 All Rights Reserved.
 
 NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-import {useState, useEffect} from 'react';
-
-const { NODE_ENV, REACT_APP_HOST_URI, REACT_APP_GRAPHQL_ENDPOINT, REACT_APP_AUTHORIZATION } = process.env;
-
-/*
-    Custom React Hook to perform a GraphQL query
-    query paramter is a GraphQL query
-    environment variable REACT_APP_GRAPHQL_ENDPOINT is used to point to endpoint in AEM
-*/
-function useGraphQL(query) {
-
-    let [data, setData] = useState(null);
-    let [errorMessage, setErrors] = useState(null);
-
-    useEffect(() => {
-        window.fetch(
-            getRequestUrl(), 
-            getRequestOptions(query)
-        ).then(response => response.json())
-        .then(({data, errors}) => {
-            //If there are errors in the response set the error message
-            if(errors) {
-                setErrors(mapErrors(errors));
-            }
-            //Otherwise if data in the response set the data as the results
-            if(data) {
-                setData(data);
-            }
-        })
-        .catch((error) => {
-            setErrors(error);
-        });
-    }, [query]);
-
-    return {data, errorMessage}
-}
+import { useState, useEffect } from "react";
+import { aemHeadlessClient, mapErrors } from "./headlessClient";
 
 /**
- * Get the request uri based on environment variables
+ * Custom React Hook to perform a GraphQL query using POST
+ * Executing a GraphQL query directly using POST should ONLY be done during development.
+ * For production always use Persisted Queries see persistedQueries.js
+ *
+ * @param query - GraphQL query
  */
-function getRequestUrl() {
+export default function useGraphQL(query) {
+  let [data, setData] = useState(null);
+  let [errors, setErrors] = useState(null);
 
-    if(NODE_ENV === 'development') {
-        // always use a relative url during development so the proxy is used at setupProxy.js
-        return REACT_APP_GRAPHQL_ENDPOINT;
+  useEffect(() => {
+    async function runGraphQLQuery() {
+      try {
+        const response = await aemHeadlessClient.runQuery(query);
+
+        if (response.errors) setErrors(mapErrors(response.errors));
+        if (response.data) setData(response.data);
+      } catch (e) {
+        console.error(e.toJSON());
+        setErrors(e);
+      }
     }
 
-    // use an absolute URL for everything else
-    return REACT_APP_HOST_URI + REACT_APP_GRAPHQL_ENDPOINT;
-}
-
-/**
- * Set the GraphQL endpoint based on environment variables and passed in query
- * @param {*} query 
- */
-function getRequestOptions(query) {
-
-    // headers and include authorization if authorization set
-    let httpHeaders = new Headers();
-    httpHeaders.append('Content-Type', 'application/json');
-    if(REACT_APP_AUTHORIZATION) {
-        httpHeaders.append('Authorization', 'Basic ' + btoa(REACT_APP_AUTHORIZATION))
+    if (query && query !== "") {
+      runGraphQLQuery();
     }
+  }, [query]);
 
-    return  {
-        method: 'POST',
-        headers: httpHeaders,
-        body: JSON.stringify({query}),
-    };
+  return { data, errors };
 }
-
-/**
- * concatenate error messages into a single string.
- * @param {*} errors 
- */
-function mapErrors(errors) {
-    return errors.map((error) => error.message).join(",");
-}
-export default useGraphQL

@@ -1,0 +1,47 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #FFFFFF;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: auto;
+    padding: 0;
+    padding-top: 10px;
+    font-size: 18px;
+    text-align: left;
+    color: #202020;
+    line-height: 1.1;
+    -webkit-font-smoothing: antialiased;
+    max-width: 1024px;
+}
+
+h1 {
+    text-align: left;
+    padding-top: 10px;
+}
+
+p {
+    line-height: 2rem;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: 10px 0px 0px 0px;
+}
+
+
+.columns {
+    display: flex;
+    gap: 10%;
+}
+
+.content {
+    flex-basis: 100%;
+}
+
+footer {
+    text-align: right;
+
+}
