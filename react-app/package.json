@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@adobe/aem-core-components-react-base": "^1.1.8",
     "@adobe/aem-headless-client-js": "^3.0.1",
-    "@adobe/aem-react-editable-components": "^2.0.1",
+    "@adobe/aem-react-editable-components": "^2.0.3",
     "@adobe/aem-spa-page-model-manager": "^1.4.4",
     "@babel/plugin-proposal-optional-chaining": "^7.18.9",
     "@testing-library/jest-dom": "^5.16.5",
@@ -21,10 +20,10 @@
     "sass": "^1.42.1"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,9 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/preset-env": "^7.19.0",
-    "react-app-rewired": "^2.2.1"
   }
 }
