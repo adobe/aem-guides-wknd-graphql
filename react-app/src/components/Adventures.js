@@ -8,14 +8,13 @@ it.
 */
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import CurrencyFormat from 'react-currency-format';
 import {getAllAdventures, getAdventuresByActivity} from '../api/persistedQueries';
 import Error from './Error';
 import Loading from './Loading';
 import './Adventures.scss';
 
 function Adventures({adventureActivity}) {
-    
+
     const [response, setResponse] = useState();
 
     useEffect(() => {
@@ -41,7 +40,7 @@ function Adventures({adventureActivity}) {
 
     //If there is an error with the GraphQL query
     if(response && response.errors) return <Error errorMessage={response.errors} />;
-    
+
     return (
         <div className="adventures">
           <ul className="adventure-items">
@@ -68,13 +67,13 @@ function AdventureListItem({title, _path, primaryImage, tripLength, price}) {
   return (
         <li className="adventure-item">
           <Link to={`/adventure:${_path}`}>
-            <img className="adventure-item-image" src={primaryImage._path} 
+            <img className="adventure-item-image" src={primaryImage._path}
                  alt={title}/>
           </Link>
           <div className="adventure-item-length-price">
             <div className="adventure-item-length">{tripLength}</div>
             <div className="adventure-item-price">
-                <CurrencyFormat value={price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                {new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(price)}
             </div>
           </div>
           <div className="adventure-item-title">{title}</div>
