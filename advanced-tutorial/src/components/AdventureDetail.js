@@ -70,11 +70,16 @@ function AdventureDetailRender({title,
                                 price,
                                 description,
                                 itinerary,
-                                contributor, references}) {
+                                location,
+                                instructorTeam, administrator, references}) {
 
     return (<>
             <h1 className="adventure-detail-title">{title}</h1>
             <div className="adventure-detail-info">
+                <div className="adventure-detail-info-label">Location</div>
+                <div className="adventure-detail-info-description">{location.name}</div>
+                <div className="adventure-detail-info-label">Team</div>
+                <div className="adventure-detail-info-description">{instructorTeam._metadata.stringMetadata[0].value}</div>
                 <div className="adventure-detail-info-label">Activity</div>
                 <div className="adventure-detail-info-description">{activity}</div>
                 <div className="adventure-detail-info-label">Type</div>
@@ -99,8 +104,13 @@ function AdventureDetailRender({title,
 
             {/* Render the itinerary without any custom render options (just use defaults) */}
             <div className="adventure-detail-itinerary">{mapJsonRichText(itinerary.json)}</div>
-            <Contributer {...contributor} />
             </div>
+
+            <Location {...location} />
+
+            <Administrator {...administrator} />
+
+            <InstructorTeam {...instructorTeam} />
     </>
     );
 
@@ -172,6 +182,59 @@ function customRenderOptions(references) {
             }
         },
     };
+}
+
+function Location(props){
+
+    if(!props) {
+        return null;
+    }
+    
+    return (
+        <>
+            <div className='adventure-detail-location'>
+                <h2>Where we meet</h2>
+                <div>Phone:{props.contactInfo.phone}</div>
+                <div>Email:{props.contactInfo.email}</div>
+            </div>
+        </>);
+}
+
+function InstructorTeam(props){
+
+    if(!props) {
+        return null;
+    }
+    
+    return (
+        <>
+            <div className='adventure-detail-team'>
+                <h2>Instruction Team</h2>
+                <hr />
+                <div>Team Name: {props._metadata.stringMetadata[0].value}</div>
+                <hr />
+            </div>
+        </>);
+}
+
+function Administrator(props){
+
+    if(!props) {
+        return null;
+    }
+    
+    return (
+        <>
+            <div className='adventure-detail-administrator'>
+                <h2>Administrator</h2>
+                <hr />
+                <div>Name: {props.fullName}</div>
+                <hr />
+                <div>Phone: {props.contactInfo.phone}</div>
+                <div>Email: {props.contactInfo.email}</div>
+            </div>
+        </>);
+
 }
 
 function Contributer(props) {

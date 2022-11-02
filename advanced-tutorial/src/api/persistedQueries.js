@@ -28,7 +28,7 @@ export const getAllAdventures = async function() {
  */
  export const getAdventureBySlug = async function(adventureSlug) {
     const queryVariables = {'slug': adventureSlug};
-    return executePersistedQuery('wknd-shared/adventure-by-slug', queryVariables);
+    return executePersistedQuery('wknd-shared/getAllAdventureDetailsBySlug', queryVariables);
 }
 
 /**
