@@ -17,7 +17,7 @@ import Loading from "./Loading";
 
 
 
-function AdventuresNew({ adventureActivity }) {
+function Adventures({ adventureActivity }) {
 
     const { adventures, error } = useAllAdventures(adventureActivity);
 
@@ -66,4 +66,4 @@ function AdventureListItem({ title, slug, primaryImage, tripLength, price }) {
     );
 }
 
-export default AdventuresNew;
+export default Adventures;
