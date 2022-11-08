@@ -100,7 +100,7 @@ function customRenderOptions(references) {
         },
         'AdventureModel': (node) => {
             // when __typename === AdventureModel
-            return <Link to={`/adventure:${node.slug}`}>{`${node.title}: ${node.price}`}</Link>;
+            return <Link to={`/adventure/:${node.slug}`}>{`${node.title}: ${node.price}`}</Link>;
         }
     };
 
@@ -112,12 +112,12 @@ function customRenderOptions(references) {
                 let reference;
 
                 // asset reference
-                if (node.data.path) {
+                if (references && node.data.path) {
                     // find reference based on path
                     reference = references.find(ref => ref._path === node.data.path);
                 }
                 // Fragment Reference
-                if (node.data.href) {
+                if (references && node.data.href) {
                     // find in-line reference within _references array based on href and _path properties
                     reference = references.find(ref => ref._path === node.data.href);
                 }
