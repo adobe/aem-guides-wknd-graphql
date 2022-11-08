@@ -110,9 +110,8 @@ export function useAllAdventures(adventureActivity) {
  */
 export function useAdventureBySlug(slugName) {
   const [adventure, setAdventure] = useState(null);
+  const [references, setReferences] = useState(null);
   const [errors, setErrors] = useState(null);
-
-  console.log('slugName:' + slugName);
 
   useEffect(() => {
     async function fetchData() {
@@ -122,20 +121,24 @@ export function useAdventureBySlug(slugName) {
       // The key is 'slug' as defined in the persisted query
       const queryParameters = { slug: slugName };
 
-      console.log('Calling PQ with :' + slugName);
-
       // Call the AEM GraphQL persisted query named "wknd-shared/adventure-by-slug" with parameters
       response = await fetchPersistedQuery(
         "wknd-shared/adventure-by-slug",
         queryParameters
       );
 
-      console.log(response.data.adventureList.items);
-      // Sets the adventures variable to the list of adventure JSON objects
-      setAdventure(response.data?.adventureList?.items[0]);
+      if (response.err) {
+        // Capture errors from the HTTP request
+        setErrors(response.err);
+      } else if (response.data?.adventureList?.items?.length === 1) {
+        // Set the Adventure data after data validation
+        setAdventure(response.data.adventureList.items[0]);
+        setReferences(response.data.adventureList._references);
+      } else {
+        // Set an error if no Adventure could be found
+        setErrors(`Cannot find Adventure with slug: ${slugName}`);
+      }
 
-      // Set any errors
-      setErrors(response.err);
     }
 
     // Call the internal fetchData() as per React best practices
@@ -143,5 +146,5 @@ export function useAdventureBySlug(slugName) {
 
 }, [slugName]);
 
-return { adventure, errors };
+return { adventure, references, errors };
 }

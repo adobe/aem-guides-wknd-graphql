@@ -51,7 +51,7 @@ function AdventureListItem({ title, slug, primaryImage, tripLength, price }) {
     }
     return (
         <li className="adventure-item">
-            <Link to={`/adventure:${slug}`}>
+            <Link to={`/adventure/${slug}`}>
                 <img className="adventure-item-image" src={primaryImage._path}
                     alt={title} />
             </Link>
