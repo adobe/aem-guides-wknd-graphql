@@ -52,7 +52,7 @@ function AdventureDetailRender({ title,
     price,
     description,
     itinerary,
-    contributor, references }) {
+    references }) {
 
     return (<>
         <h1 className="adventure-detail-title">{title}</h1>
@@ -81,7 +81,6 @@ function AdventureDetailRender({ title,
 
             {/* Render the itinerary without any custom render options (just use defaults) */}
             <div className="adventure-detail-itinerary">{mapJsonRichText(itinerary.json)}</div>
-            <Contributer {...contributor} />
         </div>
     </>
     );
@@ -128,25 +127,5 @@ function customRenderOptions(references) {
         },
     };
 }
-
-function Contributer(props) {
-
-    if (!props) {
-        return null;
-    }
-    let pictureReference = null;
-    if (props.pictureReference) {
-        pictureReference = <img className="contributor-image" src={props.pictureReference._path} alt={props.fullName} />
-    }
-
-    return (
-        <div className="contributor">
-            <hr className="contributor-separator" />
-            {pictureReference}
-            <h3 className="contributor-name">{props.fullName}</h3>
-            <h4 className="contributor-occupation">{props.occupation}</h4>
-        </div>);
-}
-
 
 export default AdventureDetail;
