@@ -99,7 +99,7 @@ function customRenderOptions(references) {
         },
         'AdventureModel': (node) => {
             // when __typename === AdventureModel
-            return <Link to={`/adventure/:${node.slug}`}>{`${node.title}: ${node.price}`}</Link>;
+            return <Link to={`/adventure:${node.slug}`}>{`${node.title}: ${node.price}`}</Link>;
         }
     };
 
