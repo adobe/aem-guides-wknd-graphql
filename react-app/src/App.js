@@ -27,7 +27,7 @@ function App() {
           <hr />
         </header>
         <Routes>
-          <Route path="/adventure:slug" element={<AdventureDetail />} />
+          <Route path="/adventure/:slug" element={<AdventureDetail />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </div>
