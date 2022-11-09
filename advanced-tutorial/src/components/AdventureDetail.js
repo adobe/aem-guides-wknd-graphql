@@ -52,11 +52,14 @@ function AdventureDetailRender({ title,
     price,
     description,
     itinerary,
-    references }) {
+    references, location, administrator, instructorTeam }) {
 
     return (<>
         <h1 className="adventure-detail-title">{title}</h1>
         <div className="adventure-detail-info">
+
+            <LocationInfo {...location} />
+
             <div className="adventure-detail-info-label">Activity</div>
             <div className="adventure-detail-info-description">{activity}</div>
             <div className="adventure-detail-info-label">Type</div>
@@ -81,6 +84,13 @@ function AdventureDetailRender({ title,
 
             {/* Render the itinerary without any custom render options (just use defaults) */}
             <div className="adventure-detail-itinerary">{mapJsonRichText(itinerary.json)}</div>
+
+            <Location {...location} />
+
+            <Administrator {...administrator} />
+
+            <InstructorTeam {...instructorTeam} />
+
         </div>
     </>
     );
@@ -127,5 +137,72 @@ function customRenderOptions(references) {
         },
     };
 }
+
+function LocationInfo({name}) {
+
+    if (!name) {
+        return null;
+    }
+
+    return (
+        <>
+            <div className="adventure-detail-info-label">Location</div>
+            <div className="adventure-detail-info-description">{name}</div>
+        </>
+    );
+
+}
+function Location({ contactInfo }) {
+
+    if (!contactInfo) {
+        return null;
+    }
+
+    return (
+        <>
+            <div className='adventure-detail-location'>
+                <h2>Where we meet</h2>
+                <hr />
+                <div className="adventure-detail-addtional-info">Phone:{contactInfo.phone}</div>
+                <div className="adventure-detail-addtional-info">Email:{contactInfo.email}</div>
+            </div>
+        </>);
+}
+
+function InstructorTeam({ _metadata }) {
+
+    if (!_metadata) {
+        return null;
+    }
+
+    return (
+        <>
+            <div className='adventure-detail-team'>
+                <h2>Instruction Team</h2>
+                <hr />
+                <div className="adventure-detail-addtional-info">Team Name: {_metadata.stringMetadata[0].value}</div>
+            </div>
+        </>);
+}
+
+function Administrator({ fullName, contactInfo }) {
+
+    if (!fullName || !contactInfo) {
+        return null;
+    }
+
+    return (
+        <>
+            <div className='adventure-detail-administrator'>
+                <h2>Administrator</h2>
+                <hr />
+                <div className="adventure-detail-addtional-info">Name: {fullName}</div>
+                <div className="adventure-detail-addtional-info">Phone: {contactInfo.phone}</div>
+                <div className="adventure-detail-addtional-info">Email: {contactInfo.email}</div>
+            </div>
+        </>);
+
+}
+
 
 export default AdventureDetail;

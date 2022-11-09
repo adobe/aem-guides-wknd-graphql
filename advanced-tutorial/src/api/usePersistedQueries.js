@@ -120,9 +120,9 @@ export function useAdventureBySlug(slugName) {
       // The key is 'slug' as defined in the persisted query
       const queryParameters = { slug: slugName };
 
-      // Call the AEM GraphQL persisted query named "wknd-shared/adventure-by-slug" with parameters
+      // Call the AEM GraphQL persisted query named "wknd-shared/adventure-details-by-slug" with parameters
       response = await fetchPersistedQuery(
-        "wknd-shared/adventure-by-slug",
+        "wknd-shared/adventure-details-by-slug",
         queryParameters
       );
 

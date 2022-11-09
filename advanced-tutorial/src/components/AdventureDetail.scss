@@ -72,6 +72,20 @@ it.
   font-size: $font-size-large;
 }
 
+.adventure-detail-administrator,
+.adventure-detail-team,
+.adventure-detail-location {
+  margin-top: 1em;
+  width: 100%;
+  float: right;
+}
+
+.adventure-detail-addtional-info {
+  padding: 10px 0px 5px 0px;
+  text-transform: uppercase;
+}
+
+
 @media only screen and (max-width: $mobile-breakpoint) {
   .adventure-detail-info {
     display: none;
