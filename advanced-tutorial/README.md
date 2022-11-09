@@ -12,7 +12,7 @@ A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-ma
 
 ## How to use
 
-1. On the target AEM environment install the `aem-guides-wknd.all-x.x.x.zip` from the [latest release of the WKND Site](https://github.com/adobe/aem-guides-wknd/releases/latest) using [Package Manager](http://localhost:4502/crx/packmgr/index.jsp).
+1. Follow [Advanced Concepts of AEM Headless](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/advanced-tutorial/overview.html) tutorial steps **OR** install the [Advanced-GraphQL-Tutorial-Solution-Package](https://experienceleague.adobe.com/docs/experience-manager-learn/assets/Advanced-GraphQL-Tutorial-Solution-Package-1.2.zip) and `aem-guides-wknd.all-x.x.x.zip` from the [latest release of the WKND Site](https://github.com/adobe/aem-guides-wknd/releases/latest) using [Package Manager](http://localhost:4502/crx/packmgr/index.jsp).
 1. Update the [environment variables](#update-environment-variables) to point to your target AEM instance and add authentication (if needed)
 1. Download and install [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/)
 1. Start the app from the command line:
@@ -22,7 +22,6 @@ A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-ma
     $ npm install
     $ npm start
     ```
-
 ## System Requirements
 
  AEM as a Cloud Service | AEM 6.5 | Sample Content | Node   | npm | 
