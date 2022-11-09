@@ -57,11 +57,13 @@ async function fetchPersistedQuery(persistedQueryName, queryParameters) {
 }
 
 /**
+ * React custom hook that returns a list of adevntures by activity. If no activity is provided, all adventures are returned.
+ * 
  * Custom hook that calls the 'wknd-shared/adventures-all' or 'wknd-shared/adventures-by-activity' persisted query.
  *
  * @returns an array of Adventure JSON objects, and array of errors
  */
-export function useAllAdventures(adventureActivity) {
+export function useAdventuresByActivity(adventureActivity) {
 
   const [adventures, setAdventures] = useState(null);
   const [errors, setErrors] = useState(null);
@@ -74,15 +76,12 @@ export function useAllAdventures(adventureActivity) {
 
       // if an activity is set (i.e "Camping", "Hiking"...) call wknd-shared/adventures-by-activity query
       if (adventureActivity && adventureActivity !== '') {
-
         // The key is 'activity' as defined in the persisted query
         const queryParameters = { activity: adventureActivity };
 
         // Call the AEM GraphQL persisted query named "wknd-shared/adventures-by-activity" with parameters
         response = await fetchPersistedQuery("wknd-shared/adventures-by-activity", queryParameters);
-
       } else {
-
         // Call the AEM GraphQL persisted query named "wknd-shared/adventures-all"
         response = await fetchPersistedQuery("wknd-shared/adventures-all");
       }
@@ -144,7 +143,7 @@ export function useAdventureBySlug(slugName) {
     // Call the internal fetchData() as per React best practices
     fetchData();
 
-}, [slugName]);
+  }, [slugName]);
 
-return { adventure, references, errors };
+  return { adventure, references, errors };
 }

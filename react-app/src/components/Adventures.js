@@ -6,20 +6,17 @@ NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-
 import React from "react";
 import CurrencyFormat from 'react-currency-format';
 import { Link } from "react-router-dom";
-import { useAllAdventures } from "../api/usePersistedQueries";
-import './Adventures.scss';
+import { useAdventuresByActivity } from "../api/usePersistedQueries";
 import Error from "./Error";
 import Loading from "./Loading";
-
-
+import './Adventures.scss';
 
 function Adventures({ adventureActivity }) {
 
-    const { adventures, error } = useAllAdventures(adventureActivity);
+    const { adventures, error } = useAdventuresByActivity(adventureActivity);
 
     // Handle error and loading conditions
     if (error) {
@@ -29,7 +26,6 @@ function Adventures({ adventureActivity }) {
     }
 
     return (
-
         <div className="adventures">
             <ul className="adventure-items">
                 {adventures.map((adventure, index) => {
@@ -39,16 +35,15 @@ function Adventures({ adventureActivity }) {
         </div>
 
     );
-
 }
 
 // Render individual Adventure item
 function AdventureListItem({ title, slug, primaryImage, tripLength, price }) {
-
-    //Must have title, path, and image
+    // Must have title, path, and image
     if (!title || !title || !primaryImage) {
         return null;
     }
+
     return (
         <li className="adventure-item">
             <Link to={`/adventure/${slug}`}>
