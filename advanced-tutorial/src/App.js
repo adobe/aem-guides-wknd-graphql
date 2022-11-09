@@ -21,13 +21,13 @@ function App() {
       <ScrollToTop />
       <div className="App">
         <header>
-          <Link to={"/"}>
-            <img src={logo} className="logo" alt="WKND Logo" />
-          </Link>
+        <Link to={"/"}>
+          <img src={logo} className="logo" alt="WKND Logo" />
+        </Link>
           <hr />
         </header>
         <Routes>
-          <Route path="/adventure:slug" element={<AdventureDetail />} />
+          <Route path="/adventure/:slug" element={<AdventureDetail />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </div>
