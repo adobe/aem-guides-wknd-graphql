@@ -62,7 +62,7 @@ function Adventures({adventureActivity}) {
 function AdventureListItem({title, slug, primaryImage, tripLength, price}) {
 
   //Must have title, path, and image
-  if(!title || !title || !primaryImage ) {
+  if(!title || !slug || !primaryImage ) {
     return null;
   }
   return (
