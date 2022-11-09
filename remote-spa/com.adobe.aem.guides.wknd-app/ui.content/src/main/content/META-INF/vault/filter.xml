@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/wknd-app" mode="merge"/>
+    <filter root="/content/wknd-app" mode="merge"/>
+    <filter root="/content/dam/wknd-app/asset.jpg" mode="merge"/>
+    <filter root="/content/experience-fragments/wknd-app" mode="merge"/>
+
+    <!-- Add the Sling Mapping rules for the WKND App -->
+    <filter root="/etc/map" mode="merge"/>
+</workspaceFilter>
