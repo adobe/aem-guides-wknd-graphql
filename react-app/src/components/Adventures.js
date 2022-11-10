@@ -7,7 +7,6 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 import React from "react";
-import CurrencyFormat from 'react-currency-format';
 import { Link } from "react-router-dom";
 import { useAdventuresByActivity } from "../api/usePersistedQueries";
 import Error from "./Error";
@@ -33,7 +32,6 @@ function Adventures({ adventureActivity }) {
                 })}
             </ul>
         </div>
-
     );
 }
 
@@ -53,7 +51,7 @@ function AdventureListItem({ title, slug, primaryImage, tripLength, price }) {
             <div className="adventure-item-length-price">
                 <div className="adventure-item-length">{tripLength}</div>
                 <div className="adventure-item-price">
-                    <CurrencyFormat value={price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                    {new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(price)}
                 </div>
             </div>
             <div className="adventure-item-title">{title}</div>
