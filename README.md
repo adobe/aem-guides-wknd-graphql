@@ -7,6 +7,7 @@ This project includes example applications that highlight Adobe Experience Manag
 | Framework | Location | Description |
 |--------|-----------|-------------|
 | [Basic tutorial](./basic-tutorial) | [`/basic-tutorial`](./basic-tutorial) | A React application used with the [AEM Headless basic tutorial](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/overview.html) |
+| [Advanced tutorial](./advanced-tutorial/) | [`/advanced-tutorial`](./advanced-tutorial) | The WKND React application used with the [Advanced Concepts of AEM Headless](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/advanced-tutorial/overview.html) |
 | [React](./react-app) | [`/react-app`](./react-app) | A React application using the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js) |
 | [Next.js](./next-js) | [`/next-js`](./next-js) | A Next.js application using the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js) |
 | [Android](./android-app) | [`/android-app`](./android-app) | An Android application using the [AEM Headless Client for Java](https://github.com/adobe/aem-headless-client-java)
