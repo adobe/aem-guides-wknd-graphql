@@ -22,10 +22,6 @@ import aemHeadlessClient from "./aemHeadlessClient";
  */
 
 /**
- *  
- */
-
-/**
  * Private, shared function that invokes the AEM Headless client.
  * 
  * @param {String} persistedQueryName the fully qualified name of the persisted query
@@ -75,7 +71,7 @@ export function useAdventuresByActivity(adventureActivity) {
       let response;
 
       // if an activity is set (i.e "Camping", "Hiking"...) call wknd-shared/adventures-by-activity query
-      if (adventureActivity && adventureActivity !== '') {
+      if (adventureActivity) {
         // The key is 'activity' as defined in the persisted query
         const queryParameters = { activity: adventureActivity };
 

@@ -7,9 +7,8 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 import React from 'react';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAdventureBySlug } from "../api/usePersistedQueries";
-import CurrencyFormat from 'react-currency-format';
 import backIcon from '../images/icon-close.svg';
 import { mapJsonRichText } from '../utils/renderRichText';
 import './AdventureDetail.scss';
@@ -20,8 +19,6 @@ function AdventureDetail() {
 
     // Read the slug value which is the parameter used to query for the adventure's details
     const { slug } = useParams();
-
-    const navigate = useNavigate();
 
     // Query AEM for the Adventures's details, using the `slug`
     const { adventure, references, error } = useAdventureBySlug(slug);
@@ -34,9 +31,9 @@ function AdventureDetail() {
     }
 
     return (<div className="adventure-detail">
-        <button className="adventure-detail-close-button" onClick={() => navigate(-1)} >
+        <Link className="adventure-detail-close-button"  to="/">
             <img className="Backbutton-icon" src={backIcon} alt="Return" />
-        </button>
+        </Link>
         <AdventureDetailRender {...adventure} references={references} />
     </div>);
 
@@ -69,7 +66,7 @@ function AdventureDetailRender({ title,
             <div className="adventure-detail-info-description">{difficulty}</div>
             <div className="adventure-detail-info-label">Price</div>
             <div className="adventure-detail-info-description">
-                <CurrencyFormat value={price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price)}
             </div>
         </div>
         <div className="adventure-detail-content">
