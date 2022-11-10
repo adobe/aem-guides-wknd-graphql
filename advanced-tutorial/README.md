@@ -4,7 +4,7 @@ Advanced React application that highlights Adobe Experience Manager's GraphQL AP
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![React App Screenshot](./docs/react-screenshot.png)
+![React App Screenshot](./docs/wknd-react-app-advanced.png)
 
 ## Tutorial
 
