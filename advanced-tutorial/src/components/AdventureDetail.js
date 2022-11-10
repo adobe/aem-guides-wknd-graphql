@@ -152,6 +152,7 @@ function LocationInfo({name}) {
     );
 
 }
+
 function Location({ contactInfo }) {
 
     if (!contactInfo) {
