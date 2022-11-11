@@ -15,6 +15,8 @@ import AdventureDetail from "./components/AdventureDetail";
 import { Link } from "react-router-dom";
 import "./App.scss";
 
+const {  REACT_APP_PUBLIC_URI } = process.env;
+
 function App() {
   return (
     <Router>
@@ -22,7 +24,7 @@ function App() {
       <div className="App">
         <header>
         <Link to={"/"}>
-          <img src={logo} className="logo" alt="WKND Logo"/>
+          <img src={REACT_APP_PUBLIC_URI + '/' + logo} className="logo" alt="WKND Logo"/>
         </Link>        
         <hr />
         </header>

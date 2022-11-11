@@ -10,6 +10,7 @@ it.
 /* Normalize */
 @import '~normalize-scss/sass/normalize';
 @import './styles/variables';
+@import './styles/grid-init';
 
 body {
     background-color: $body-bg;

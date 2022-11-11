@@ -9,6 +9,13 @@ it.
 import React, {useState} from 'react';
 import Adventures from './Adventures';
 
+import EditableTitle from './editable/EditableTitle';
+import { ResponsiveGrid } from '@adobe/aem-react-editable-components';
+
+// The following need to be imported, so that MapTo is run for the components
+import EditableText from './editable/EditableText';
+import EditableImage from './editable/EditableImage';
+
 /***
  * Displays a grid of current adventures
  */
@@ -17,7 +24,15 @@ import Adventures from './Adventures';
 
     return (
       <div className="Home">
-        <h2>Current Adventures</h2>
+
+        <ResponsiveGrid
+            pagePath='/content/wknd-app/us/en/home' 
+            itemPath='root/responsivegrid'/>
+
+        <EditableTitle
+            pagePath='/content/wknd-app/us/en/home'
+            itemPath='root/title'/>
+
         <div className="adventure-nav">
           <button onClick={() => setAdventureActivity('')}>All</button>
           <button onClick={() => setAdventureActivity('Camping')}>Camping</button>

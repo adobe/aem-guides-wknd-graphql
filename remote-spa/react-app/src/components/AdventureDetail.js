@@ -15,9 +15,14 @@ import './AdventureDetail.scss';
 import Error from "./Error";
 import Loading from "./Loading";
 
+import { ResponsiveGrid } from '@adobe/aem-react-editable-components';
+
+const { REACT_APP_PUBLIC_URI } = process.env;
+
 function AdventureDetail() {
 
     // Read the slug value which is the parameter used to query for the adventure's details
+    // This will also be used to specify the AEM Page to store/read editable content from
     const { slug } = useParams();
 
     // Query AEM for the Adventures's details, using the `slug`
@@ -32,24 +37,14 @@ function AdventureDetail() {
 
     return (<div className="adventure-detail">
         <Link className="adventure-detail-close-button"  to="/">
-            <img className="Backbutton-icon" src={backIcon} alt="Return" />
+            <img className="Backbutton-icon" src={REACT_APP_PUBLIC_URI + '/' + backIcon} alt="Return" />
         </Link>
         <AdventureDetailRender {...adventure} references={references} />
     </div>);
-
 }
 
-function AdventureDetailRender({ title,
-    primaryImage,
-    activity,
-    adventureType,
-    tripLength,
-    groupSize,
-    difficulty,
-    price,
-    description,
-    itinerary,
-    references }) {
+function AdventureDetailRender({ title, primaryImage, activity, adventureType, tripLength, groupSize, 
+    difficulty, price, description, itinerary, references, slug }) {
 
     return (<>
         <h1 className="adventure-detail-title">{title}</h1>
@@ -73,7 +68,13 @@ function AdventureDetailRender({ title,
             <img className="adventure-detail-primaryimage"
                 src={primaryImage._path} alt={title} />
             <div>{mapJsonRichText(description.json, customRenderOptions(references))}</div>
+            
+            <ResponsiveGrid 
+                pagePath={`/content/wknd-app/us/en/home/adventure/${slug}`}
+                itemPath="root/responsivegrid"/> 
+
             <h2>Itinerary</h2>
+
             <hr />
 
             {/* Render the itinerary without any custom render options (just use defaults) */}
