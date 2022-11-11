@@ -18,7 +18,7 @@ A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-ma
 1. Start the app from the command line:
 
     ```shell
-    $ cd aem-guides-wknd-graphql/react-app
+    $ cd aem-guides-wknd-graphql/react-app-tutorial
     $ npm install
     $ npm start
     ```
