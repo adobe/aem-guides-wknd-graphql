@@ -1,24 +1,25 @@
-# React App - WKND Adventures
+# Preview tutorial - WKND Adventures
 
-An example React application that highlights Adobe Experience Manager's GraphQL APIs and the [AEM Headless Client for JavaScript](https://github.com/adobe/aem-headless-client-js).
+An example React application that highlights Adobe Experience Manager's Content Fragment preview functionality.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ![React App Screenshot](./docs/react-screenshot.png)
 
-## Tutorial
+## Tutorial/How-to
 
-A corresponding [tutorial](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/graphql/multi-step/setup.html) is available where you can learn how to setup and run the application to query data from an AEM environment using GraphQL.
+A corresponding [Preview how-to](https://experienceleague.adobe.com/docs/experience-manager-learn/getting-started-with-aem-headless/how-to/preview.html) is available where you can learn how in-app preview of Content Fragments works.
 
 ## How to use
 
 1. On the target AEM environment install the `aem-guides-wknd-shared.ui.content-x.x.x.zip` from the [latest release of the WKND Shared Content](https://github.com/adobe/aem-guides-wknd-shared/releases/latest) using [Package Manager](http://localhost:4502/crx/packmgr/index.jsp).
 1. Update the [environment variables](#update-environment-variables) to point to your target AEM instance and add authentication (if needed)
 1. Download and install [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/)
+1. Configure the app's `.env.development` file to connect to your AEM Author service. You may require configuring a Developer Token or Service Credentials to explore this feature from your locally running app. See Update Environment Variable section below.
 1. Start the app from the command line:
 
     ```shell
-    $ cd aem-guides-wknd-graphql/react-app
+    $ cd aem-guides-wknd-graphql/preview-tutorial
     $ npm install
     $ npm start
     ```
