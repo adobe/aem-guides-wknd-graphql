@@ -84,20 +84,18 @@ export default function Layout({ children }) {
                   <div className="hidden sm:block sm:ml-6">
                     <div className="flex space-x-4">
                       {navigation.map((item) => (
-                        <Link
+                        (<Link
                           key={item.name}
                           href={item.href}
-                        >
-                          <a
-                            aria-current={isCurrentPage(item.href) ? 'page' : undefined}
-                            className={classNames(
-                              isCurrentPage(item.href) ? 'bg-yellow-300 text-gray-700' : 'text-gray-800 hover:bg-yellow-200 hover:text-gray-700',
-                              'px-3 py-2 rounded-md text-sm font-medium'
-                            )}
-                          >
-                            {item.name}
-                          </a>
-                        </Link>
+                          aria-current={isCurrentPage(item.href) ? 'page' : undefined}
+                          className={classNames(
+                            isCurrentPage(item.href) ? 'bg-yellow-300 text-gray-700' : 'text-gray-800 hover:bg-yellow-200 hover:text-gray-700',
+                            'px-3 py-2 rounded-md text-sm font-medium'
+                          )}>
+
+                          {item.name}
+
+                        </Link>)
                       ))}
                     </div>
                   </div>

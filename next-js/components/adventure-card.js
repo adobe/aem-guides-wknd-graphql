@@ -28,7 +28,7 @@ export default function AdventureCard({ slug, title, price, duration, imageSrc }
         <p className="text-sm font-medium text-gray-900">${price} USD</p>
       </div>
       <h3 className="font-semibold text-gray-700">
-        <Link href={`adventures/${slug}`}>
+        <Link href={`adventures/${slug}`} legacyBehavior>
           <div>
             <span aria-hidden="true" className="absolute inset-0" />
             {title}
@@ -36,5 +36,5 @@ export default function AdventureCard({ slug, title, price, duration, imageSrc }
         </Link>
       </h3>
     </div>
-  )
+  );
 }
