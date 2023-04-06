@@ -7,7 +7,7 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./utils/scrollToTop";
 import logo from "./images/wknd-logo-dk.svg";
 import Home from "./components/Home";
@@ -26,14 +26,10 @@ function App() {
         </Link>        
         <hr />
         </header>
-        <Switch>
-          <Route path='/adventure/:slug'>
-            <AdventureDetail />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path='/adventure/:slug' element={<AdventureDetail/>}/>
+          <Route path="/" element={<Home />}/>
+        </Routes>
       </div>
     </Router>
   );
