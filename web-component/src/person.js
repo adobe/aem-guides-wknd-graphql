@@ -1,6 +1,6 @@
 // Defines the Headless Service object w/ properties
 const aemHeadlessService = {
-  aemHost: "https://publish-p65804-e666805.adobeaemcloud.com",
+  aemHost: "http://localhost:4502",
   graphqlAPIEndpoint: "graphql/execute.json",
   projectName: "my-project",
   persistedQueryName: "person-by-name",
@@ -9,8 +9,8 @@ const aemHeadlessService = {
 
 //AEM credentials object if connecting to AEM-Author Service, not needed for publish service
 const aemCredentials = {
-  username: "",
-  password: "",
+  username: "admin",
+  password: "admin",
 };
 
 //Person Info HTML block which will be added as HTML Template and appended to shadow DOM upon JSON Value replacements

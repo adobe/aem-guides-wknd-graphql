@@ -17,12 +17,17 @@ import Loading from "./Loading";
 
 function AdventureDetail() {
 
-    // Read the slug value which is the parameter used to query for the adventure's details
-    const path = '/' + useParams()[0];
+    // Read the `path` value which is the parameter used to query for the adventure's details
+    // since the params value captures the `*` wildcard in `/adventure/*`, or everything after the first `/` in the Content Fragment path.
+    const params = useParams();
+    const pathParam = params["*"];
+
+    // Add the leading '/' back on 
+    const path = '/' + pathParam;
 
     console.log("BY PATH", path);
 
-    // Query AEM for the Adventures's details, using the `slug`
+    // Query AEM for the Adventures's details, using the `path`
     const { adventure, references, error } = useAdventureByPath(path);
 
     // Handle error and loading conditions
