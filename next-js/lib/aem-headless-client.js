@@ -67,11 +67,11 @@ class AemHeadlessClient {
    * 
    * @returns a GraphQL response of all adventures.
    */
-  async getAllAdventures() {
+  async getAllAdventures(assetTransform = {}) {
     const queryAdventuresAll = process.env.NEXT_PUBLIC_AEM_GRAPHQL_ENDPOINT + '/adventures-all';
       
     try {
-      return await this.aemHeadlessClient.runPersistedQuery(queryAdventuresAll);
+      return await this.aemHeadlessClient.runPersistedQuery(queryAdventuresAll, {'assetTransform': assetTransform});
     } catch(e) {
       console.error(e)
     }    
@@ -105,8 +105,8 @@ class AemHeadlessClient {
    * @param {*} slug the adventure's slug
    * @returns the adventure's details.
    */
-  async getAdventuresBySlug(slug) {
-    const queryVariables = {'slug': slug};
+  async getAdventuresBySlug(slug, assetTransform = {}) {
+    const queryVariables = {'slug': slug, 'assetTransform': assetTransform};
     const queryAdventuresBySlug = process.env.NEXT_PUBLIC_AEM_GRAPHQL_ENDPOINT + '/adventure-by-slug';
 
     try {
