@@ -98,7 +98,7 @@ public class AdventureDetailFragment extends Fragment implements LoaderManager.L
                 }
             }
 
-            adventureDetailImage.setImageDrawable(RemoteImagesCache.getInstance().getDrawable(adventure.getPrimaryImagePath()));
+            adventureDetailImage.setImageDrawable(RemoteImagesCache.getInstance().getDrawable(adventure.getPrimaryImageSrc()));
 
             adventureDetailTextView.setText(
                     Html.fromHtml(

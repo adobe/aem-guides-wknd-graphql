@@ -12,10 +12,7 @@ query ($adventurePath: String!) {
       adventurePrice
       adventurePrimaryImage {
         ... on ImageRef {
-          _path
-          mimeType
-          width
-          height
+          _dynamicUrl
         }
       }
       adventureDescription {

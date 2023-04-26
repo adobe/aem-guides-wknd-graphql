@@ -57,12 +57,12 @@ public class Adventure implements Serializable {
                 ", slug='" + slug + '\'' +
                 ", price='" + price + '\'' +
                 ", tripLength='" + tripLength + '\'' +
-                ", primaryImagePath='" + primaryImage.path + '\'' +
+                ", primaryImageSrc='" + getPrimaryImageSrc() + '\'' +
                 ']';
     }
 
-    public String getPrimaryImagePath() {
-        return primaryImage.path;
+    public String getPrimaryImageSrc() {
+        return primaryImage.dynamicUrl;
     }
 
     public String getPath() {
@@ -109,16 +109,16 @@ public class Adventure implements Serializable {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class PrimaryImage {
-        final String path;
+        final String dynamicUrl;
 
-        public PrimaryImage(@JsonProperty("_path") String path) {
-            this.path = path;
+        public PrimaryImage(@JsonProperty("_dynamicUrl") String dynamicUrl) {
+            this.dynamicUrl = dynamicUrl;
         }
 
         @Override
         public String toString() {
             return "[PrimaryImage " +
-                    "path='" + path + '\'' +
+                    "dynamicUrl='" + dynamicUrl + '\'' +
                     ']';
         }
     }
