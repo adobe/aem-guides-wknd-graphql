@@ -13,10 +13,10 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // The http/https protocol scheme used to access the AEM_HOST
-AEM_SCHEME = http
+AEM_SCHEME = https
 
 // Target hostname for AEM environment, do not include http:// or https://
-AEM_HOST = localhost:4503
+AEM_HOST = publish-p49018-e1039950.adobeaemcloud.com
 
 // If connecting to an AEM Publish environment, no need to set an AUTH_METHOD
 // Support for Basic Authentication - Set AUTH_METHOD to basic and set BASIC_AUTH_CREDENTIALS

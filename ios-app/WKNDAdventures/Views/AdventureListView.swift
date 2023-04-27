@@ -17,7 +17,7 @@ struct AdventureListView: View {
     @State var adventures: [Adventure] = []
     
     private func loadAdventures() {
-        aem.getAdventures( completion: { (adventures) in
+        aem.getAdventures( params: [ "imageWidth": "50", "imageQuality": "100" ], completion: { (adventures) in
             self.adventures = adventures
         })
     }
@@ -32,6 +32,7 @@ struct AdventureListView: View {
                 }
             }
             .onAppear {
+                
                 loadAdventures()
             }.refreshable {
                 SDImageCache.shared.clearMemory()
