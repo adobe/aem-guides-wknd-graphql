@@ -16,10 +16,8 @@ public class Adventure implements Serializable {
     final String difficulty;
     final String type;
     final String groupSize;
-
     final String description;
     final String itinerary;
-
     final PrimaryImage primaryImage;
 
     public Adventure(
@@ -109,15 +107,18 @@ public class Adventure implements Serializable {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class PrimaryImage {
+        final String path;
         final String dynamicUrl;
 
-        public PrimaryImage(@JsonProperty("_dynamicUrl") String dynamicUrl) {
+        public PrimaryImage(@JsonProperty("_path") String path, @JsonProperty("_dynamicUrl") String dynamicUrl) {
+            this.path = path;
             this.dynamicUrl = dynamicUrl;
         }
 
         @Override
         public String toString() {
             return "[PrimaryImage " +
+                    "path='" + path +'\'' +
                     "dynamicUrl='" + dynamicUrl + '\'' +
                     ']';
         }

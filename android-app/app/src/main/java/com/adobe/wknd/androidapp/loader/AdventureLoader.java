@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class AdventureLoader extends AsyncTaskLoader<Adventure> {
@@ -33,7 +34,6 @@ public class AdventureLoader extends AsyncTaskLoader<Adventure> {
 
     @Override
     public Adventure loadInBackground() {
-
         try {
             Log.i("AdventureLoader", "Loading adventure for slug " + this.slug + " from " + BuildConfig.AEM_HOST);
             AEMHeadlessClientBuilder builder = AEMHeadlessClient.builder().endpoint(BuildConfig.AEM_HOST);
@@ -44,8 +44,10 @@ public class AdventureLoader extends AsyncTaskLoader<Adventure> {
             }
             AEMHeadlessClient client = builder.build();
 
-            Map<String, Object> params = new HashMap<>();
+            Map<String, Object> params = new LinkedHashMap<>();
             params.put("slug", this.slug);
+            params.put("imageWidth", 600);
+            params.put("imageQuality", 95);
 
             GraphQlResponse response = client.runPersistedQuery(PERSISTED_QUERY_NAME, params);
 
@@ -54,6 +56,8 @@ public class AdventureLoader extends AsyncTaskLoader<Adventure> {
             ObjectMapper mapper = new ObjectMapper();
 
             this.adventure = mapper.treeToValue(data.get(JSON_KEY_ADVENTURE_LIST).get(JSON_KEY_ITEMS).get(0), Adventure.class);
+
+            RemoteImagesCache.getInstance().prepareDrawableFor(adventure.getPrimaryImageSrc());
 
             Log.i("AdventureLoader", "Loaded adventure: " + adventure);
 

@@ -52,14 +52,12 @@ public class AdventureDetailFragment extends Fragment implements LoaderManager.L
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-
             this.itemId = getArguments().getString(ARG_ITEM_ID);
             Log.i("AdventureDetailFragment", "Received itemId in detail view: " + this.itemId);
         }
 
         adventureLoader = LoaderManager.getInstance(this).initLoader(0, null, this);
         adventureLoader.forceLoad();
-
     }
 
     @Override
