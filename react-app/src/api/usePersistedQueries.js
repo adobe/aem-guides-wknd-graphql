@@ -59,7 +59,7 @@ async function fetchPersistedQuery(persistedQueryName, queryParameters) {
  *
  * @returns an array of Adventure JSON objects, and array of errors
  */
-export function useAdventuresByActivity(adventureActivity) {
+export function useAdventuresByActivity(adventureActivity, params = {}) {
 
   const [adventures, setAdventures] = useState(null);
   const [errors, setErrors] = useState(null);
@@ -68,18 +68,19 @@ export function useAdventuresByActivity(adventureActivity) {
   useEffect(() => {
     async function fetchData() {
 
+      let queryVariables = params;
       let response;
 
       // if an activity is set (i.e "Camping", "Hiking"...) call wknd-shared/adventures-by-activity query
       if (adventureActivity) {
         // The key is 'activity' as defined in the persisted query
-        const queryParameters = { activity: adventureActivity };
+        queryVariables = { ...queryVariables, activity: adventureActivity };
 
         // Call the AEM GraphQL persisted query named "wknd-shared/adventures-by-activity" with parameters
-        response = await fetchPersistedQuery("wknd-shared/adventures-by-activity", queryParameters);
+        response = await fetchPersistedQuery("wknd-shared/adventures-by-activity", queryVariables);
       } else {
         // Call the AEM GraphQL persisted query named "wknd-shared/adventures-all"
-        response = await fetchPersistedQuery("wknd-shared/adventures-all");
+        response = await fetchPersistedQuery("wknd-shared/adventures-all", queryVariables);
       }
 
       // Sets the adventures variable to the list of adventure JSON objects
@@ -91,7 +92,7 @@ export function useAdventuresByActivity(adventureActivity) {
     // Call the internal fetchData() as per React best practices
     fetchData();
 
-  }, [adventureActivity]);
+  }, [adventureActivity, params.imageFormat, params.imageQuality, params.imageWidth]);
 
   // Returns the adventures and errors
   return { adventures, errors };
@@ -103,7 +104,7 @@ export function useAdventuresByActivity(adventureActivity) {
  * @param {String!} slugName the adventure slug
  * @returns a JSON object representing the Adventure
  */
-export function useAdventureBySlug(slugName) {
+export function useAdventureBySlug(slugName, params = {}) {
   const [adventure, setAdventure] = useState(null);
   const [references, setReferences] = useState(null);
   const [errors, setErrors] = useState(null);
@@ -114,12 +115,15 @@ export function useAdventureBySlug(slugName) {
       let response;
 
       // The key is 'slug' as defined in the persisted query
-      const queryParameters = { slug: slugName };
+      const queryVariables = { 
+        ...params,
+        slug: slugName,
+      };
 
       // Call the AEM GraphQL persisted query named "wknd-shared/adventure-by-slug" with parameters
       response = await fetchPersistedQuery(
         "wknd-shared/adventure-by-slug",
-        queryParameters
+        queryVariables
       );
 
       if (response.err) {
@@ -139,7 +143,7 @@ export function useAdventureBySlug(slugName) {
     // Call the internal fetchData() as per React best practices
     fetchData();
 
-  }, [slugName]);
+  }, [slugName, params.imageFormat, params.imageQuality, params.imageWidth]);
 
   return { adventure, references, errors };
 }

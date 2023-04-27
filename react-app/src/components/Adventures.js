@@ -9,13 +9,14 @@ it.
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAdventuresByActivity } from "../api/usePersistedQueries";
+import { addAemHost } from "../api/aemHeadlessClient";
 import Error from "./Error";
 import Loading from "./Loading";
 import './Adventures.scss';
 
 function Adventures({ adventureActivity }) {
-
-    const { adventures, error } = useAdventuresByActivity(adventureActivity);
+    const assetTransform = { format: 'JPG', preferWebp: true, size: { width: 240, height: 200 } };
+    const { adventures, error } = useAdventuresByActivity(adventureActivity, assetTransform);
 
     // Handle error and loading conditions
     if (error) {
@@ -45,7 +46,7 @@ function AdventureListItem({ title, slug, primaryImage, tripLength, price }) {
     return (
         <li className="adventure-item">
             <Link to={`/adventure/${slug}`}>
-                <img className="adventure-item-image" src={primaryImage._path}
+                <img className="adventure-item-image" src={addAemHost(primaryImage._dynamicUrl || primaryImage._path)}
                     alt={title} />
             </Link>
             <div className="adventure-item-length-price">

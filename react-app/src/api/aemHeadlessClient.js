@@ -46,4 +46,12 @@ const aemHeadlessClient = new AEMHeadless({
   auth: setAuthorization(),
 });
 
+// Prefix URLs with AEM Host
+export function addAemHost(url) {  
+  if (url.startsWith("/")) {
+    return new URL(url, REACT_APP_HOST_URI).toString();
+  }
+  return url;
+}
+
 export default aemHeadlessClient;
