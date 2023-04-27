@@ -16,7 +16,7 @@
 AEM_SCHEME = https
 
 // Target hostname for AEM environment, do not include http:// or https://
-AEM_HOST = publish-p49018-e1039950.adobeaemcloud.com
+AEM_HOST = publish-p123-e456.adobeaemcloud.com
 
 // If connecting to an AEM Publish environment, no need to set an AUTH_METHOD
 // Support for Basic Authentication - Set AUTH_METHOD to basic and set BASIC_AUTH_CREDENTIALS
