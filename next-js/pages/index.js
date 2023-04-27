@@ -55,13 +55,13 @@ export default function Adventures({ adventures }) {
 }
 
 export async function getServerSideProps() {
-  const assetTransform = {
-    format: 'JPG',
-    width: 400,
-    preferWebp: true,
-  }
+  const queryVariables = {
+    imageFormat: 'PNG',
+    imageWidth: 262,
+    imageQuality: 80,
+  };
 
-  const res = await aemHeadlessClient.getAllAdventures(assetTransform);
+  const res = await aemHeadlessClient.getAllAdventures(queryVariables);
   const adventures = res?.data?.adventureList?.items || [];
 
   if (!adventures.length) {

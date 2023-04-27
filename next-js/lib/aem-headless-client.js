@@ -21,6 +21,7 @@ import AEMHeadless from '@adobe/aem-headless-client-js';
  * - helper functions for resources, such as images, that need to be served from AEM
  */
 class AemHeadlessClient {
+  aemHost; 
 
   /**
    * Create an instance of the AEM Headles Client for JS used to communicate with AEM Headless GraphQL endpoints.
@@ -28,6 +29,8 @@ class AemHeadlessClient {
    * @param {*} serviceURL the AEM HOST this Next.js app will connect to.
    */
   constructor({ serviceURL }) {
+    this.aemHost = serviceURL;
+    
     this.aemHeadlessClient = new AEMHeadless({
       serviceURL: serviceURL,
       endpoint: 'The endpoint is not used as it only applies to client-side GraphQL queries which are not Adobe best practices.',
@@ -55,23 +58,27 @@ class AemHeadlessClient {
   /**
    * Generates an absoluate URL resolvable to AEM. This is typically used for images.
    * 
-   * @param {*} urlPath 
+   * @param {*} url 
    * @returns the urlPath prefixd with the AEM service host
    */
-  serveFromAem(urlPath) {
-    return `${process.env.NEXT_PUBLIC_AEM_HOST}${urlPath}`;
-  }
+  serveFromAem(url) {
+    if (url.startsWith("/")) {
+      return new URL(url, this.aemHost).toString();
+    }
+    return url;  }
+
+
 
   /**
    * Invokes the 'adventures-all` persisted query using the parameterizable namespace.
    * 
    * @returns a GraphQL response of all adventures.
    */
-  async getAllAdventures(assetTransform = {}) {
+  async getAllAdventures(queryVariables = {}) {
     const queryAdventuresAll = process.env.NEXT_PUBLIC_AEM_GRAPHQL_ENDPOINT + '/adventures-all';
       
     try {
-      return await this.aemHeadlessClient.runPersistedQuery(queryAdventuresAll, {'assetTransform': assetTransform});
+      return await this.aemHeadlessClient.runPersistedQuery(queryAdventuresAll, queryVariables);
     } catch(e) {
       console.error(e)
     }    
@@ -105,8 +112,8 @@ class AemHeadlessClient {
    * @param {*} slug the adventure's slug
    * @returns the adventure's details.
    */
-  async getAdventuresBySlug(slug, assetTransform = {}) {
-    const queryVariables = {'slug': slug, 'assetTransform': assetTransform};
+  async getAdventuresBySlug(slug, queryVariables = {}) {
+    queryVariables = {...queryVariables, 'slug': slug};
     const queryAdventuresBySlug = process.env.NEXT_PUBLIC_AEM_GRAPHQL_ENDPOINT + '/adventure-by-slug';
 
     try {

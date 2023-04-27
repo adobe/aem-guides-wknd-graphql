@@ -123,12 +123,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const slug = params.slug[0];
-  const assetTransform = {
-    format: 'JPG',
-    width: 1200,
-    preferWebp: true,
+  const queryVariables = {
+    imageWidth: 1600,
+    imageQuality: 95
   }
-  const res = await aemHeadlessClient.getAdventuresBySlug(slug);
+  const res = await aemHeadlessClient.getAdventuresBySlug(slug, queryVariables);
   const adventure = res?.data?.adventureList?.items[0];
 
   if (!adventure) {
