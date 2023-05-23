@@ -15,7 +15,7 @@ import './Adventures.scss';
 
 function Adventures({ adventureActivity }) {
 
-    const { adventures, error } = useAdventuresByActivity(adventureActivity);
+    const { adventures, error } = useAdventuresByActivity(adventureActivity, { imageWidth: 262 });
 
     // Handle error and loading conditions
     if (error) {
@@ -42,12 +42,10 @@ function AdventureListItem({ _path, title, slug, primaryImage, tripLength, price
         return null;
     }
 
-    console.log("Path", `/adventure${_path}`);
-
     return (
         <li className="adventure-item">
             <Link to={`/adventure${_path}`}>
-                <img className="adventure-item-image" src={primaryImage._path}
+                <img className="adventure-item-image" src={primaryImage._dynamicUrl || primaryImage._path}
                     alt={title} />
             </Link>
             <div className="adventure-item-length-price">
