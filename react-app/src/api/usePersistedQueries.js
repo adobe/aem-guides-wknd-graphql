@@ -53,7 +53,7 @@ async function fetchPersistedQuery(persistedQueryName, queryParameters) {
 }
 
 /**
- * React custom hook that returns a list of adevntures by activity. If no activity is provided, all adventures are returned.
+ * React custom hook that returns a list of adventures by activity. If no activity is provided, all adventures are returned.
  * 
  * Custom hook that calls the 'wknd-shared/adventures-all' or 'wknd-shared/adventures-by-activity' persisted query.
  *
@@ -92,7 +92,7 @@ export function useAdventuresByActivity(adventureActivity, params = {}) {
     // Call the internal fetchData() as per React best practices
     fetchData();
 
-  }, [adventureActivity, params.imageFormat, params.imageQuality, params.imageWidth]);
+  }, [adventureActivity, params]);
 
   // Returns the adventures and errors
   return { adventures, errors };
@@ -143,7 +143,7 @@ export function useAdventureBySlug(slugName, params = {}) {
     // Call the internal fetchData() as per React best practices
     fetchData();
 
-  }, [slugName, params.imageFormat, params.imageQuality, params.imageWidth]);
+  }, [slugName, params]);
 
   return { adventure, references, errors };
 }
