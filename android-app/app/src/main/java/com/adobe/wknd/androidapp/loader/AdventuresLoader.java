@@ -29,8 +29,12 @@ public class AdventuresLoader extends AsyncTaskLoader<AdventureList> {
         Log.i("AdventuresLoader", "context in loader constructor: " + context + " class " + context.getClass());
     }
 
+
     @Override
     public AdventureList loadInBackground() {
+        Map<String, Object> params = new LinkedHashMap<>();
+        params.put("imageWidth", 200);
+        params.put("imageQuality", 80);
 
         try {
             Log.i("AdventuresLoader", "Loading adventures from   " + BuildConfig.AEM_HOST);
@@ -41,7 +45,7 @@ public class AdventuresLoader extends AsyncTaskLoader<AdventureList> {
                 builder.basicAuth(user, password);
             }
             AEMHeadlessClient client = builder.build();
-            GraphQlResponse response = client.runPersistedQuery(PERSISTED_QUERY_NAME);
+            GraphQlResponse response = client.runPersistedQuery(PERSISTED_QUERY_NAME, params);
 
             JsonNode data = response.getData();
 
@@ -52,7 +56,7 @@ public class AdventuresLoader extends AsyncTaskLoader<AdventureList> {
             for (Adventure adventure : adventureList) {
                 adventuresBySlug.put(adventure.slug, adventure);
                 Log.d("AdventuresLoader", "Loaded: " + adventure);
-                RemoteImagesCache.getInstance().prepareDrawableFor(adventure.getPrimaryImagePath());
+                RemoteImagesCache.getInstance().prepareDrawableFor(adventure.getPrimaryImageSrc());
             }
 
             Log.i("AdventuresLoader", "Loaded  " + adventureList.items.size() + " adventures");
@@ -64,7 +68,6 @@ public class AdventuresLoader extends AsyncTaskLoader<AdventureList> {
             return null;
         }
     }
-
 
     public Map<String, Adventure> getAdventuresBySlug() {
         return adventuresBySlug;

@@ -153,7 +153,7 @@ class PersonInfo extends HTMLElement {
     const templateContent = personTemplateElement.content;
 
     const personImgElement = templateContent.querySelector('.person_image');
-    personImgElement.setAttribute('src', host + person.profilePicture._path);
+    personImgElement.setAttribute('src', host + (person.profilePicture._dynamicUrl || person.profilePicture._path));
     personImgElement.setAttribute('alt', person.fullName);
 
     const personFullNameElement = templateContent.querySelector('.person_full-name');

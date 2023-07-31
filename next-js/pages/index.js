@@ -42,7 +42,7 @@ export default function Adventures({ adventures }) {
                       title={title}
                       price={price}
                       duration={tripLength}
-                      imageSrc={aemHeadlessClient.serveFromAem(primaryImage?._path)}
+                      imageSrc={aemHeadlessClient.serveFromAem(primaryImage?._dynamicUrl || primaryImage?._path)}
                     />
                   );
                 }
@@ -55,7 +55,13 @@ export default function Adventures({ adventures }) {
 }
 
 export async function getServerSideProps() {
-  const res = await aemHeadlessClient.getAllAdventures();
+  const queryVariables = {
+    imageFormat: 'PNG',
+    imageWidth: 262,
+    imageQuality: 80,
+  };
+
+  const res = await aemHeadlessClient.getAllAdventures(queryVariables);
   const adventures = res?.data?.adventureList?.items || [];
 
   if (!adventures.length) {

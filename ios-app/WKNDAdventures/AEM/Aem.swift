@@ -61,17 +61,15 @@ class Aem: ObservableObject {
     /// # getAdventures()
     /// Returns all WKND adventures using the `wknd-shared/adventures-all` persisted query.
     /// For this func call to work, the `wknd-shared/adventures-all` query must be deployed to the AEM environment/service specified by the host
-    func getAdventures(completion: @escaping ([Adventure]) ->  ()) {
+    func getAdventures(params: [String:String], completion: @escaping ([Adventure]) ->  ()) {
                
-        let request = makeRequest(persistedQueryName: "wknd-shared/adventures-all")
+        let request = makeRequest(persistedQueryName: "wknd-shared/adventures-all", params: params)
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if ((error) != nil) {
                 print("Unable to connect to AEM GraphQL endpoint")
                 completion([])
-            }
-                                    
-            if (!data!.isEmpty) {
+            } else if (!data!.isEmpty) {
                 let adventures = try! JSONDecoder().decode(Adventures.self, from: data!)
                 DispatchQueue.main.async {
                     completion(adventures.data.adventureList.items)
@@ -86,8 +84,9 @@ class Aem: ObservableObject {
     /// 'slug`is a unique field, so this `adventureList` should have 0 or 1 results.
     /// For this func call to work, the `wknd/adventure-by-slug` query must be deployed to the AEM environment/service specified by the host
     func getAdventureBySlug(slug: String, completion: @escaping (Adventure) ->  ()) {
+
         let request = makeRequest(persistedQueryName: "wknd-shared/adventure-by-slug", params: [ "slug": slug ] )
-                
+                        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if ((error) != nil) {
                 print("Unable to connect to AEM GraphQL endpoint")

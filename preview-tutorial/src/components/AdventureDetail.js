@@ -25,10 +25,8 @@ function AdventureDetail() {
     // Add the leading '/' back on 
     const path = '/' + pathParam;
 
-    console.log("BY PATH", path);
-
     // Query AEM for the Adventures's details, using the `path`
-    const { adventure, references, error } = useAdventureByPath(path);
+    const { adventure, references, error } = useAdventureByPath(path, { imageWidth: 800 });
 
     // Handle error and loading conditions
     if (error) {
@@ -78,7 +76,7 @@ function AdventureDetailRender({ title,
         </div>
         <div className="adventure-detail-content">
             <img className="adventure-detail-primaryimage"
-                src={primaryImage._path} alt={title} />
+                src={primaryImage._dynamicUrl || primaryImage._path} alt={title} />
             <div>{mapJsonRichText(description.json, customRenderOptions(references))}</div>
             <h2>Itinerary</h2>
             <hr />

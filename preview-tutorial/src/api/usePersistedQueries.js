@@ -59,7 +59,7 @@ async function fetchPersistedQuery(persistedQueryName, queryParameters) {
  *
  * @returns an array of Adventure JSON objects, and array of errors
  */
-export function useAdventuresByActivity(adventureActivity) {
+export function useAdventuresByActivity(adventureActivity, params) {
 
   const [adventures, setAdventures] = useState(null);
   const [errors, setErrors] = useState(null);
@@ -69,17 +69,18 @@ export function useAdventuresByActivity(adventureActivity) {
     async function fetchData() {
 
       let response;
+      let queryParameters = { ...params };
 
       // if an activity is set (i.e "Camping", "Hiking"...) call wknd-shared/adventures-by-activity query
       if (adventureActivity) {
         // The key is 'activity' as defined in the persisted query
-        const queryParameters = { activity: adventureActivity };
+        queryParameters = { ...queryParameters, activity: adventureActivity };
 
         // Call the AEM GraphQL persisted query named "wknd-shared/adventures-by-activity" with parameters
         response = await fetchPersistedQuery("wknd-shared/adventures-by-activity", queryParameters);
       } else {
         // Call the AEM GraphQL persisted query named "wknd-shared/adventures-all"
-        response = await fetchPersistedQuery("wknd-shared/adventures-all");
+        response = await fetchPersistedQuery("wknd-shared/adventures-all", queryParameters);
       }
 
       // Sets the adventures variable to the list of adventure JSON objects
@@ -148,7 +149,7 @@ export function useAdventureBySlug(slugName) {
  * @param {String!} path the adventure Content Fragment's path
  * @returns a JSON object representing the Adventure
  */
-export function useAdventureByPath(path) {
+export function useAdventureByPath(path, params) {
   const [adventure, setAdventure] = useState(null);
   const [errors, setErrors] = useState(null);
 
@@ -158,7 +159,7 @@ export function useAdventureByPath(path) {
       let response;
 
       // The key is 'path' as defined in the persisted query
-      const queryParameters = { adventurePath: path };
+      const queryParameters = { ...params, adventurePath: path };
 
       // Call the AEM GraphQL persisted query named "wknd-shared/adventure-by-path" with parameters
       response = await fetchPersistedQuery(
