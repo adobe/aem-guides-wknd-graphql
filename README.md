@@ -23,7 +23,7 @@ The sample applications in this repository are designed to connect to AEM enviro
 
  AEM as a Cloud Service | AEM 6.5 | Sample Content |
 ------------------------|---------|--------------------|
-Continual               | 6.5.10+ |  [WKND Site 2.1.0+](https://github.com/adobe/aem-guides-wknd/releases/latest) |
+Continual               | Not supported |  [WKND Site 3.0.0+](https://github.com/adobe/aem-guides-wknd/releases/latest) |
 
 ## Tutorial
 
