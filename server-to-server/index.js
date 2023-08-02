@@ -27,7 +27,7 @@ async function run() {
     let data;
     try {
         // Retrieve the data from AEM GraphQL APIs
-        data = await aemHeadlessClient.runPersistedQuery('wknd-shared/adventures-all')
+        data = await aemHeadlessClient.runPersistedQuery('wknd-shared/adventures-all', { imageWidth: 1200 })
         
         // Do something with the data from AEM. 
         // A common use case is sending the data to another system.

@@ -42,7 +42,7 @@ export default function Adventure({ adventure }) {
             <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 overflow-hidden lg:h-80 lg:aspect-none">
               <img
                 alt={title}
-                src={aemHeadlessClient.serveFromAem(primaryImage._path)}
+                src={aemHeadlessClient.serveFromAem(primaryImage?._dynamicUrl || primaryImage?._path)}
                 className="w-full h-full object-center object-cover lg:w-full lg:h-full"
               />
             </div>
@@ -123,7 +123,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const slug = params.slug[0];
-  const res = await aemHeadlessClient.getAdventuresBySlug(slug);
+  const queryVariables = {
+    imageWidth: 1600,
+    imageQuality: 95
+  }
+  const res = await aemHeadlessClient.getAdventuresBySlug(slug, queryVariables);
   const adventure = res?.data?.adventureList?.items[0];
 
   if (!adventure) {

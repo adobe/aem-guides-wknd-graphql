@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@adobe/aem-headless-client-js": "^3.3.0",
-    "@adobe/aem-headless-client-nodejs": "^1.1.0",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",

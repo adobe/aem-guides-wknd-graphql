@@ -9,6 +9,8 @@ it.
 import React from 'react';
 import { Link, useParams } from "react-router-dom";
 import { useAdventureBySlug } from "../api/usePersistedQueries";
+import { addAemHost } from "../api/aemHeadlessClient";
+
 import backIcon from '../images/icon-close.svg';
 import { mapJsonRichText } from '../utils/renderRichText';
 import './AdventureDetail.scss';
@@ -21,7 +23,7 @@ function AdventureDetail() {
     const { slug } = useParams();
 
     // Query AEM for the Adventures's details, using the `slug`
-    const { adventure, references, error } = useAdventureBySlug(slug);
+    const { adventure, references, error } = useAdventureBySlug(slug, { format: 'JPG', preferWebp: true, width: 1200});
 
     // Handle error and loading conditions
     if (error) {
@@ -71,7 +73,7 @@ function AdventureDetailRender({ title,
         </div>
         <div className="adventure-detail-content">
             <img className="adventure-detail-primaryimage"
-                src={primaryImage._path} alt={title} />
+                src={addAemHost(primaryImage._dynamicUrl || primaryImage._path)} alt={title} />
             <div>{mapJsonRichText(description.json, customRenderOptions(references))}</div>
             <h2>Itinerary</h2>
             <hr />

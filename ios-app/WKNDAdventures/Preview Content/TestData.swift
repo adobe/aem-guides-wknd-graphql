@@ -25,10 +25,7 @@ struct TestAdventuresAll {
                     "price": "5000.00",
                     "tripLength": "6 Days",
                     "primaryImage": {
-                      "_path": "/content/dam/wknd/en/adventures/bali-surf-camp/AdobeStock_175749320.jpg",
-                      "mimeType": "image/jpeg",
-                      "width": 1600,
-                      "height": 899
+                      "_dynamicUrl": "/content/dam/wknd/en/adventures/bali-surf-camp/AdobeStock_175749320.jpg"
                     }
                   },
                   {
@@ -38,10 +35,7 @@ struct TestAdventuresAll {
                     "price": "300.00",
                     "tripLength": "1 Day",
                     "primaryImage": {
-                      "_path": "/content/dam/wknd/en/adventures/beervana-portland/AdobeStock_279232449.jpeg",
-                      "mimeType": "image/jpeg",
-                      "width": 1381,
-                      "height": 920
+                      "_dynamicUrl": "/content/dam/wknd/en/adventures/beervana-portland/AdobeStock_279232449.jpeg"
                     }
                   }]
               }
@@ -72,10 +66,7 @@ struct TestAdventureBySlug {
                       "groupSize": 6,
                       "difficulty": "Beginner",
                       "primaryImage": {
-                        "_path": "/content/dam/wknd/en/adventures/bali-surf-camp/AdobeStock_175749320.jpg",
-                        "mimeType": "image/jpeg",
-                        "width": 1600,
-                        "height": 899
+                        "_dynamicUrl": "/content/dam/wknd/en/adventures/bali-surf-camp/AdobeStock_175749320.jpg"
                       },
                       "description": {
                         "plaintext": "Surfing in Bali is on the bucket list of every surfer - whether you're a beginner or someone who's been surfing for decades, there will be a break to cater to your ability. Bali offers warm water, tropical vibes, awesome breaks and low cost expenses."

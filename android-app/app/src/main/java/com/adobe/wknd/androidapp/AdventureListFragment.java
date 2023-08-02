@@ -145,7 +145,7 @@ public class AdventureListFragment extends Fragment implements LoaderManager.Loa
                 }
             }
 
-            holder.itemThumbnail.setImageDrawable(RemoteImagesCache.getInstance().getDrawable(adventure.getPrimaryImagePath()));
+            holder.itemThumbnail.setImageDrawable(RemoteImagesCache.getInstance().getDrawable(adventure.getPrimaryImageSrc()));
             Spanned s = Html.fromHtml(
                     "<p><h4>" + adventure.getTitle() + "</h4></p><br/>" +
                             "<p>" + adventure.getTripLength() + " / " + price + "</p>",
