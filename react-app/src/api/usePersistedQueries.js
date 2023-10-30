@@ -92,7 +92,7 @@ export function useAdventuresByActivity(adventureActivity, params = {}) {
     // Call the internal fetchData() as per React best practices
     fetchData();
 
-  }, [adventureActivity, params]);
+  }, [adventureActivity]);
 
   // Returns the adventures and errors
   return { adventures, errors };
@@ -143,7 +143,7 @@ export function useAdventureBySlug(slugName, params = {}) {
     // Call the internal fetchData() as per React best practices
     fetchData();
 
-  }, [slugName, params]);
+  }, [slugName]);
 
   return { adventure, references, errors };
 }
