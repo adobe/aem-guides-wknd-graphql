@@ -6,7 +6,7 @@ NOTICE: Adobe permits you to use, modify, and distribute this file in
 accordance with the terms of the Adobe license agreement accompanying
 it.
 */
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { useAdventureBySlug } from "../api/usePersistedQueries";
 import { addAemHost } from "../api/aemHeadlessClient";
@@ -21,9 +21,9 @@ function AdventureDetail() {
 
     // Read the slug value which is the parameter used to query for the adventure's details
     const { slug } = useParams();
-
+    const queryParameters = useMemo(() => ({ format: 'JPG', preferWebp: true, width: 1200}), []);
     // Query AEM for the Adventures's details, using the `slug`
-    const { adventure, references, error } = useAdventureBySlug(slug, { format: 'JPG', preferWebp: true, width: 1200});
+    const { adventure, references, error } = useAdventureBySlug(slug, queryParameters);
 
     // Handle error and loading conditions
     if (error) {

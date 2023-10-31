@@ -7,9 +7,11 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import aemHeadlessClient from "./aemHeadlessClient";
+import { parseArgs } from "util";
 
+const emptyObject = useMemo({});
 /**
  * This file contains the React useEffect custom hooks that:
  * 1. Are called by the React components
@@ -59,8 +61,9 @@ async function fetchPersistedQuery(persistedQueryName, queryParameters) {
  *
  * @returns an array of Adventure JSON objects, and array of errors
  */
-export function useAdventuresByActivity(adventureActivity, params = {}) {
+export function useAdventuresByActivity(adventureActivity, params) {
 
+  params = params || emptyObject;
   const [adventures, setAdventures] = useState(null);
   const [errors, setErrors] = useState(null);
 
@@ -104,7 +107,8 @@ export function useAdventuresByActivity(adventureActivity, params = {}) {
  * @param {String!} slugName the adventure slug
  * @returns a JSON object representing the Adventure
  */
-export function useAdventureBySlug(slugName, params = {}) {
+export function useAdventureBySlug(slugName, params) {
+  params = params || emptyObject;
   const [adventure, setAdventure] = useState(null);
   const [references, setReferences] = useState(null);
   const [errors, setErrors] = useState(null);
@@ -147,3 +151,5 @@ export function useAdventureBySlug(slugName, params = {}) {
 
   return { adventure, references, errors };
 }
+
+
