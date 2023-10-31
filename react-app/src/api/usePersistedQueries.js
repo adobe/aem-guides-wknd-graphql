@@ -7,7 +7,7 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import aemHeadlessClient from "./aemHeadlessClient";
 
 /**
