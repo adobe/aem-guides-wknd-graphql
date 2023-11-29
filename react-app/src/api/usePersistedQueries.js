@@ -10,6 +10,9 @@ it.
 import { useEffect, useState } from "react";
 import aemHeadlessClient from "./aemHeadlessClient";
 
+// environment variable for configuring the headless client
+const { ENABLE_CACHE, REACT_APP_GRAPHQL_ENDPOINT} = process.env;
+
 /**
  * This file contains the React useEffect custom hooks that:
  * 1. Are called by the React components
@@ -31,6 +34,13 @@ import aemHeadlessClient from "./aemHeadlessClient";
 async function fetchPersistedQuery(persistedQueryName, queryParameters) {
   let data;
   let err;
+
+  if (ENABLE_CACHE === "false") {
+    if (queryParameters === "undefined") {
+      queryParameters = {};
+    }
+    queryParameters.timestamp = new Date().getTime();
+  }
 
   try {
     // AEM GraphQL queries are asynchronous, either await their return or use Promise-based .then(..) { ... } syntax
@@ -55,7 +65,7 @@ async function fetchPersistedQuery(persistedQueryName, queryParameters) {
 /**
  * React custom hook that returns a list of adventures by activity. If no activity is provided, all adventures are returned.
  * 
- * Custom hook that calls the 'wknd-shared/adventures-all' or 'wknd-shared/adventures-by-activity' persisted query.
+ * Custom hook that calls the '[graphql endpoint namspace]/adventures-all' or '[graphql endpoint namspace]/adventures-by-activity' persisted query.
  *
  * @returns an array of Adventure JSON objects, and array of errors
  */
@@ -70,16 +80,16 @@ export function useAdventuresByActivity(adventureActivity, params) {
       let queryVariables = params;
       let response;
 
-      // if an activity is set (i.e "Camping", "Hiking"...) call wknd-shared/adventures-by-activity query
+      // if an activity is set (i.e "Camping", "Hiking"...) call [graphql endpoint namspace]/adventures-by-activity query
       if (adventureActivity) {
         // The key is 'activity' as defined in the persisted query
         queryVariables = { ...queryVariables, activity: adventureActivity };
 
-        // Call the AEM GraphQL persisted query named "wknd-shared/adventures-by-activity" with parameters
-        response = await fetchPersistedQuery("wknd-shared/adventures-by-activity", queryVariables);
+        // Call the AEM GraphQL persisted query named "[graphql endpoint namspace]/adventures-by-activity" with parameters
+        response = await fetchPersistedQuery(REACT_APP_GRAPHQL_ENDPOINT + "/adventures-by-activity", queryVariables);
       } else {
-        // Call the AEM GraphQL persisted query named "wknd-shared/adventures-all"
-        response = await fetchPersistedQuery("wknd-shared/adventures-all", queryVariables);
+        // Call the AEM GraphQL persisted query named "[graphql endpoint namspace]/adventures-all"
+        response = await fetchPersistedQuery(REACT_APP_GRAPHQL_ENDPOINT + "/adventures-all", queryVariables);
       }
 
       // Sets the adventures variable to the list of adventure JSON objects
@@ -98,7 +108,7 @@ export function useAdventuresByActivity(adventureActivity, params) {
 }
 
 /**
- * Calls the 'wknd-shared/adventure-by-slug' persisted query with `slug` parameter.
+ * Calls the '[graphql endpoint namspace]/adventure-by-slug' persisted query with `slug` parameter.
  *
  * @param {String!} slugName the adventure slug
  * @returns a JSON object representing the Adventure
@@ -119,9 +129,9 @@ export function useAdventureBySlug(slugName, params) {
         slug: slugName,
       };
 
-      // Call the AEM GraphQL persisted query named "wknd-shared/adventure-by-slug" with parameters
+      // Call the AEM GraphQL persisted query named "[graphql endpoint namspace]/adventure-by-slug" with parameters
       response = await fetchPersistedQuery(
-        "wknd-shared/adventure-by-slug",
+        REACT_APP_GRAPHQL_ENDPOINT + "/adventure-by-slug",
         queryVariables
       );
 
