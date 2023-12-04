@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import aemHeadlessClient from "./aemHeadlessClient";
 
 // environment variable for configuring the headless client
-const { ENABLE_CACHE, REACT_APP_GRAPHQL_ENDPOINT} = process.env;
+const { DISABLE_CACHE, REACT_APP_GRAPHQL_ENDPOINT} = process.env;
 
 /**
  * This file contains the React useEffect custom hooks that:
