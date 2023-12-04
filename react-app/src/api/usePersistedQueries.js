@@ -66,7 +66,7 @@ async function fetchPersistedQuery(persistedQueryName, queryParameters) {
 /**
  * React custom hook that returns a list of adventures by activity. If no activity is provided, all adventures are returned.
  * 
- * Custom hook that calls the '[graphql endpoint namspace]/adventures-all' or '[graphql endpoint namspace]/adventures-by-activity' persisted query.
+ * Custom hook that calls the '[graphql endpoint namespace]/adventures-all' or '[graphql endpoint namespace]/adventures-by-activity' persisted query.
  *
  * @returns an array of Adventure JSON objects, and array of errors
  */
