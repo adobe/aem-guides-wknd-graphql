@@ -81,7 +81,7 @@ export function useAdventuresByActivity(adventureActivity, params) {
       let queryVariables = params;
       let response;
 
-      // if an activity is set (i.e "Camping", "Hiking"...) call [graphql endpoint namspace]/adventures-by-activity query
+      // if an activity is set (i.e "Camping", "Hiking"...) call [graphql endpoint namespace]/adventures-by-activity query
       if (adventureActivity) {
         // The key is 'activity' as defined in the persisted query
         queryVariables = { ...queryVariables, activity: adventureActivity };
