@@ -109,7 +109,7 @@ export function useAdventuresByActivity(adventureActivity, params) {
 }
 
 /**
- * Calls the '[graphql endpoint namspace]/adventure-by-slug' persisted query with `slug` parameter.
+ * Calls the '[graphql endpoint namespace]/adventure-by-slug' persisted query with `slug` parameter.
  *
  * @param {String!} slugName the adventure slug
  * @returns a JSON object representing the Adventure
