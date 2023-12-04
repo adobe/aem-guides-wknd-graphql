@@ -86,7 +86,7 @@ export function useAdventuresByActivity(adventureActivity, params) {
         // The key is 'activity' as defined in the persisted query
         queryVariables = { ...queryVariables, activity: adventureActivity };
 
-        // Call the AEM GraphQL persisted query named "[graphql endpoint namspace]/adventures-by-activity" with parameters
+        // Call the AEM GraphQL persisted query named "[graphql endpoint namespace]/adventures-by-activity" with parameters
         response = await fetchPersistedQuery(REACT_APP_GRAPHQL_ENDPOINT + "/adventures-by-activity", queryVariables);
       } else {
         // Call the AEM GraphQL persisted query named "[graphql endpoint namspace]/adventures-all"
