@@ -89,7 +89,7 @@ export function useAdventuresByActivity(adventureActivity, params) {
         // Call the AEM GraphQL persisted query named "[graphql endpoint namespace]/adventures-by-activity" with parameters
         response = await fetchPersistedQuery(REACT_APP_GRAPHQL_ENDPOINT + "/adventures-by-activity", queryVariables);
       } else {
-        // Call the AEM GraphQL persisted query named "[graphql endpoint namspace]/adventures-all"
+        // Call the AEM GraphQL persisted query named "[graphql endpoint namespace]/adventures-all"
         response = await fetchPersistedQuery(REACT_APP_GRAPHQL_ENDPOINT + "/adventures-all", queryVariables);
       }
 
