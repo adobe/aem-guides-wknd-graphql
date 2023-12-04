@@ -35,7 +35,8 @@ async function fetchPersistedQuery(persistedQueryName, queryParameters) {
   let data;
   let err;
 
-  if (ENABLE_CACHE === "false") {
+  // Do NOT disable cache in production. This toggle is this demo app is only to help you quickly explore AEM's Headless APIs without having to wait for cache expiration to see changes.
+  if (DISABLE_CACHE === "true") {
     if (queryParameters === "undefined") {
       queryParameters = {};
     }
