@@ -130,7 +130,7 @@ export function useAdventureBySlug(slugName, params) {
         slug: slugName,
       };
 
-      // Call the AEM GraphQL persisted query named "[graphql endpoint namspace]/adventure-by-slug" with parameters
+      // Call the AEM GraphQL persisted query named "[graphql endpoint namespace]/adventure-by-slug" with parameters
       response = await fetchPersistedQuery(
         REACT_APP_GRAPHQL_ENDPOINT + "/adventure-by-slug",
         queryVariables
