@@ -1,0 +1,25 @@
+@import './variables';
+@import './grid';
+
+.aem-GridColumn {
+    padding: 0 1rem;
+}
+
+.responsivegrid.aem-GridColumn{
+    padding-left:0;
+    padding-right:0
+}
+
+$max_col: 12;
+
+// Default breakpoint
+.aem-Grid {
+    @include generate-grid(default, $max_col);
+}
+
+// Phone breakpoint
+@media (max-width: $mobile-breakpoint) {
+    .aem-Grid {
+        @include generate-grid(phone, $max_col);
+    }
+}
